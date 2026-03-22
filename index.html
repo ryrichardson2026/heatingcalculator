@@ -829,8 +829,7 @@
       <div class="prog-seg" id="seg-2"></div>
       <div class="prog-seg" id="seg-3"></div>
       <div class="prog-seg" id="seg-4"></div>
-      <div class="prog-seg" id="seg-5"></div>
-      <div class="prog-label" id="prog-label">Step 1 of 5</div>
+      <div class="prog-label" id="prog-label">Step 1 of 4</div>
     </div>
 
     <div class="calc-body">
@@ -863,7 +862,7 @@
       </div>
 
       <!-- STEP 2: System Type -->
-      <div class="step-panel" id="step-2-system">
+      <div class="step-panel" id="step-2">
         <div class="step-q">What type of heating?</div>
         <div class="step-hint">Select the system you want installed or replaced</div>
         <div class="options g1">
@@ -886,51 +885,23 @@
         </div>
         <div class="calc-nav">
           <button class="btn-back" onclick="goToStep(1)">← Back</button>
-          <button class="btn-next" id="next-2-system" disabled onclick="goToStep(3)">Next →</button>
+          <button class="btn-next" id="next-2" disabled onclick="goToStep(3)">Next →</button>
         </div>
       </div>
 
-      <!-- STEP 2: Size/Zones -->
-      <div class="step-panel" id="step-5">
+      <!-- STEP 3: Size/Zones -->
+      <div class="step-panel" id="step-3">
         <div class="step-q" id="step2-q">Home size?</div>
         <div class="step-hint" id="step2-hint">Select your approximate square footage</div>
         <div class="options g2" id="opts-2"></div>
         <div class="calc-nav">
-          <button class="btn-back" onclick="goToStep(3)">← Back</button>
-          <button class="btn-next" id="next-4" disabled onclick="goToStep(5)">Next →</button>
-        </div>
-      </div>
-
-      <!-- STEP 3: Job type -->
-      <div class="step-panel" id="step-5">
-        <div class="step-q">New install or replacement?</div>
-        <div class="step-hint">Replacing an existing furnace is typically less than a new install</div>
-        <div class="options g1">
-          <button class="opt" onclick="selectOpt(this,3,'replacement','Replacing existing system')">
-            <div class="opt-icon">🔄</div>
-            <div><div class="opt-label">Replacing existing system</div><div class="opt-sub">Existing ducts — swapping old equipment</div></div>
-          </button>
-          <button class="opt" onclick="selectOpt(this,3,'new-with-ducts','New install — ducts exist')">
-            <div class="opt-icon">🏠</div>
-            <div><div class="opt-label">New install — ducts already exist</div><div class="opt-sub">Adding cooling to a home with existing ductwork</div></div>
-          </button>
-          <button class="opt" onclick="selectOpt(this,3,'new-no-ducts','New install — no ducts')">
-            <div class="opt-icon">🔧</div>
-            <div><div class="opt-label">New install — no existing ductwork</div><div class="opt-sub">Common in older Snohomish County homes</div></div>
-          </button>
-          <button class="opt" onclick="selectOpt(this,3,'not-sure','Not sure')">
-            <div class="opt-icon">🤔</div>
-            <div><div class="opt-label">Not sure</div><div class="opt-sub">A pro can assess during the free estimate</div></div>
-          </button>
-        </div>
-        <div class="calc-nav">
-          <button class="btn-back" onclick="goToStep(3)">← Back</button>
-          <button class="btn-next" id="next-4" disabled onclick="goToStep(5)">Next →</button>
+          <button class="btn-back" onclick="goToStep(2)">← Back</button>
+          <button class="btn-next" id="next-3" disabled onclick="goToStep(4)">Next →</button>
         </div>
       </div>
 
       <!-- STEP 4: City -->
-      <div class="step-panel" id="step-5">
+      <div class="step-panel" id="step-4">
         <div class="step-q">Your city?</div>
         <div class="step-hint">Confirms you're in our service area — pricing may vary by location</div>
         <select class="city-select" id="city-select" onchange="checkCity(this.value)">
@@ -957,8 +928,8 @@
         </select>
         <div id="city-msg" style="font-size:12px;color:var(--blue-muted);margin-top:8px;min-height:18px"></div>
         <div class="calc-nav">
-          <button class="btn-back" onclick="goToStep(4)">← Back</button>
-          <button class="btn-next" id="next-5" disabled onclick="showResult()">See My Estimate →</button>
+          <button class="btn-back" onclick="goToStep(3)">← Back</button>
+          <button class="btn-next" id="next-4" disabled onclick="showResult()">See My Estimate →</button>
         </div>
       </div>
 
@@ -974,21 +945,24 @@
 
       <!-- REPAIR COMPARISON — shows on repair/unsure path -->
       <div id="repair-comparison" style="display:none;background:#F5F7FA;border:1px solid #E2EAF2;border-radius:10px;padding:14px;margin-bottom:16px;">
-        <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#4A6A8A;margin-bottom:10px;">Common Repair Costs vs Replacement</div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#4A6A8A;margin-bottom:10px;">Common Repairs in Snohomish County</div>
         <table style="width:100%;font-size:12px;border-collapse:collapse;">
-          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:5px 0;color:#0D1F3C;font-weight:700">Diagnostic / service call</td><td style="text-align:right;color:#6B8299">$97–$150</td></tr>
-          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:5px 0;color:#0D1F3C;font-weight:700">Ignitor replacement</td><td style="text-align:right;color:#6B8299">$150–$350</td></tr>
-          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:5px 0;color:#0D1F3C;font-weight:700">Flame sensor</td><td style="text-align:right;color:#6B8299">$150–$300</td></tr>
-          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:5px 0;color:#0D1F3C;font-weight:700">Thermostat</td><td style="text-align:right;color:#6B8299">$100–$300</td></tr>
-          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:5px 0;color:#0D1F3C;font-weight:700">Circuit board</td><td style="text-align:right;color:#6B8299">$250–$700</td></tr>
-          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:5px 0;color:#0D1F3C;font-weight:700">Blower motor</td><td style="text-align:right;color:#6B8299">$350–$700</td></tr>
-          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:5px 0;color:#0D1F3C;font-weight:700">Gas valve</td><td style="text-align:right;color:#6B8299">$300–$750</td></tr>
-          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:5px 0;color:#0D1F3C;font-weight:700">Heat exchanger</td><td style="text-align:right;color:#6B8299">$600–$1,500</td></tr>
-          <tr><td style="padding:5px 0;color:#FF6B35;font-weight:700">Full replacement</td><td style="text-align:right;color:#FF6B35;font-weight:700">See estimate above</td></tr>
+          <tr style="border-bottom:1px solid #E2EAF2">
+            <td style="padding:7px 0;color:#0D1F3C;font-weight:700">Minor repair <span style="font-weight:400;color:#9BB0C4">(ignitor, sensor, thermostat)</span></td>
+            <td style="text-align:right;color:#6B8299;font-weight:600">~$150–$400</td>
+          </tr>
+          <tr style="border-bottom:1px solid #E2EAF2">
+            <td style="padding:7px 0;color:#0D1F3C;font-weight:700">Major repair <span style="font-weight:400;color:#9BB0C4">(motor, valve, exchanger)</span></td>
+            <td style="text-align:right;color:#6B8299;font-weight:600">~$500–$1,500</td>
+          </tr>
+          <tr>
+            <td style="padding:7px 0;color:#FF6B35;font-weight:700">Full replacement</td>
+            <td style="text-align:right;color:#FF6B35;font-weight:700">See estimate above</td>
+          </tr>
         </table>
         <div style="margin-top:10px;padding:10px;background:rgba(255,107,53,0.06);border-radius:8px;border:1px solid rgba(255,107,53,0.15);">
-          <div style="font-size:11px;font-weight:700;color:#0D1F3C;margin-bottom:3px;">The rule pros use:</div>
-          <div style="font-size:11px;color:#6B8299;line-height:1.6;">If repair cost exceeds 30% of a new system — replacement usually wins. A 15-year-old furnace needing a $600 blower motor repair = strong case for replacement. Electric furnace repairs typically run lower than gas.</div>
+          <div style="font-size:11px;font-weight:700;color:#0D1F3C;margin-bottom:3px;">Rule of thumb:</div>
+          <div style="font-size:11px;color:#6B8299;line-height:1.6;">If your repair estimate exceeds 30% of a new system — replacement usually wins. A system over 12 years old with a major repair is often a strong case for replacement.</div>
         </div>
       </div>
       <div class="rebate-note" id="rebate-note" style="display:none"></div>
@@ -1000,11 +974,15 @@
         <div class="value-bullet">📅 Spring installs booking 3–4 weeks out</div>
         <div class="value-bullet">⏱️ Most installs completed in 1–2 days</div>
       </div>
-      <div style="font-size:13px;font-weight:700;color:#0D1F3C;margin-bottom:10px;">Not sure if this is right for your home?</div>
+      <div style="font-size:13px;font-weight:700;color:#0D1F3C;margin-bottom:10px;">Need an exact estimate?</div>
       <button class="cta-reveal-btn" onclick="revealForm(this)">Talk to a Local Expert →</button>
       <div class="trust-signals">
         <span>🔒 Licensed, insured & bonded</span>
-        <span>✓ Free conversation · No obligation · No pressure</span>
+        <span style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+          <span style="color:#3B8A3E;font-weight:700">✅ Free Estimate</span>
+          <span style="color:#3B8A3E;font-weight:700">✅ No Obligation</span>
+          <span style="color:#3B8A3E;font-weight:700">✅ No Spam Calls</span>
+        </span>
       </div>
         <div class="form-reveal" id="form-reveal">
           <div class="result-cta-title">Get Your Free Heating Estimate</div>
@@ -1253,22 +1231,21 @@ function selectSituation(el,val,label){
 function selectOpt(el,step,val,label){
   el.closest('.options').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
-  if(step===1){state.system=val;state.systemLabel=label;document.getElementById('next-1').disabled=false;}
-  else if(step===2){state.size=val;state.sizeLabel=label;document.getElementById('next-2').disabled=false;}
-  else if(step===3){state.job=val;state.jobLabel=label;document.getElementById('next-3').disabled=false;}
+  if(step===2){state.system=val;state.systemLabel=label;document.getElementById('next-2').disabled=false;}
+  else if(step===3){state.size=val;state.sizeLabel=label;document.getElementById('next-3').disabled=false;}
+  else if(step===4){state.job=val;state.jobLabel=label;document.getElementById('next-4').disabled=false;}
 }
 
 function goToStep(n){
   document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('result-panel').classList.remove('active');
-  for(let i=1;i<=5;i++){
+  for(let i=1;i<=4;i++){
     const s=document.getElementById('seg-'+i);
     s.className='prog-seg'+(i<n?' done':i===n?' active':'');
   }
-  document.getElementById('prog-label').textContent='Step '+n+' of 5';
+  document.getElementById('prog-label').textContent='Step '+n+' of 4';
   if(n===2){
-    // Show system selector or skip if repair only
-    document.getElementById('step-2-system').classList.add('active');
+    document.getElementById('step-2').classList.add('active');
     gtag('event','calc_step1_complete',{send_to:'AW-17039190320',situation:state.situationLabel});
     return;
   }
@@ -1278,9 +1255,6 @@ function goToStep(n){
   }
   if(n===4){
     gtag('event','calc_step3_complete',{send_to:'AW-17039190320',size:state.sizeLabel});
-  }
-  if(n===5){
-    gtag('event','calc_step4_complete',{send_to:'AW-17039190320',job:state.jobLabel});
   }
   document.getElementById('step-'+n).classList.add('active');
 }
@@ -1297,7 +1271,7 @@ function buildStep3(){
     const btn=document.createElement('button');
     btn.className='opt';
     btn.innerHTML=`<div><div class="opt-label">${s.label}</div><div class="opt-sub">${s.sub}</div></div>`;
-    btn.onclick=function(){selectOpt(this,2,s.id,s.label);};
+    btn.onclick=function(){selectOpt(this,3,s.id,s.label);};
     c.appendChild(btn);
   });
 }
@@ -1313,6 +1287,16 @@ function checkCity(val){
 }
 
 function showResult(){
+  // Infer job type from situation FIRST before any lookups
+  const jobMap = {
+    'repair': 'not-sure',
+    'replace': 'replacement',
+    'install': 'new-no-ducts',
+    'unsure': 'not-sure'
+  };
+  state.job = jobMap[state.situation] || 'not-sure';
+  state.jobLabel = state.situationLabel;
+
   const sys=pricing[state.system];
   const range=sys.ranges[state.size][state.job];
   const breakdown=sys.breakdown[state.job];
@@ -1362,7 +1346,7 @@ function showResult(){
   document.querySelector('.calc-card').scrollIntoView({behavior:'smooth',block:'start'});
 
   // Track step 4 complete and result shown
-  gtag('event','calc_step4_complete',{send_to:'AW-17039190320',city:state.city});
+  gtag('event','calc_step4_complete',{send_to:'AW-17039190320',city:state.city,situation:state.situationLabel});
   gtag('event','calc_result_shown',{
     send_to:'AW-17039190320',
     situation:state.situationLabel,
@@ -1380,6 +1364,9 @@ function restartCalc(){
   document.getElementById('city-msg').textContent='';
   document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   document.getElementById('next-1').disabled=true;
+  document.getElementById('next-2').disabled=true;
+  document.getElementById('next-3').disabled=true;
+  document.getElementById('next-4').disabled=true;
   document.getElementById('result-panel').classList.remove('active');
   document.getElementById('tally-frame').src='';
   goToStep(1);

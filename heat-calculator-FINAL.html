@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Furnace & Heat Pump Cost Calculator — Mill Creek & Snohomish County 2026</title>
+
+<meta name="description" content="Free furnace and heat pump cost calculator for Mill Creek, Bothell & Snohomish County. See what homeowners near you are paying for furnace replacement and heat pump installation.">
+<meta name="keywords" content="furnace cost calculator Mill Creek, heat pump cost Snohomish County, how much does furnace replacement cost, furnace installation cost Mill Creek, heat pump installation cost Bothell, new furnace cost Snohomish County, furnace replacement cost near me, gas furnace cost Mill Creek WA">
+<meta name="author" content="Mill Creek HVAC">
+<link rel="canonical" href="https://heat.millcreek-hvac.com">
+<meta property="og:title" content="Furnace & Heat Pump Cost Calculator — Mill Creek & Snohomish County 2026">
+<meta property="og:description" content="See what furnace and heat pump installation costs in your neighborhood. Instant estimates for every city across Snohomish County.">
+<meta property="og:url" content="https://heat.millcreek-hvac.com">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Furnace & Heat Pump Cost Calculator — Mill Creek",
+  "description": "Interactive furnace and heat pump cost calculator providing 2026 pricing estimates for gas furnace, electric furnace, ducted heat pump and ductless heat pump installation in Mill Creek and Snohomish County, WA.",
+  "url": "https://heat.millcreek-hvac.com",
+  "applicationCategory": "UtilityApplication",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Mill Creek HVAC",
+    "url": "https://millcreek-hvac.com",
+    "telephone": "+14255957972",
+    "areaServed": "Greater Snohomish County, WA"
+  },
+  "mainEntityOfPage": {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"How much does AC installation cost in Mill Creek WA?","acceptedAnswer":{"@type":"Answer","text":"AC installation in Mill Creek typically costs between $4,500 and $10,500 depending on home size and whether ductwork exists. Replacing an existing system in a 1,500-2,500 sqft home runs $5,500-$8,500. Homes without ductwork should consider a ductless mini split."}},
+      {"@type":"Question","name":"How much does a ductless mini split cost installed in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Single-zone ductless mini split installation in Snohomish County runs $3,500-$5,500. Two-zone systems cost $6,500-$9,500. Three-zone systems run $10,500-$15,000. Whole-home multi-zone systems start at $15,000 and can exceed $22,000."}},
+      {"@type":"Question","name":"How much does a heat pump cost installed in Mill Creek WA?","acceptedAnswer":{"@type":"Answer","text":"Ducted heat pump installation in Mill Creek runs $7,000-$14,500 for most homes. A heat pump replaces both your furnace and AC in one system, making it a cost-effective option for year-round comfort in the Pacific Northwest climate."}},
+      {"@type":"Question","name":"Does my home need ductwork for AC installation?","acceptedAnswer":{"@type":"Answer","text":"Many older homes in Mill Creek and Snohomish County were built without ductwork. If your home has no existing ducts, a ductless mini split system is often the most cost-effective solution. If ducts exist but need repair, add $2,500-$5,500 to any central air estimate."}},
+      {"@type":"Question","name":"Are there rebates for heat pump installation in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Yes. Snohomish County PUD and Puget Sound Energy both offer rebates on qualifying heat pump installations — typically $500-$1,500. Ask your HVAC pro about current incentive programs before purchasing."}},
+      {"@type":"Question","name":"How long does AC installation take in Mill Creek?","acceptedAnswer":{"@type":"Answer","text":"Most standard AC installations in Mill Creek are completed in one day — typically 4-8 hours. Installations requiring new ductwork may take 2-3 days."}},
+      {"@type":"Question","name":"What size AC unit do I need for my home?","acceptedAnswer":{"@type":"Answer","text":"AC sizing depends on your home's square footage, ceiling height, insulation, and sun exposure. A licensed technician will perform a Manual J load calculation during the estimate to recommend the correct unit size."}},
+      {"@type":"Question","name":"Is a permit required for AC installation in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Yes. Most AC and heat pump installations in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees in Snohomish County typically run $150-$400 depending on your city."}},
+      {"@type":"Question","name":"What is the difference between a heat pump and central AC?","acceptedAnswer":{"@type":"Answer","text":"Central AC only cools your home. A heat pump both cools in summer and heats in winter, replacing your furnace and AC in one system. In the Pacific Northwest, heat pumps are increasingly popular for their year-round efficiency and rebate eligibility."}},
+      {"@type":"Question","name":"How much does central air cost for a 2000 sq ft home in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Central air installation for a 2,000 sqft home in Snohomish County typically runs $5,500-$8,500 for a replacement, or $7,000-$10,500 for a new installation. Add $2,500-$5,500 if ductwork is needed."}}
+    ]
+  }
+}
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy-deep:  #0D2137;
+    --navy-mid:   #FFFFFF;
+    --navy-card:  #F5F7FA;
+    --navy-input: #0A1628;
+    --orange:     #FF6B35;
+    --orange-dk:  #E55A28;
+    --blue-muted: #6B8299;
+    --blue-dim:   #4A6A8A;
+    --white:      #FFFFFF;
+    --border:     #E2EAF2;
+    --border-hover: #B8C9D9;
+    --text-dark:  #0D1F3C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy-deep);
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  /* ── STICKY NAV ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy-input);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 4px;
+  }
+  .nav-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-right: auto;
+    text-decoration: none;
+  }
+  .nav-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue-muted);
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover { border-color: var(--orange); color: var(--orange); }
+  .nav-phone {
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Barlow', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    margin-left: 4px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy-deep);
+    padding: 36px 20px 0;
+    text-align: center;
+    border-bottom: 3px solid var(--orange);
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,107,53,0.12);
+    border: 1px solid rgba(255,107,53,0.3);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .pulse {
+    width: 7px; height: 7px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(30px, 6vw, 52px);
+    font-weight: 800;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--orange); }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    max-width: 480px;
+    margin: 0 auto 28px;
+    line-height: 1.65;
+  }
+
+  /* ── CALCULATOR CARD ── */
+  .calc-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 16px 48px;
+  }
+
+  .calc-card {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(13,31,60,0.12);
+  }
+
+  /* PROGRESS */
+  .progress-bar {
+    background: var(--navy-deep);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .prog-seg {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+  .prog-seg.done { background: rgba(255,255,255,0.4); }
+  .prog-seg.active { background: var(--orange); }
+  .prog-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  .calc-body { padding: 24px 20px; }
+
+  .step-panel { display: none; }
+  .step-panel.active { display: block; }
+
+  .step-q {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--navy-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .step-hint {
+    font-size: 13px;
+    color: #6B8299;
+    margin-bottom: 18px;
+  }
+
+  /* OPTIONS */
+  .options { display: grid; gap: 8px; }
+  .options.g2 { grid-template-columns: 1fr 1fr; }
+  .options.g1 { grid-template-columns: 1fr; }
+
+  .opt {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--navy-card);
+    text-align: left;
+    color: var(--navy-deep);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .opt:hover { border-color: #B8C9D9; background: #EEF3F7; }
+  .opt.selected { border-color: var(--orange); background: rgba(212,84,31,0.06); }
+  .opt-icon {
+    font-size: 18px;
+    width: 32px; height: 32px;
+    background: #EEF3F7;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .opt.selected .opt-icon { background: rgba(212,84,31,0.1); }
+  .opt-label { font-size: 13px; font-weight: 700; color: var(--navy-deep); margin-bottom: 1px; }
+  .opt-sub { font-size: 11px; color: #6B8299; }
+
+  /* SELECT */
+  .city-select {
+    width: 100%;
+    padding: 13px 14px;
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy-deep);
+    font-family: 'Barlow', sans-serif;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A6A8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  .city-select option { background: #fff; color: var(--navy-deep); }
+  .city-select:focus { border-color: var(--orange); }
+
+  /* NAV BUTTONS */
+  .calc-nav {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid #E2EAF2;
+  }
+  .btn-back {
+    background: none;
+    border: 1px solid #E2EAF2;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #6B8299;
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.15s;
+  }
+  .btn-back:hover { border-color: #B8C9D9; color: var(--navy-deep); }
+  .btn-next {
+    flex: 1;
+    background: var(--orange);
+    border: none;
+    border-radius: 8px;
+    padding: 13px 20px;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--white);
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.15s;
+  }
+  .btn-next:hover { background: var(--orange-dk); }
+  .btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* ── RESULT PANEL — ORANGE ── */
+  .result-panel {
+    display: none;
+    background: #F5F7FA;
+    color: #0D1F3C;
+    padding: 28px 20px;
+    border-top: 3px solid #FF6B35;
+  }
+  .result-panel.active { display: block; }
+
+  .result-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #6B8299;
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+  .result-system {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6B8299;
+    margin-bottom: 2px;
+  }
+  .result-range {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 11vw, 72px);
+    font-weight: 800;
+    color: #0D1F3C;
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+  }
+  .result-local {
+    font-size: 12px;
+    color: #6B8299;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .result-breakdown {
+    background: #F5F7FA;
+    border: 1px solid #E2EAF2;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+  .bd-title {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4A6A8A;
+    margin-bottom: 10px;
+  }
+  .bd-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #6B8299;
+    padding: 4px 0;
+    border-bottom: 1px solid #E2EAF2;
+  }
+  .bd-row:last-child { border-bottom: none; }
+  .bd-row span:last-child { font-weight: 700; color: #0D1F3C; }
+
+  .rebate-note {
+    background: rgba(255,107,53,0.06);
+    border: 1px solid rgba(255,107,53,0.2);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #6B4020;
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  /* CTA INSIDE RESULT */
+  .result-cta-box {
+    background: #F5F7FA;
+    border: 1px solid #E2EAF2;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .result-cta-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #0D1F3C;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .result-cta-sub {
+    font-size: 12px;
+    color: #6B8299;
+    margin-bottom: 14px;
+  }
+  .tally-bg {
+    background: #F5F7FA;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 14px;
+    max-height: 460px;
+    overflow: hidden;
+  }
+  .or-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .or-line { flex: 1; height: 1px; background: #E2EAF2; }
+  .or-text { font-size: 10px; color: #6B8299; text-transform: uppercase; letter-spacing: 1px; }
+  .phone-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #0D1F3C;
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 8px;
+    padding: 13px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .result-guarantee {
+    font-size: 11px;
+    color: #6B8299;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .btn-restart {
+    background: none;
+    background: #FFFFFF;
+    border: 1.5px solid #0D1F3C;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0D1F3C;
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: 100%;
+    transition: all 0.2s;
+  }
+  .btn-restart:hover { background: #F5F7FA; }
+
+
+  /* VALUE BULLETS */
+  .value-bullets {
+    background: rgba(13,31,60,0.04);
+    border: 1px solid #E2EAF2;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+  .value-bullet {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0D1F3C;
+    padding: 4px 0;
+    line-height: 1.5;
+  }
+  .value-bullet + .value-bullet {
+    border-top: 1px solid #E2EAF2;
+  }
+  .trust-signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .trust-signals span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6B8299;
+    text-align: center;
+  }
+
+  /* TWO STAGE CTA */
+  .cta-reveal-btn {
+    display: block;
+    width: 100%;
+    background: #FF6B35;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: all 0.2s;
+  }
+  .cta-reveal-btn:hover { background: #E55A28; }
+  .form-reveal { display: none; }
+  .form-reveal.open { display: block; }
+
+  /* TRUST STRIP */
+  .trust-strip {
+    background: var(--navy-deep);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 12px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    justify-content: center;
+  }
+  .trust-item {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .trust-check { color: var(--orange); }
+
+  /* ── PRICING TABLE ── */
+  .section {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 16px 28px;
+  }
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 800;
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: #6B8299;
+    margin-bottom: 18px;
+  }
+
+  .pricing-table {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .pt-header {
+    background: var(--navy-input);
+    padding: 12px 18px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.8fr;
+    gap: 8px;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--blue-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .pt-row {
+    padding: 13px 18px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.8fr;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    align-items: center;
+    background: var(--navy-mid);
+  }
+  .pt-row:nth-child(odd) { background: var(--navy-card); }
+  .pt-row:last-child { border-bottom: none; }
+  .pt-system { font-weight: 700; color: #0D1F3C; }
+  .pt-range { color: var(--blue-muted); font-weight: 600; }
+  .pt-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-hot { background: rgba(255,107,53,0.15); color: var(--orange); }
+  .badge-val { background: rgba(138,175,200,0.12); color: var(--blue-muted); }
+  .badge-yr  { background: rgba(99,153,34,0.12); color: #7DC43A; }
+  .table-note { font-size: 11px; color: var(--blue-dim); margin-top: 10px; line-height: 1.6; }
+
+  /* ── REVIEWS ── */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .review-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .review-stars {
+    color: var(--orange);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .review-text {
+    font-size: 13px;
+    color: var(--blue-muted);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .review-author {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--blue-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── FAQ ── */
+  .faq-list {
+    border: 1px solid #E2EAF2;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #FFFFFF;
+  }
+  .faq-item { border-bottom: 1px solid #E2EAF2; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q {
+    width: 100%;
+    background: #FFFFFF;
+    border: none;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0D1F3C;
+    font-family: 'Barlow', sans-serif;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.15s;
+  }
+  .faq-q:hover { background: #F5F7FA; }
+  .faq-q.open { color: #FF6B35; }
+  .faq-icon {
+    font-size: 18px;
+    color: var(--orange);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    font-weight: 300;
+  }
+  .faq-q.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    display: none;
+    padding: 0 16px 14px;
+    font-size: 13px;
+    color: #6B8299;
+    line-height: 1.75;
+    background: #F5F7FA;
+  }
+  .faq-a.open { display: block; }
+
+  /* ── AREA ── */
+  .area-section {
+    background: var(--navy-input);
+    border-top: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+  }
+  .area-eyebrow {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-dim);
+    margin-bottom: 12px;
+  }
+  .area-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .area-pill {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 13px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--blue-dim);
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #060F1E;
+    padding: 20px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer p {
+    font-size: 11px;
+    color: var(--blue-dim);
+    line-height: 2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .footer a { color: var(--blue-dim); text-decoration: underline; }
+
+  /* SECTION DIVIDER */
+  .section-divider { display: none; }
+
+  @media (max-width: 480px) {
+    .options.g2 { grid-template-columns: 1fr; }
+    .nav-btn { display: none; }
+    .calc-body { padding: 18px 14px; }
+    .result-panel { padding: 18px 14px; }
+    .result-cta-box { padding: 14px; }
+    .hero { padding: 24px 14px 0; }
+    .hero h1 { font-size: 28px; }
+    .section { padding: 0 14px 20px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .area-pills { gap: 5px; }
+    .area-pill { padding: 4px 10px; font-size: 11px; }
+    .trust-strip { gap: 4px 12px; padding: 10px 14px; }
+    .trust-item { font-size: 10px; }
+  }
+</style>
+<!-- Google Ads Tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17039190320"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-17039190320');
+</script>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="nav">
+  <a href="https://millcreek-hvac.com" class="nav-brand">Mill Creek HVAC</a>
+  <button class="nav-btn" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reviews ↓</button>
+  <button class="nav-btn" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">Questions ↓</button>
+  <button class="nav-btn" onclick="document.getElementById('calc-top').scrollIntoView({behavior:'smooth'})">Get Estimate ↑</button>
+  <a href="tel:4255957972" class="nav-phone">425.595.7972</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="calc-top">
+  <div class="hero-eyebrow"><div class="pulse"></div>2026 Furnace & Heat Pump Pricing — Snohomish County</div>
+  <h1>Need to Install or Replace<br><span>Your Home Heating?</span></h1>
+  <p class="hero-sub">See what furnace and heat pump installation costs in your neighborhood — instant estimates for every city across Snohomish County.</p>
+</div>
+
+<!-- CALCULATOR -->
+<div class="calc-wrap">
+  <div class="calc-card">
+
+    <!-- PROGRESS -->
+    <div class="progress-bar">
+      <div class="prog-seg active" id="seg-1"></div>
+      <div class="prog-seg" id="seg-2"></div>
+      <div class="prog-seg" id="seg-3"></div>
+      <div class="prog-seg" id="seg-4"></div>
+      <div class="prog-label" id="prog-label">Step 1 of 4</div>
+    </div>
+
+    <div class="calc-body">
+
+      <!-- STEP 1: System -->
+      <div class="step-panel active" id="step-1">
+        <div class="step-q">What type of heating?</div>
+        <div class="step-hint">Select the system you want installed or replaced</div>
+        <div class="options g1">
+          <button class="opt" onclick="selectOpt(this,1,'gas-furnace','Gas Furnace')">
+            <div class="opt-icon">🔥</div>
+            <div><div class="opt-label">Gas Furnace</div><div class="opt-sub">Most common — fast heat, lower operating cost</div></div>
+          </button>
+          <button class="opt" onclick="selectOpt(this,1,'electric-furnace','Electric Furnace')">
+            <div class="opt-icon">⚡</div>
+            <div><div class="opt-label">Electric Furnace</div><div class="opt-sub">Lower upfront cost — no gas line needed</div></div>
+          </button>
+          <button class="opt" onclick="selectOpt(this,1,'heat-pump-ducted','Ducted Heat Pump')">
+            <div class="opt-icon">♨️</div>
+            <div><div class="opt-label">Ducted Heat Pump</div><div class="opt-sub">Heats & cools — replaces furnace + AC</div></div>
+          </button>
+          <button class="opt" onclick="selectOpt(this,1,'heat-pump-ductless','Ductless Heat Pump')">
+            <div class="opt-icon">🔄</div>
+            <div><div class="opt-label">Ductless Heat Pump</div><div class="opt-sub">Year-round comfort — no ducts required</div></div>
+          </button>
+        </div>
+        <div class="calc-nav">
+          <button class="btn-next" id="next-1" disabled onclick="goToStep(2)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Size/Zones -->
+      <div class="step-panel" id="step-2">
+        <div class="step-q" id="step2-q">Home size?</div>
+        <div class="step-hint" id="step2-hint">Select your approximate square footage</div>
+        <div class="options g2" id="opts-2"></div>
+        <div class="calc-nav">
+          <button class="btn-back" onclick="goToStep(1)">← Back</button>
+          <button class="btn-next" id="next-2" disabled onclick="goToStep(3)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Job type -->
+      <div class="step-panel" id="step-3">
+        <div class="step-q">New install or replacement?</div>
+        <div class="step-hint">Replacing an existing furnace is typically less than a new install</div>
+        <div class="options g1">
+          <button class="opt" onclick="selectOpt(this,3,'replacement','Replacing existing system')">
+            <div class="opt-icon">🔄</div>
+            <div><div class="opt-label">Replacing existing system</div><div class="opt-sub">Existing ducts — swapping old equipment</div></div>
+          </button>
+          <button class="opt" onclick="selectOpt(this,3,'new-with-ducts','New install — ducts exist')">
+            <div class="opt-icon">🏠</div>
+            <div><div class="opt-label">New install — ducts already exist</div><div class="opt-sub">Adding cooling to a home with existing ductwork</div></div>
+          </button>
+          <button class="opt" onclick="selectOpt(this,3,'new-no-ducts','New install — no ducts')">
+            <div class="opt-icon">🔧</div>
+            <div><div class="opt-label">New install — no existing ductwork</div><div class="opt-sub">Common in older Snohomish County homes</div></div>
+          </button>
+          <button class="opt" onclick="selectOpt(this,3,'not-sure','Not sure')">
+            <div class="opt-icon">🤔</div>
+            <div><div class="opt-label">Not sure</div><div class="opt-sub">A pro can assess during the free estimate</div></div>
+          </button>
+        </div>
+        <div class="calc-nav">
+          <button class="btn-back" onclick="goToStep(2)">← Back</button>
+          <button class="btn-next" id="next-3" disabled onclick="goToStep(4)">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: City -->
+      <div class="step-panel" id="step-4">
+        <div class="step-q">Your city?</div>
+        <div class="step-hint">Confirms you're in our service area — pricing may vary by location</div>
+        <select class="city-select" id="city-select" onchange="checkCity(this.value)">
+          <option value="">Select your city...</option>
+          <option value="Mill Creek">Mill Creek</option>
+          <option value="Bothell">Bothell</option>
+          <option value="Lynnwood">Lynnwood</option>
+          <option value="Mukilteo">Mukilteo</option>
+          <option value="Kenmore">Kenmore</option>
+          <option value="Mountlake Terrace">Mountlake Terrace</option>
+          <option value="Edmonds">Edmonds</option>
+          <option value="Shoreline">Shoreline</option>
+          <option value="Woodinville">Woodinville</option>
+          <option value="Brier">Brier</option>
+          <option value="Everett">Everett</option>
+          <option value="Marysville">Marysville</option>
+          <option value="Monroe">Monroe</option>
+          <option value="Snohomish">Snohomish</option>
+          <option value="Arlington">Arlington</option>
+          <option value="Lake Stevens">Lake Stevens</option>
+          <option value="Martha Lake">Martha Lake</option>
+          <option value="Maltby">Maltby</option>
+          <option value="Other nearby area">Other nearby area</option>
+        </select>
+        <div id="city-msg" style="font-size:12px;color:var(--blue-muted);margin-top:8px;min-height:18px"></div>
+        <div class="calc-nav">
+          <button class="btn-back" onclick="goToStep(3)">← Back</button>
+          <button class="btn-next" id="next-4" disabled onclick="showResult()">See My Estimate →</button>
+        </div>
+      </div>
+
+    </div><!-- /calc-body -->
+
+    <!-- RESULT PANEL -->
+    <div class="result-panel" id="result-panel">
+      <div class="result-eyebrow" id="result-eyebrow">Your Snohomish County Estimate — 2026</div>
+      <div class="result-system" id="result-system"></div>
+      <div class="result-range" id="result-range"></div>
+      <div class="result-local" id="result-local"></div>
+      <div class="result-breakdown" id="result-breakdown"></div>
+      <div class="rebate-note" id="rebate-note" style="display:none"></div>
+
+      <div class="result-cta-box">
+        <div class="result-disclaimer" id="result-disclaimer" style="font-size:12px;color:#6B8299;margin-bottom:12px;line-height:1.6;"></div>
+      <div class="value-bullets">
+        <div class="value-bullet">💡 Snohomish PUD rebate: $1,800–$2,500 on qualifying heat pumps</div>
+        <div class="value-bullet">📅 Spring installs booking 3–4 weeks out</div>
+        <div class="value-bullet">⏱️ Most installs completed in 1–2 days</div>
+      </div>
+      <div style="font-size:13px;font-weight:700;color:#0D1F3C;margin-bottom:10px;">Not sure if this is right for your home?</div>
+      <button class="cta-reveal-btn" onclick="revealForm(this)">Talk to a Local Expert →</button>
+      <div class="trust-signals">
+        <span>🔒 Licensed, insured & bonded</span>
+        <span>✓ Free conversation · No obligation · No pressure</span>
+      </div>
+        <div class="form-reveal" id="form-reveal">
+          <div class="result-cta-title">Get Your Free Heating Estimate</div>
+          <div class="result-cta-sub">A licensed local heating pro reaches out same day — no obligation, no spam calls</div>
+          <div class="tally-bg">
+            <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')===null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+            <iframe id="tally-frame" src="" loading="lazy" width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0" scrolling="yes" title="Furnace & Heat Calc" style="max-height:420px;overflow:auto"></iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="btn-restart" onclick="restartCalc()">← Start over with different selections</button>
+    </div>
+
+    <!-- TRUST STRIP -->
+    <div class="trust-strip">
+      <div class="trust-item"><span class="trust-check">✓</span> Licensed & Insured</div>
+      <div class="trust-item"><span class="trust-check">✓</span> Same-Day Response</div>
+      <div class="trust-item"><span class="trust-check">✓</span> Free Estimates</div>
+      <div class="trust-item"><span class="trust-check">✓</span> No Obligation</div>
+    </div>
+
+  </div>
+</div><!-- /calc-wrap -->
+
+<!-- REVIEWS -->
+<div class="section" id="faq">
+  <div class="section-eyebrow">Common Questions</div>
+  <div class="section-title">Furnace & Heat Pump FAQ</div>
+  <div class="section-sub">Answers specific to Mill Creek & Snohomish County</div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How much does furnace replacement cost in Snohomish County?<span class="faq-icon">+</span></button>
+      <div class="faq-a">
+        <p style="margin-bottom:10px;color:#6B8299;font-size:13px;">Based on recent installations in Greater Snohomish County — 2026 pricing:</p>
+        <table style="width:100%;font-size:12px;border-collapse:collapse;">
+          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:6px 0;color:#0D1F3C;font-weight:700">Gas Furnace Replacement</td><td style="text-align:right;color:#6B8299">$3,800–$7,500</td></tr>
+          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:6px 0;color:#0D1F3C;font-weight:700">Gas Furnace New Install</td><td style="text-align:right;color:#6B8299">$4,500–$12,000</td></tr>
+          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:6px 0;color:#0D1F3C;font-weight:700">Electric Furnace Replacement</td><td style="text-align:right;color:#6B8299">$2,500–$7,000</td></tr>
+          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:6px 0;color:#0D1F3C;font-weight:700">Electric Furnace New Install</td><td style="text-align:right;color:#6B8299">$3,000–$11,500</td></tr>
+          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:6px 0;color:#0D1F3C;font-weight:700">Ducted Heat Pump</td><td style="text-align:right;color:#6B8299">$7,000–$23,000</td></tr>
+          <tr style="border-bottom:1px solid #E2EAF2"><td style="padding:6px 0;color:#0D1F3C;font-weight:700">Ductless Heat Pump</td><td style="text-align:right;color:#6B8299">$4,000–$24,000</td></tr>
+          <tr><td style="padding:6px 0;color:#0D1F3C;font-weight:700">+ New Ductwork</td><td style="text-align:right;color:#6B8299">+$2,500–$5,500</td></tr>
+        </table>
+        <p style="font-size:11px;color:#9BB0C4;margin-top:8px">Snohomish County PUD rebates of $1,800–$2,500 available on qualifying heat pumps. Permit fees add $150–$500.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">When do I need a new furnace?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Most furnaces last 15–20 years. If yours is over 15, requires frequent repairs, or your heating bills have increased significantly — replacement often makes more financial sense than repair. A technician can assess your system during a free estimate.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Can I DIY furnace issues or repairs?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Simple tasks like replacing the filter are fine to DIY. Anything involving gas lines, electrical connections, or the heat exchanger requires a licensed technician — both for safety and to avoid voiding your warranty. Washington State also requires permits for furnace replacement.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How does furnace replacement work?<span class="faq-icon">+</span></button>
+      <div class="faq-a">A technician removes the old unit, installs the new furnace, connects gas or electrical lines, hooks up the ductwork, and tests the system. Most replacements are completed in one day. Your pro will pull the required permit and schedule the city inspection.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Gas furnace vs heat pump — which is better for Snohomish County?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Gas furnaces heat faster and cost less to operate in very cold weather. Heat pumps are more efficient in the mild Pacific Northwest winters, heat AND cool your home, and qualify for significant PUD rebates of $1,800–$2,500. For most Snohomish County homeowners replacing an aging system, a heat pump is worth serious consideration.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What rebates are available for heat pumps in Snohomish County?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Snohomish County PUD offers $1,800 for ducted heat pump conversions and $2,500 for qualifying inverter-driven systems. Federal tax credits may also apply. Installation must be done by a PUD registered contractor. Ask your pro before purchasing.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How long does furnace installation take?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Most standard furnace replacements are completed in one day — typically 4–8 hours. Jobs requiring new ductwork may take 2–3 days. Your technician will give you a realistic timeframe after the free estimate.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Is a permit required for furnace replacement in Washington?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees in Snohomish County run $150–$500 depending on your city.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What size furnace do I need?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Furnace sizing depends on your home's square footage, insulation, ceiling height, and local climate. A technician performs a Manual J load calculation during the estimate. Oversized and undersized furnaces both cause efficiency and comfort problems.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What furnace brands do local pros install?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Most local pros work with Carrier, Trane, Lennox, Rheem, and Carrier for gas furnaces. For heat pumps, Mitsubishi and Daikin are popular ductless options. Your technician will walk you through options during the free estimate.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="reviews">
+  <div class="section-eyebrow">What Homeowners Say</div>
+  <div class="section-title">5-Star Rated</div>
+  <div class="section-sub">Verified reviews from Mill Creek & Snohomish County homeowners</div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"They were so quick to respond and schedule. Turns out our coils needed replacing — they were so kind and efficient and had our AC back up and running 2 days later. Without breaking the bank!!"</p>
+      <div class="review-author">— Mill Creek Homeowner</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Prompt for the appointment, very personable and patiently answered all my questions. So knowledgeable and their expertise in this field gave me complete confidence."</p>
+      <div class="review-author">— Snohomish County Homeowner</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Extremely knowledgeable and explained everything clearly. The install went smoothly and I'm very happy with my heat pump. They even came back a month later to answer more questions."</p>
+      <div class="review-author">— Mill Creek Homeowner</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- SERVICE AREA -->
+<div class="area-section">
+  <div class="area-eyebrow">Service Area</div>
+  <div class="area-pills">
+    <div class="area-pill">Mill Creek</div>
+    <div class="area-pill">Bothell</div>
+    <div class="area-pill">Lynnwood</div>
+    <div class="area-pill">Mukilteo</div>
+    <div class="area-pill">Kenmore</div>
+    <div class="area-pill">Mountlake Terrace</div>
+    <div class="area-pill">Edmonds</div>
+    <div class="area-pill">Shoreline</div>
+    <div class="area-pill">Woodinville</div>
+    <div class="area-pill">Brier</div>
+    <div class="area-pill">Everett</div>
+    <div class="area-pill">Marysville</div>
+    <div class="area-pill">Monroe</div>
+    <div class="area-pill">Snohomish</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>
+    millcreek-hvac.com &nbsp;|&nbsp; 425.595.7972<br>
+    Licensed, insured & bonded local pros — Greater Snohomish County<br>
+    <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf" target="_blank">Privacy Policy</a>
+    &nbsp;|&nbsp; Mill Creek HVAC &copy; 2026
+  </p>
+</div>
+
+<script>
+const state = { system:null, systemLabel:null, size:null, sizeLabel:null, job:null, jobLabel:null, city:null };
+
+const pricing = {
+  'gas-furnace': {
+    sizes:[
+      {id:'u1500',label:'Under 1,500 sqft',sub:'Smaller home'},
+      {id:'1500-2500',label:'1,500 – 2,500 sqft',sub:'Average Snohomish home'},
+      {id:'2500-3500',label:'2,500 – 3,500 sqft',sub:'Larger family home'},
+      {id:'o3500',label:'Over 3,500 sqft',sub:'Large or custom home'},
+    ],
+    ranges:{
+      'u1500':    {replacement:[3800,5500],'new-with-ducts':[4500,6500],'new-no-ducts':[7000,11000],'not-sure':[3800,6500]},
+      '1500-2500':{replacement:[5000,7500],'new-with-ducts':[6000,9000],'new-no-ducts':[8500,13500],'not-sure':[5000,9000]},
+      '2500-3500':{replacement:[6500,10000],'new-with-ducts':[8000,12000],'new-no-ducts':[10500,16500],'not-sure':[6500,12000]},
+      'o3500':    {replacement:[9000,13500],'new-with-ducts':[11000,16000],'new-no-ducts':[13500,20000],'not-sure':[9000,16000]},
+    },
+    breakdown:{
+      replacement:[['Gas furnace unit','$1,500–$3,500'],['Labor','$1,500–$2,500'],['Permits','$150–$500']],
+      'new-with-ducts':[['Gas furnace unit','$1,500–$3,500'],['Labor','$2,000–$3,500'],['Duct modifications','$500–$1,500'],['Permits','$150–$500']],
+      'new-no-ducts':[['Gas furnace unit','$1,500–$3,500'],['New ductwork','$2,500–$5,500'],['Labor','$2,000–$3,500'],['Permits','$150–$500']],
+      'not-sure':[['Gas furnace unit','$1,500–$3,500'],['Labor','$1,500–$3,000'],['Permits + misc','$300–$800']],
+    },
+    rebate:false,
+  },
+  'electric-furnace': {
+    sizes:[
+      {id:'u1500',label:'Under 1,500 sqft',sub:'Smaller home'},
+      {id:'1500-2500',label:'1,500 – 2,500 sqft',sub:'Average Snohomish home'},
+      {id:'2500-3500',label:'2,500 – 3,500 sqft',sub:'Larger family home'},
+      {id:'o3500',label:'Over 3,500 sqft',sub:'Large or custom home'},
+    ],
+    ranges:{
+      'u1500':    {replacement:[2500,4000],'new-with-ducts':[3000,5000],'new-no-ducts':[5500,9000],'not-sure':[2500,5000]},
+      '1500-2500':{replacement:[3500,5500],'new-with-ducts':[4500,6500],'new-no-ducts':[7000,11500],'not-sure':[3500,6500]},
+      '2500-3500':{replacement:[4500,7000],'new-with-ducts':[5500,8500],'new-no-ducts':[8000,13000],'not-sure':[4500,8500]},
+      'o3500':    {replacement:[6000,9500],'new-with-ducts':[7500,11500],'new-no-ducts':[10000,16000],'not-sure':[6000,11500]},
+    },
+    breakdown:{
+      replacement:[['Electric furnace unit','$800–$2,500'],['Labor','$1,200–$2,000'],['Permits','$150–$400']],
+      'new-with-ducts':[['Electric furnace unit','$800–$2,500'],['Labor','$1,500–$2,500'],['Duct modifications','$500–$1,500'],['Permits','$150–$400']],
+      'new-no-ducts':[['Electric furnace unit','$800–$2,500'],['New ductwork','$2,500–$5,500'],['Labor','$1,500–$2,500'],['Permits','$150–$400']],
+      'not-sure':[['Electric furnace unit','$800–$2,500'],['Labor','$1,200–$2,000'],['Permits + misc','$300–$700']],
+    },
+    rebate:false,
+  },
+  'heat-pump-ducted': {
+    sizes:[
+      {id:'u1500',label:'Under 1,500 sqft',sub:'Smaller home'},
+      {id:'1500-2500',label:'1,500 – 2,500 sqft',sub:'Average home'},
+      {id:'2500-3500',label:'2,500 – 3,500 sqft',sub:'Larger home'},
+      {id:'o3500',label:'Over 3,500 sqft',sub:'Large home'},
+    ],
+    ranges:{
+      'u1500':    {replacement:[7000,10500],'new-with-ducts':[8500,12500],'new-no-ducts':[11000,17000],'not-sure':[7000,12500]},
+      '1500-2500':{replacement:[9000,13500],'new-with-ducts':[11000,16000],'new-no-ducts':[13500,21000],'not-sure':[9000,16000]},
+      '2500-3500':{replacement:[12000,17500],'new-with-ducts':[14500,21000],'new-no-ducts':[17000,25500],'not-sure':[12000,21000]},
+      'o3500':    {replacement:[16000,23000],'new-with-ducts':[19000,27000],'new-no-ducts':[21500,31000],'not-sure':[16000,27000]},
+    },
+    breakdown:{
+      replacement:[['Heat pump equipment','$3,500–$7,000'],['Labor','$2,500–$4,000'],['Air handler','$1,000–$2,000'],['Permits','$150–$500']],
+      'new-with-ducts':[['Heat pump equipment','$3,500–$7,000'],['Labor','$2,500–$4,000'],['Air handler + coil','$1,500–$2,500'],['Permits','$150–$500']],
+      'new-no-ducts':[['Heat pump equipment','$3,500–$7,000'],['New ductwork','$2,500–$5,500'],['Labor','$3,000–$5,000'],['Permits','$150–$500']],
+      'not-sure':[['Equipment','$3,500–$7,000'],['Labor','$2,500–$4,500'],['Permits + misc','$300–$800']],
+    },
+    rebate:true,
+    rebateText:'Snohomish County PUD rebate: $1,800–$2,500 on qualifying ducted heat pumps installed by a PUD registered contractor.',
+  },
+  'heat-pump-ductless': {
+    step2q:'How many zones?',step2hint:'Each zone = one indoor wall unit — heats and cools year round',
+    sizes:[
+      {id:'zone1',label:'Single zone — 1 room',sub:'Up to 600 sqft'},
+      {id:'zone2',label:'2 zones — 2 rooms',sub:'600–1,200 sqft coverage'},
+      {id:'zone3',label:'3 zones — 3 rooms',sub:'1,200–2,000 sqft coverage'},
+      {id:'zone4',label:'4–5 zones — whole home',sub:'2,000+ sqft coverage'},
+    ],
+    ranges:{
+      'zone1':{replacement:[4000,6500],'new-with-ducts':[4000,6500],'new-no-ducts':[4000,6500],'not-sure':[4000,6500]},
+      'zone2':{replacement:[7500,11000],'new-with-ducts':[7500,11000],'new-no-ducts':[7500,11000],'not-sure':[7500,11000]},
+      'zone3':{replacement:[12000,17000],'new-with-ducts':[12000,17000],'new-no-ducts':[12000,17000],'not-sure':[12000,17000]},
+      'zone4':{replacement:[17000,24000],'new-with-ducts':[17000,24000],'new-no-ducts':[17000,24000],'not-sure':[17000,24000]},
+    },
+    breakdown:{
+      replacement:[['Equipment (per zone)','$1,500–$3,000'],['Labor & refrigerant lines','$1,500–$2,500'],['Permits','$150–$400']],
+      'new-with-ducts':[['Equipment (per zone)','$1,500–$3,000'],['Labor & refrigerant lines','$1,500–$2,500'],['Permits','$150–$400']],
+      'new-no-ducts':[['Equipment (per zone)','$1,500–$3,000'],['Labor & refrigerant lines','$1,500–$2,500'],['Permits','$150–$400']],
+      'not-sure':[['Equipment','$1,500–$3,000/zone'],['Labor & lines','$1,500–$2,500'],['Permits','$150–$400']],
+    },
+    rebate:true,
+    rebateText:'Snohomish County PUD rebate: $1,800–$2,500 on qualifying ductless heat pumps installed by a PUD registered contractor.',
+  },
+};
+
+function fmt(n){ return '$'+n.toLocaleString(); }
+
+function selectOpt(el,step,val,label){
+  el.closest('.options').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  if(step===1){state.system=val;state.systemLabel=label;document.getElementById('next-1').disabled=false;}
+  else if(step===2){state.size=val;state.sizeLabel=label;document.getElementById('next-2').disabled=false;}
+  else if(step===3){state.job=val;state.jobLabel=label;document.getElementById('next-3').disabled=false;}
+}
+
+function goToStep(n){
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('result-panel').classList.remove('active');
+  for(let i=1;i<=4;i++){
+    const s=document.getElementById('seg-'+i);
+    s.className='prog-seg'+(i<n?' done':i===n?' active':'');
+  }
+  document.getElementById('prog-label').textContent='Step '+n+' of 4';
+  if(n===2){
+    buildStep2();
+    gtag('event','calc_step1_complete',{send_to:'AW-17039190320',system:state.systemLabel});
+  }
+  if(n===3){
+    gtag('event','calc_step2_complete',{send_to:'AW-17039190320',size:state.sizeLabel});
+  }
+  if(n===4){
+    gtag('event','calc_step3_complete',{send_to:'AW-17039190320',job:state.jobLabel});
+  }
+  document.getElementById('step-'+n).classList.add('active');
+}
+
+function buildStep2(){
+  const sys=pricing[state.system];
+  document.getElementById('step2-q').textContent=sys.step2q||'Home size?';
+  document.getElementById('step2-hint').textContent=sys.step2hint||'Select your approximate square footage';
+  const c=document.getElementById('opts-2');
+  c.innerHTML='';
+  state.size=null;state.sizeLabel=null;
+  document.getElementById('next-2').disabled=true;
+  sys.sizes.forEach(s=>{
+    const btn=document.createElement('button');
+    btn.className='opt';
+    btn.innerHTML=`<div><div class="opt-label">${s.label}</div><div class="opt-sub">${s.sub}</div></div>`;
+    btn.onclick=function(){selectOpt(this,2,s.id,s.label);};
+    c.appendChild(btn);
+  });
+}
+
+function checkCity(val){
+  const msg=document.getElementById('city-msg');
+  const btn=document.getElementById('next-4');
+  if(!val){msg.textContent='';btn.disabled=true;return;}
+  state.city=val;
+  msg.textContent='✓ Great — we serve '+val;
+  msg.style.color='#7DC43A';
+  btn.disabled=false;
+}
+
+function showResult(){
+  const sys=pricing[state.system];
+  const range=sys.ranges[state.size][state.job];
+  const breakdown=sys.breakdown[state.job];
+
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+  for(let i=1;i<=4;i++) document.getElementById('seg-'+i).className='prog-seg done';
+  document.getElementById('prog-label').textContent='Your estimate';
+
+  document.getElementById('result-eyebrow').textContent='YOUR '+state.city.toUpperCase()+' ESTIMATE — 2026';
+  document.getElementById('result-system').textContent=state.systemLabel+' — '+state.sizeLabel;
+  document.getElementById('result-range').textContent=fmt(range[0])+' – '+fmt(range[1]);
+  document.getElementById('result-local').textContent='Based on recent installations in Greater Snohomish County — 2026 pricing.';
+  document.getElementById('result-disclaimer').textContent='Final cost depends on equipment brand, site conditions, and permit fees ($150–$400).';
+
+  let bdHtml='<div class="bd-title">What\'s typically included</div>';
+  breakdown.forEach(r=>{ bdHtml+=`<div class="bd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`; });
+  document.getElementById('result-breakdown').innerHTML=bdHtml;
+
+  const rebateEl=document.getElementById('rebate-note');
+  if(sys.rebate){
+    rebateEl.textContent='💡 '+(sys.rebateText||'Washington State rebates may reduce your cost by $1,800–$2,500. Snohomish County PUD offers heat pump incentives. Ask your pro about current programs.');
+    rebateEl.style.display='block';
+  } else { rebateEl.style.display='none'; }
+
+  // Wire Tally with hidden field parameters
+  const params=new URLSearchParams({
+    alignLeft:'1', hideTitle:'1', transparentBackground:'1',
+    system_type: state.systemLabel,
+    size: state.sizeLabel,
+    job: state.jobLabel,
+    city: state.city,
+    range: fmt(range[0])+' – '+fmt(range[1])
+  });
+  document.getElementById('tally-frame').src='https://tally.so/embed/WO0vyJ?alignLeft=1&hideTitle=1&transparentBackground=1&'+params.toString();
+
+  document.getElementById('result-panel').classList.add('active');
+  document.querySelector('.calc-card').scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Track step 4 complete and result shown
+  gtag('event','calc_step4_complete',{send_to:'AW-17039190320',city:state.city});
+  gtag('event','calc_result_shown',{
+    send_to:'AW-17039190320',
+    system:state.systemLabel,
+    size:state.sizeLabel,
+    job:state.jobLabel,
+    city:state.city,
+    range:fmt(range[0])+' – '+fmt(range[1])
+  });
+}
+
+function restartCalc(){
+  state.system=state.systemLabel=state.size=state.sizeLabel=state.job=state.jobLabel=state.city=null;
+  document.getElementById('city-select').value='';
+  document.getElementById('city-msg').textContent='';
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('next-1').disabled=true;
+  document.getElementById('result-panel').classList.remove('active');
+  document.getElementById('tally-frame').src='';
+  goToStep(1);
+  document.getElementById('step-1').classList.add('active');
+}
+
+function revealForm(btn){
+  btn.style.display='none';
+  const reveal=document.getElementById('form-reveal');
+  reveal.classList.add('open');
+  reveal.scrollIntoView({behavior:'smooth',block:'start'});
+
+  // Track form reveal
+  gtag('event','calc_form_revealed',{send_to:'AW-17039190320'});
+}
+
+// Track Tally form submission via postMessage
+window.addEventListener('message',function(e){
+  if(typeof e.data==='string' && e.data.includes('tally-form-confirmed')){
+    gtag('event','conversion',{
+      send_to:'AW-17039190320/5ig7CLTbjY0cELDS9bw_',
+      event_category:'Calculator',
+      event_label:'Tally Form Submitted'
+    });
+  }
+});
+
+function toggleFaq(btn){
+  const a=btn.nextElementSibling;
+  const open=btn.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(b=>{b.classList.remove('open');b.nextElementSibling.classList.remove('open');});
+  if(!open){btn.classList.add('open');a.classList.add('open');}
+}
+</script>
+</body>
+</html>

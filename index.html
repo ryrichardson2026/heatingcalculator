@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -791,19 +792,63 @@
     .trust-strip { gap: 4px 12px; padding: 10px 14px; }
     .trust-item { font-size: 10px; }
   }
+
+  /* LOADING OVERLAY */
+  .loading-overlay {
+    display: none;
+    padding: 40px 20px;
+    text-align: center;
+    background: #F5F7FA;
+  }
+  .loading-overlay.active { display: block; }
+  .loading-message {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0D1F3C;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .loading-bar-track {
+    background: #E2EAF2;
+    border-radius: 4px;
+    height: 6px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 10px;
+    overflow: hidden;
+  }
+  .loading-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 4px;
+    transition: width 0.05s linear;
+  }
+  .loading-pct {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6B8299;
+    letter-spacing: 1px;
+  }
 </style>
+
 <!-- Google Ads Tag -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17039190320"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-17039190320');
 </script>
+
 </head>
 <body>
 
 <!-- STICKY NAV -->
+
 <nav class="nav">
   <a href="https://millcreek-hvac.com" class="nav-brand">Mill Creek HVAC</a>
   <button class="nav-btn" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reviews ↓</button>
@@ -813,6 +858,7 @@
 </nav>
 
 <!-- HERO -->
+
 <div class="hero" id="calc-top">
   <div class="hero-eyebrow"><div class="pulse"></div>Free Instant Estimates — Snohomish County 2026</div>
   <h1>Need Help With Your<br><span>Home Heating System?</span></h1>
@@ -820,203 +866,216 @@
 </div>
 
 <!-- CALCULATOR -->
+
 <div class="calc-wrap">
   <div class="calc-card">
 
-    <!-- PROGRESS -->
-    <div class="progress-bar">
-      <div class="prog-seg active" id="seg-1"></div>
-      <div class="prog-seg" id="seg-2"></div>
-      <div class="prog-seg" id="seg-3"></div>
-      <div class="prog-seg" id="seg-4"></div>
-      <div class="prog-label" id="prog-label">Step 1 of 4</div>
+```
+<!-- PROGRESS -->
+<div class="progress-bar">
+  <div class="prog-seg active" id="seg-1"></div>
+  <div class="prog-seg" id="seg-2"></div>
+  <div class="prog-seg" id="seg-3"></div>
+  <div class="prog-seg" id="seg-4"></div>
+  <div class="prog-label" id="prog-label">Step 1 of 4</div>
+</div>
+
+<!-- LOADING OVERLAY -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="loading-message" id="loading-message"></div>
+  <div class="loading-bar-track">
+    <div class="loading-bar-fill" id="loading-bar-fill"></div>
+  </div>
+  <div class="loading-pct" id="loading-pct">0%</div>
+</div>
+
+<div class="calc-body">
+
+  <!-- STEP 1: Situation -->
+  <div class="step-panel active" id="step-1">
+    <div class="step-q">What's your situation?</div>
+    <div class="step-hint">This helps us show you the most relevant costs</div>
+    <div class="options g1">
+      <button class="opt" onclick="selectSituation(this,'repair','My system needs repair — not sure if worth fixing')">
+        <div class="opt-icon">🔧</div>
+        <div><div class="opt-label">My system needs repair</div><div class="opt-sub">Not sure if it's worth fixing or time to replace</div></div>
+      </button>
+      <button class="opt" onclick="selectSituation(this,'replace','Ready to replace — system is old or beyond repair')">
+        <div class="opt-icon">🔄</div>
+        <div><div class="opt-label">Ready to replace</div><div class="opt-sub">System is old or beyond repair</div></div>
+      </button>
+      <button class="opt" onclick="selectSituation(this,'install','New installation — no existing system')">
+        <div class="opt-icon">🏠</div>
+        <div><div class="opt-label">New installation</div><div class="opt-sub">No existing heating system</div></div>
+      </button>
+      <button class="opt" onclick="selectSituation(this,'unsure','Not sure yet')">
+        <div class="opt-icon">🤔</div>
+        <div><div class="opt-label">Not sure yet</div><div class="opt-sub">Help me understand my options and costs</div></div>
+      </button>
+    </div>
+    <div class="calc-nav">
+      <button class="btn-next" id="next-1" disabled onclick="goToStep(2)">Next →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: System Type -->
+  <div class="step-panel" id="step-2">
+    <div class="step-q">What type of heating?</div>
+    <div class="step-hint">Select the system you want installed or replaced</div>
+    <div class="options g1">
+      <button class="opt" onclick="selectOpt(this,2,'gas-furnace','Gas Furnace')">
+        <div class="opt-icon">🔥</div>
+        <div><div class="opt-label">Gas Furnace</div><div class="opt-sub">Most common — has a flue or exhaust pipe</div></div>
+      </button>
+      <button class="opt" onclick="selectOpt(this,2,'electric-furnace','Electric Furnace')">
+        <div class="opt-icon">⚡</div>
+        <div><div class="opt-label">Electric Furnace</div><div class="opt-sub">No gas line — runs on electricity only</div></div>
+      </button>
+      <button class="opt" onclick="selectOpt(this,2,'heat-pump-ducted','Ducted Heat Pump')">
+        <div class="opt-icon">♨️</div>
+        <div><div class="opt-label">Ducted Heat Pump</div><div class="opt-sub">Outdoor unit + ducts inside</div></div>
+      </button>
+      <button class="opt" onclick="selectOpt(this,2,'heat-pump-ductless','Ductless Heat Pump')">
+        <div class="opt-icon">🔄</div>
+        <div><div class="opt-label">Ductless Heat Pump</div><div class="opt-sub">Wall-mounted units, no ductwork</div></div>
+      </button>
+      <button class="opt" onclick="selectOpt(this,2,'gas-furnace','Not Sure')">
+        <div class="opt-icon">🤔</div>
+        <div><div class="opt-label">Not Sure</div><div class="opt-sub">A pro can identify your system during the free estimate</div></div>
+      </button>
+    </div>
+    <div class="calc-nav">
+      <button class="btn-back" onclick="goToStep(1)">← Back</button>
+      <button class="btn-next" id="next-2" disabled onclick="goToStep(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Size/Zones -->
+  <div class="step-panel" id="step-3">
+    <div class="step-q" id="step2-q">Home size?</div>
+    <div class="step-hint" id="step2-hint">Select your approximate square footage</div>
+    <div class="options g2" id="opts-2"></div>
+    <div class="calc-nav">
+      <button class="btn-back" onclick="goToStep(2)">← Back</button>
+      <button class="btn-next" id="next-3" disabled onclick="goToStep(4)">Next →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: City -->
+  <div class="step-panel" id="step-4">
+    <div class="step-q">Your city?</div>
+    <div class="step-hint">Confirms you're in our service area — pricing may vary by location</div>
+    <select class="city-select" id="city-select" onchange="checkCity(this.value)">
+      <option value="">Select your city...</option>
+      <option value="Mill Creek">Mill Creek</option>
+      <option value="Bothell">Bothell</option>
+      <option value="Lynnwood">Lynnwood</option>
+      <option value="Mukilteo">Mukilteo</option>
+      <option value="Kenmore">Kenmore</option>
+      <option value="Mountlake Terrace">Mountlake Terrace</option>
+      <option value="Edmonds">Edmonds</option>
+      <option value="Shoreline">Shoreline</option>
+      <option value="Woodinville">Woodinville</option>
+      <option value="Brier">Brier</option>
+      <option value="Everett">Everett</option>
+      <option value="Marysville">Marysville</option>
+      <option value="Monroe">Monroe</option>
+      <option value="Snohomish">Snohomish</option>
+      <option value="Arlington">Arlington</option>
+      <option value="Lake Stevens">Lake Stevens</option>
+      <option value="Martha Lake">Martha Lake</option>
+      <option value="Maltby">Maltby</option>
+      <option value="Other nearby area">Other nearby area</option>
+    </select>
+    <div id="city-msg" style="font-size:12px;color:var(--blue-muted);margin-top:8px;min-height:18px"></div>
+    <div class="calc-nav">
+      <button class="btn-back" onclick="goToStep(3)">← Back</button>
+      <button class="btn-next" id="next-4" disabled onclick="showResult()">See My Estimate →</button>
+    </div>
+  </div>
+
+</div><!-- /calc-body -->
+
+<!-- RESULT PANEL -->
+<div class="result-panel" id="result-panel">
+  <div class="result-eyebrow" id="result-eyebrow">Your Snohomish County Estimate — 2026</div>
+  <div class="result-system" id="result-system"></div>
+  <div class="result-range" id="result-range"></div>
+  <div class="result-local" id="result-local"></div>
+  <div class="result-breakdown" id="result-breakdown"></div>
+
+  <!-- REPLACEMENT CONTEXT — shows on repair path below repair costs -->
+  <div id="replacement-context" style="display:none;background:#F5F7FA;border:1px solid #E2EAF2;border-radius:10px;padding:14px;margin-bottom:16px;"></div>
+
+  <!-- REPAIR COMPARISON — shows on repair/unsure path -->
+  <div id="repair-comparison" style="display:none;background:#F5F7FA;border:1px solid #E2EAF2;border-radius:10px;padding:14px;margin-bottom:16px;">
+    <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#4A6A8A;margin-bottom:10px;">Common Repairs in Snohomish County</div>
+    <table style="width:100%;font-size:12px;border-collapse:collapse;">
+      <tr style="border-bottom:1px solid #E2EAF2">
+        <td style="padding:7px 0;color:#0D1F3C;font-weight:700">Minor repair <span style="font-weight:400;color:#9BB0C4">(ignitor, sensor, thermostat)</span></td>
+        <td style="text-align:right;color:#6B8299;font-weight:600">~$150–$400</td>
+      </tr>
+      <tr style="border-bottom:1px solid #E2EAF2">
+        <td style="padding:7px 0;color:#0D1F3C;font-weight:700">Major repair <span style="font-weight:400;color:#9BB0C4">(motor, valve, exchanger)</span></td>
+        <td style="text-align:right;color:#6B8299;font-weight:600">~$500–$1,500</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 0;color:#FF6B35;font-weight:700">Full replacement</td>
+        <td style="text-align:right;color:#FF6B35;font-weight:700">See estimate above</td>
+      </tr>
+    </table>
+    <div style="margin-top:10px;padding:10px;background:rgba(255,107,53,0.06);border-radius:8px;border:1px solid rgba(255,107,53,0.15);">
+      <div style="font-size:11px;font-weight:700;color:#0D1F3C;margin-bottom:3px;">Rule of thumb:</div>
+      <div style="font-size:11px;color:#6B8299;line-height:1.6;">If your repair estimate exceeds 30% of a new system — replacement usually wins. A system over 12 years old with a major repair is often a strong case for replacement.</div>
+    </div>
+  </div>
+  <div class="rebate-note" id="rebate-note" style="display:none"></div>
+
+  <div class="result-cta-box">
+    <div class="result-disclaimer" id="result-disclaimer" style="font-size:12px;color:#6B8299;margin-bottom:12px;line-height:1.6;"></div>
+  <div class="value-bullets">
+    <div class="value-bullet">💡 Snohomish PUD rebate: $1,800–$2,500 on qualifying heat pumps</div>
+    <div class="value-bullet">📅 Spring installs booking 3–4 weeks out</div>
+    <div class="value-bullet">⏱️ Most installs completed in 1–2 days</div>
+  </div>
+  <div style="font-size:13px;font-weight:700;color:#0D1F3C;margin-bottom:10px;">Need an exact estimate?</div>
+  <button class="cta-reveal-btn" onclick="revealForm(this)">Talk to a Local Expert →</button>
+  <div class="trust-signals">
+    <span>🔒 Licensed, insured & bonded</span>
+    <span style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+      <span style="color:#0D1F3C;font-weight:700;font-size:11px;">✅ Free Estimate</span>
+      <span style="color:#0D1F3C;font-weight:700;font-size:11px;">✅ No Obligation</span>
+      <span style="color:#0D1F3C;font-weight:700;font-size:11px;">✅ No Spam Calls</span>
+    </span>
+  </div>
+    <div class="form-reveal" id="form-reveal">
+      <div class="result-cta-title">Get Your Free Heating Estimate</div>
+      <div class="result-cta-sub">A licensed local heating pro reaches out same day — no obligation, no spam calls</div>
+      <div class="tally-bg">
+        <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')===null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+        <iframe id="tally-frame" src="" loading="lazy" width="100%" height="387" frameborder="0" marginheight="0" marginwidth="0" scrolling="yes" title="Furnace & Heat Calc" style="max-height:420px;overflow:auto"></iframe>
+      </div>
     </div>
 
-    <div class="calc-body">
+  </div>
 
-      <!-- STEP 1: Situation -->
-      <div class="step-panel active" id="step-1">
-        <div class="step-q">What's your situation?</div>
-        <div class="step-hint">This helps us show you the most relevant costs</div>
-        <div class="options g1">
-          <button class="opt" onclick="selectSituation(this,'repair','My system needs repair — not sure if worth fixing')">
-            <div class="opt-icon">🔧</div>
-            <div><div class="opt-label">My system needs repair</div><div class="opt-sub">Not sure if it's worth fixing or time to replace</div></div>
-          </button>
-          <button class="opt" onclick="selectSituation(this,'replace','Ready to replace — system is old or beyond repair')">
-            <div class="opt-icon">🔄</div>
-            <div><div class="opt-label">Ready to replace</div><div class="opt-sub">System is old or beyond repair</div></div>
-          </button>
-          <button class="opt" onclick="selectSituation(this,'install','New installation — no existing system')">
-            <div class="opt-icon">🏠</div>
-            <div><div class="opt-label">New installation</div><div class="opt-sub">No existing heating system</div></div>
-          </button>
-          <button class="opt" onclick="selectSituation(this,'unsure','Not sure yet')">
-            <div class="opt-icon">🤔</div>
-            <div><div class="opt-label">Not sure yet</div><div class="opt-sub">Help me understand my options and costs</div></div>
-          </button>
-        </div>
-        <div class="calc-nav">
-          <button class="btn-next" id="next-1" disabled onclick="goToStep(2)">Next →</button>
-        </div>
-      </div>
+  <button class="btn-restart" onclick="restartCalc()">← Start over with different selections</button>
+</div>
 
-      <!-- STEP 2: System Type -->
-      <div class="step-panel" id="step-2">
-        <div class="step-q">What type of heating?</div>
-        <div class="step-hint">Select the system you want installed or replaced</div>
-        <div class="options g1">
-          <button class="opt" onclick="selectOpt(this,2,'gas-furnace','Gas Furnace')">
-            <div class="opt-icon">🔥</div>
-            <div><div class="opt-label">Gas Furnace</div><div class="opt-sub">Most common — has a flue or exhaust pipe</div></div>
-          </button>
-          <button class="opt" onclick="selectOpt(this,2,'electric-furnace','Electric Furnace')">
-            <div class="opt-icon">⚡</div>
-            <div><div class="opt-label">Electric Furnace</div><div class="opt-sub">No gas line — runs on electricity only</div></div>
-          </button>
-          <button class="opt" onclick="selectOpt(this,2,'heat-pump-ducted','Ducted Heat Pump')">
-            <div class="opt-icon">♨️</div>
-            <div><div class="opt-label">Ducted Heat Pump</div><div class="opt-sub">Outdoor unit + ducts inside</div></div>
-          </button>
-          <button class="opt" onclick="selectOpt(this,2,'heat-pump-ductless','Ductless Heat Pump')">
-            <div class="opt-icon">🔄</div>
-            <div><div class="opt-label">Ductless Heat Pump</div><div class="opt-sub">Wall-mounted units, no ductwork</div></div>
-          </button>
-          <button class="opt" onclick="selectOpt(this,2,'gas-furnace','Not Sure')">
-            <div class="opt-icon">🤔</div>
-            <div><div class="opt-label">Not Sure</div><div class="opt-sub">A pro can identify your system during the free estimate</div></div>
-          </button>
-        </div>
-        <div class="calc-nav">
-          <button class="btn-back" onclick="goToStep(1)">← Back</button>
-          <button class="btn-next" id="next-2" disabled onclick="goToStep(3)">Next →</button>
-        </div>
-      </div>
-
-      <!-- STEP 3: Size/Zones -->
-      <div class="step-panel" id="step-3">
-        <div class="step-q" id="step2-q">Home size?</div>
-        <div class="step-hint" id="step2-hint">Select your approximate square footage</div>
-        <div class="options g2" id="opts-2"></div>
-        <div class="calc-nav">
-          <button class="btn-back" onclick="goToStep(2)">← Back</button>
-          <button class="btn-next" id="next-3" disabled onclick="goToStep(4)">Next →</button>
-        </div>
-      </div>
-
-      <!-- STEP 4: City -->
-      <div class="step-panel" id="step-4">
-        <div class="step-q">Your city?</div>
-        <div class="step-hint">Confirms you're in our service area — pricing may vary by location</div>
-        <select class="city-select" id="city-select" onchange="checkCity(this.value)">
-          <option value="">Select your city...</option>
-          <option value="Mill Creek">Mill Creek</option>
-          <option value="Bothell">Bothell</option>
-          <option value="Lynnwood">Lynnwood</option>
-          <option value="Mukilteo">Mukilteo</option>
-          <option value="Kenmore">Kenmore</option>
-          <option value="Mountlake Terrace">Mountlake Terrace</option>
-          <option value="Edmonds">Edmonds</option>
-          <option value="Shoreline">Shoreline</option>
-          <option value="Woodinville">Woodinville</option>
-          <option value="Brier">Brier</option>
-          <option value="Everett">Everett</option>
-          <option value="Marysville">Marysville</option>
-          <option value="Monroe">Monroe</option>
-          <option value="Snohomish">Snohomish</option>
-          <option value="Arlington">Arlington</option>
-          <option value="Lake Stevens">Lake Stevens</option>
-          <option value="Martha Lake">Martha Lake</option>
-          <option value="Maltby">Maltby</option>
-          <option value="Other nearby area">Other nearby area</option>
-        </select>
-        <div id="city-msg" style="font-size:12px;color:var(--blue-muted);margin-top:8px;min-height:18px"></div>
-        <div class="calc-nav">
-          <button class="btn-back" onclick="goToStep(3)">← Back</button>
-          <button class="btn-next" id="next-4" disabled onclick="showResult()">See My Estimate →</button>
-        </div>
-      </div>
-
-    </div><!-- /calc-body -->
-
-    <!-- RESULT PANEL -->
-    <div class="result-panel" id="result-panel">
-      <div class="result-eyebrow" id="result-eyebrow">Your Snohomish County Estimate — 2026</div>
-      <div class="result-system" id="result-system"></div>
-      <div class="result-range" id="result-range"></div>
-      <div class="result-local" id="result-local"></div>
-      <div class="result-breakdown" id="result-breakdown"></div>
-
-      <!-- REPLACEMENT CONTEXT — shows on repair path below repair costs -->
-      <div id="replacement-context" style="display:none;background:#F5F7FA;border:1px solid #E2EAF2;border-radius:10px;padding:14px;margin-bottom:16px;"></div>
-
-      <!-- REPAIR COMPARISON — shows on repair/unsure path -->
-      <div id="repair-comparison" style="display:none;background:#F5F7FA;border:1px solid #E2EAF2;border-radius:10px;padding:14px;margin-bottom:16px;">
-        <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#4A6A8A;margin-bottom:10px;">Common Repairs in Snohomish County</div>
-        <table style="width:100%;font-size:12px;border-collapse:collapse;">
-          <tr style="border-bottom:1px solid #E2EAF2">
-            <td style="padding:7px 0;color:#0D1F3C;font-weight:700">Minor repair <span style="font-weight:400;color:#9BB0C4">(ignitor, sensor, thermostat)</span></td>
-            <td style="text-align:right;color:#6B8299;font-weight:600">~$150–$400</td>
-          </tr>
-          <tr style="border-bottom:1px solid #E2EAF2">
-            <td style="padding:7px 0;color:#0D1F3C;font-weight:700">Major repair <span style="font-weight:400;color:#9BB0C4">(motor, valve, exchanger)</span></td>
-            <td style="text-align:right;color:#6B8299;font-weight:600">~$500–$1,500</td>
-          </tr>
-          <tr>
-            <td style="padding:7px 0;color:#FF6B35;font-weight:700">Full replacement</td>
-            <td style="text-align:right;color:#FF6B35;font-weight:700">See estimate above</td>
-          </tr>
-        </table>
-        <div style="margin-top:10px;padding:10px;background:rgba(255,107,53,0.06);border-radius:8px;border:1px solid rgba(255,107,53,0.15);">
-          <div style="font-size:11px;font-weight:700;color:#0D1F3C;margin-bottom:3px;">Rule of thumb:</div>
-          <div style="font-size:11px;color:#6B8299;line-height:1.6;">If your repair estimate exceeds 30% of a new system — replacement usually wins. A system over 12 years old with a major repair is often a strong case for replacement.</div>
-        </div>
-      </div>
-      <div class="rebate-note" id="rebate-note" style="display:none"></div>
-
-      <div class="result-cta-box">
-        <div class="result-disclaimer" id="result-disclaimer" style="font-size:12px;color:#6B8299;margin-bottom:12px;line-height:1.6;"></div>
-      <div class="value-bullets">
-        <div class="value-bullet">💡 Snohomish PUD rebate: $1,800–$2,500 on qualifying heat pumps</div>
-        <div class="value-bullet">📅 Spring installs booking 3–4 weeks out</div>
-        <div class="value-bullet">⏱️ Most installs completed in 1–2 days</div>
-      </div>
-      <div style="font-size:13px;font-weight:700;color:#0D1F3C;margin-bottom:10px;">Need an exact estimate?</div>
-      <button class="cta-reveal-btn" onclick="revealForm(this)">Talk to a Local Expert →</button>
-      <div class="trust-signals">
-        <span>🔒 Licensed, insured & bonded</span>
-        <span style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-          <span style="color:#0D1F3C;font-weight:700;font-size:11px;">✅ Free Estimate</span>
-          <span style="color:#0D1F3C;font-weight:700;font-size:11px;">✅ No Obligation</span>
-          <span style="color:#0D1F3C;font-weight:700;font-size:11px;">✅ No Spam Calls</span>
-        </span>
-      </div>
-        <div class="form-reveal" id="form-reveal">
-          <div class="result-cta-title">Get Your Free Heating Estimate</div>
-          <div class="result-cta-sub">A licensed local heating pro reaches out same day — no obligation, no spam calls</div>
-          <div class="tally-bg">
-            <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')===null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-            <iframe id="tally-frame" src="" loading="lazy" width="100%" height="387" frameborder="0" marginheight="0" marginwidth="0" scrolling="yes" title="Furnace & Heat Calc" style="max-height:420px;overflow:auto"></iframe>
-          </div>
-        </div>
-
-      </div>
-
-      <button class="btn-restart" onclick="restartCalc()">← Start over with different selections</button>
-    </div>
-
-    <!-- TRUST STRIP -->
-    <div class="trust-strip">
-      <div class="trust-item"><span class="trust-check">✓</span> Licensed & Insured</div>
-      <div class="trust-item"><span class="trust-check">✓</span> Same-Day Response</div>
-      <div class="trust-item"><span class="trust-check">✓</span> Free Estimates</div>
-      <div class="trust-item"><span class="trust-check">✓</span> No Obligation</div>
-    </div>
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><span class="trust-check">✓</span> Licensed & Insured</div>
+  <div class="trust-item"><span class="trust-check">✓</span> Same-Day Response</div>
+  <div class="trust-item"><span class="trust-check">✓</span> Free Estimates</div>
+  <div class="trust-item"><span class="trust-check">✓</span> No Obligation</div>
+</div>
+```
 
   </div>
 </div><!-- /calc-wrap -->
 
 <!-- REVIEWS -->
+
 <div class="section" id="faq">
   <div class="section-eyebrow">Common Questions</div>
   <div class="section-title">Furnace & Heat Pump FAQ</div>
@@ -1100,8 +1159,8 @@
   </div>
 </div>
 
-
 <!-- SERVICE AREA -->
+
 <div class="area-section">
   <div class="area-eyebrow">Service Area</div>
   <div class="area-pills">
@@ -1123,6 +1182,7 @@
 </div>
 
 <!-- FOOTER -->
+
 <div class="footer">
   <p>
     millcreek-hvac.com &nbsp;|&nbsp; 425.595.7972<br>
@@ -1293,7 +1353,45 @@ function checkCity(val){
   btn.disabled=false;
 }
 
+function runLoadingBar(message, accentColor, callback){
+  const overlay = document.getElementById('loading-overlay');
+  const bar = document.getElementById('loading-bar-fill');
+  const pct = document.getElementById('loading-pct');
+  const msg = document.getElementById('loading-message');
+
+  msg.textContent = message;
+  bar.style.background = accentColor;
+  bar.style.width = '0%';
+  pct.textContent = '0%';
+  overlay.classList.add('active');
+
+  let progress = 0;
+  const duration = 1800;
+  const interval = 40;
+  const steps = duration / interval;
+  const increment = 100 / steps;
+
+  const timer = setInterval(() => {
+    progress = Math.min(progress + increment, 100);
+    bar.style.width = progress + '%';
+    pct.textContent = Math.round(progress) + '%';
+    if(progress >= 100){
+      clearInterval(timer);
+      setTimeout(() => {
+        overlay.classList.remove('active');
+        callback();
+      }, 150);
+    }
+  }, interval);
+}
+
 function showResult(){
+  // Hide steps, show loading bar first
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+  runLoadingBar('Analyzing Snohomish County heating costs...', '#FF6B35', showResult_actual);
+}
+
+function showResult_actual(){
   // Infer job type from situation FIRST before any lookups
   const jobMap = {
     'repair': 'not-sure',
@@ -1426,5 +1524,6 @@ function toggleFaq(btn){
   if(!open){btn.classList.add('open');a.classList.add('open');}
 }
 </script>
+
 </body>
 </html>

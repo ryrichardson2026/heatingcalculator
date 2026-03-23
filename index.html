@@ -943,6 +943,9 @@
       <div class="result-local" id="result-local"></div>
       <div class="result-breakdown" id="result-breakdown"></div>
 
+      <!-- REPLACEMENT CONTEXT — shows on repair path below repair costs -->
+      <div id="replacement-context" style="display:none;background:#F5F7FA;border:1px solid #E2EAF2;border-radius:10px;padding:14px;margin-bottom:16px;"></div>
+
       <!-- REPAIR COMPARISON — shows on repair/unsure path -->
       <div id="repair-comparison" style="display:none;background:#F5F7FA;border:1px solid #E2EAF2;border-radius:10px;padding:14px;margin-bottom:16px;">
         <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#4A6A8A;margin-bottom:10px;">Common Repairs in Snohomish County</div>
@@ -1300,32 +1303,51 @@ function showResult(){
   const sys=pricing[state.system];
   const range=sys.ranges[state.size][state.job];
   const breakdown=sys.breakdown[state.job];
+  const isRepair = state.situation === 'repair';
+  const isUnsure = state.situation === 'unsure';
 
   document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
   for(let i=1;i<=4;i++) document.getElementById('seg-'+i).className='prog-seg done';
   document.getElementById('prog-label').textContent='Your estimate';
 
-  const isRepair = state.situation === 'repair' || state.situation === 'unsure';
   document.getElementById('result-eyebrow').textContent='YOUR '+state.city.toUpperCase()+' ESTIMATE — 2026';
-  document.getElementById('result-system').textContent=state.systemLabel+' — '+state.sizeLabel+' — '+state.situationLabel.split(' — ')[0];
-  document.getElementById('result-range').textContent=fmt(range[0])+' – '+fmt(range[1]);
-  document.getElementById('result-local').textContent='Based on recent installations in Greater Snohomish County — 2026 pricing.';
+  document.getElementById('result-system').textContent=state.systemLabel+' — '+state.sizeLabel;
   document.getElementById('result-disclaimer').textContent='Final cost depends on equipment brand, site conditions, and permit fees ($150–$500).';
 
-  // Show repair comparison if repair/unsure path
   const repairEl = document.getElementById('repair-comparison');
+  const replacementEl = document.getElementById('replacement-context');
+
   if(isRepair){
+    // REPAIR PATH — show repair range first, replacement as context
+    document.getElementById('result-range').textContent='~$150 – $1,500';
+    document.getElementById('result-local').textContent='Estimated repair range depending on the issue — Greater Snohomish County 2026 pricing.';
     repairEl.style.display='block';
+    // Show replacement as secondary context
+    if(replacementEl){
+      replacementEl.style.display='block';
+      replacementEl.innerHTML=`
+        <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#4A6A8A;margin-bottom:8px;">If Replacement Makes More Sense</div>
+        <div style="font-size:13px;font-weight:600;color:#6B8299;margin-bottom:4px;">${state.systemLabel} — ${state.sizeLabel}</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:#0D1F3C;letter-spacing:-1px;margin-bottom:6px;">${fmt(range[0])} – ${fmt(range[1])}</div>
+        <div style="font-size:11px;color:#9BB0C4;">Based on recent installations in Greater Snohomish County</div>`;
+    }
+    // Hide main breakdown — not relevant for repair
+    document.getElementById('result-breakdown').innerHTML='';
   } else {
+    // REPLACE / INSTALL / UNSURE PATH — show replacement range first
+    document.getElementById('result-range').textContent=fmt(range[0])+' – '+fmt(range[1]);
+    document.getElementById('result-local').textContent= isUnsure
+      ? 'Estimated range based on typical installations in Greater Snohomish County — 2026 pricing. A local pro can help you decide.'
+      : 'Based on recent installations in Greater Snohomish County — 2026 pricing.';
     repairEl.style.display='none';
+    if(replacementEl) replacementEl.style.display='none';
+    let bdHtml='<div class="bd-title">What\'s typically included</div>';
+    breakdown.forEach(r=>{ bdHtml+=`<div class="bd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`; });
+    document.getElementById('result-breakdown').innerHTML=bdHtml;
   }
 
-  let bdHtml='<div class="bd-title">What\'s typically included</div>';
-  breakdown.forEach(r=>{ bdHtml+=`<div class="bd-row"><span>${r[0]}</span><span>${r[1]}</span></div>`; });
-  document.getElementById('result-breakdown').innerHTML=bdHtml;
-
   const rebateEl=document.getElementById('rebate-note');
-  if(sys.rebate){
+  if(sys.rebate && !isRepair){
     rebateEl.textContent='💡 '+(sys.rebateText||'Washington State rebates may reduce your cost by $1,800–$2,500. Snohomish County PUD offers heat pump incentives. Ask your pro about current programs.');
     rebateEl.style.display='block';
   } else { rebateEl.style.display='none'; }
@@ -1338,14 +1360,13 @@ function showResult(){
     size: state.sizeLabel,
     job: state.jobLabel,
     city: state.city,
-    range: fmt(range[0])+' – '+fmt(range[1])
+    range: isRepair ? '~$150–$1,500 repair / '+fmt(range[0])+' – '+fmt(range[1])+' replacement' : fmt(range[0])+' – '+fmt(range[1])
   });
   document.getElementById('tally-frame').src='https://tally.so/embed/WO0vyJ?alignLeft=1&hideTitle=1&transparentBackground=1&'+params.toString();
 
   document.getElementById('result-panel').classList.add('active');
   document.querySelector('.calc-card').scrollIntoView({behavior:'smooth',block:'start'});
 
-  // Track step 4 complete and result shown
   gtag('event','calc_step4_complete',{send_to:'AW-17039190320',city:state.city,situation:state.situationLabel});
   gtag('event','calc_result_shown',{
     send_to:'AW-17039190320',
@@ -1354,7 +1375,7 @@ function showResult(){
     size:state.sizeLabel,
     job:state.jobLabel,
     city:state.city,
-    range:fmt(range[0])+' – '+fmt(range[1])
+    range:isRepair?'repair path':fmt(range[0])+' – '+fmt(range[1])
   });
 }
 

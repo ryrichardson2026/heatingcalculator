@@ -770,12 +770,13 @@ function gtag_report_conversion(url) {
       <div class="form-section" id="form-section">
         <div class="form-title">Let's get you connected</div>
         <div class="form-sub">A licensed local pro reaches out same day — no obligation, no spam calls</div>
-        <div class="form-field"><input type="text" id="f-name" placeholder="Your name" required></div>
+        <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
+        <div class="form-field"><input type="text" id="f-name" placeholder="Your name" required autocomplete="name"></div>
         <div class="form-field"><input type="tel" id="f-phone" placeholder="Your phone number" required></div>
         <div class="form-field"><input type="email" id="f-email" placeholder="Your email (optional)"></div>
         <div class="form-row">
           <div class="form-field">
-            <select id="f-contact">
+            <select id="f-contact" required>
               <option value="">How to reach you</option>
               <option>📞 Call me</option>
               <option>💬 Text me</option>
@@ -783,7 +784,7 @@ function gtag_report_conversion(url) {
             </select>
           </div>
           <div class="form-field">
-            <select id="f-time">
+            <select id="f-time" required>
               <option value="">Best time</option>
               <option>🚨 Right now</option>
               <option>🌅 Morning</option>
@@ -1209,8 +1210,40 @@ function showForm() {
 async function submitForm() {
   const name = document.getElementById('f-name').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
-  if(!name || !phone){
-    alert('Please enter your name and phone number.');
+  const contact = document.getElementById('f-contact').value;
+  const time = document.getElementById('f-time').value;
+
+  // Name — min 2 chars, no digits
+  if(!name || name.length < 2 || /\d/.test(name)){
+    alert('Please enter your full name.');
+    document.getElementById('f-name').focus();
+    return;
+  }
+
+  // Phone — min 10 digits
+  const phoneDigits = phone.replace(/\D/g,'');
+  if(!phone || phoneDigits.length < 10){
+    alert('Please enter a valid 10-digit phone number.');
+    document.getElementById('f-phone').focus();
+    return;
+  }
+
+  // Contact preference required
+  if(!contact){
+    alert('Please select how you would like to be contacted.');
+    document.getElementById('f-contact').focus();
+    return;
+  }
+
+  // Time preference required
+  if(!time){
+    alert('Please select the best time to reach you.');
+    document.getElementById('f-time').focus();
+    return;
+  }
+
+  // Honeypot — bot trap
+  if(document.getElementById('h-pot') && document.getElementById('h-pot').value !== ''){
     return;
   }
 

@@ -353,7 +353,7 @@
     background: var(--white); border: 1.5px solid var(--border);
     border-radius: 14px; margin-bottom: 10px;
   }
-  .form-section.active { display: block; }
+  
   .form-title {
     font-size: 15px; font-weight: 700;
     color: var(--dark); margin-bottom: 4px;
@@ -486,6 +486,26 @@
   .footer p { font-size: 11px; color: var(--dim); line-height: 2; text-transform: uppercase; letter-spacing: 0.5px; }
   .footer a { color: var(--dim); text-decoration: underline; }
 
+  /* RECOMMENDATION VERDICT */
+  .rec-box { background: var(--white); border: 1.5px solid var(--orange); border-radius: 14px; padding: 20px; margin-bottom: 12px; }
+  .rec-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .rec-verdict { font-family: 'Barlow Condensed', sans-serif; font-size: 44px; font-weight: 800; color: var(--dark); letter-spacing: -0.5px; line-height: 1.05; margin-bottom: 8px; }
+  .rec-sub { font-size: 13px; color: #6B8299; line-height: 1.6; }
+  .rec-bullets { background: rgba(255,107,53,0.04); border: 1px solid rgba(255,107,53,0.12); border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; }
+  .rec-bullet { font-size: 12px; font-weight: 600; color: var(--dark); padding: 4px 0; border-bottom: 1px solid rgba(255,107,53,0.08); line-height: 1.5; }
+  .rec-bullet:last-child { border-bottom: none; }
+  /* STACKED CTA */
+  .btn-unlock { width: 100%; background: #27AE60; border: none; border-radius: 10px; padding: 14px; font-size: 16px; font-weight: 700; color: var(--white); cursor: pointer; font-family: 'Barlow', sans-serif; margin-bottom: 10px; transition: all 0.15s; }
+  .btn-unlock:hover { background: #219A52; }
+  .btn-notnow { width: 100%; background: none; border: none; font-size: 13px; color: var(--muted); cursor: pointer; font-family: 'Barlow', sans-serif; padding: 6px; }
+  /* WARM EMAIL */
+  .warm-box { background: var(--white); border: 1.5px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 10px; display: none; }
+  /* THANK YOU */
+  .thankyou-box { display: none; text-align: center; padding: 28px 20px; background: var(--white); border: 1.5px solid #D5ECD8; border-radius: 14px; margin-bottom: 10px; }
+  .thankyou-icon { font-size: 36px; margin-bottom: 12px; }
+  .thankyou-title { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+  .thankyou-text { font-size: 13px; color: var(--muted); line-height: 1.75; }
+
   /* SPINNER */
   .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: var(--white); border-radius: 50%; animation: spin 0.8s linear infinite; margin-right: 8px; vertical-align: middle; }
   @keyframes spin { to { transform: rotate(360deg); } }
@@ -501,15 +521,6 @@
 </style>
 
 <!-- Google Ads Tag -->
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17039190320"></script>
-
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-17039190320');
-</script>
 
 </head>
 <body>
@@ -703,7 +714,7 @@
     <div class="city-msg" id="city-msg"></div>
     <div class="step-nav">
       <button class="btn-back" onclick="goTo(4)">← Back</button>
-      <button class="btn-continue" id="next-5" disabled onclick="showLoading()">See My Estimate →</button>
+      <button class="btn-continue" id="next-5" disabled onclick="showLoading()">Get My Recommendation →</button>
     </div>
   </div>
 </div>
@@ -718,107 +729,142 @@
 <!-- RESULT -->
 <div class="result-panel" id="result-panel">
 
-  <div class="result-intro" id="result-intro"></div>
-
-  <div class="est-box" id="repair-box">
-    <div class="est-eyebrow">Common repair for this issue</div>
-    <div class="est-sublabel" id="repair-sublabel"></div>
-    <div class="est-range repair" id="repair-range"></div>
-    <div class="est-note" id="repair-note"></div>
+  <!-- RECOMMENDATION — shows free, no pricing -->
+  <div class="rec-box">
+    <div class="rec-eyebrow">Our recommendation</div>
+    <div class="rec-verdict" id="rec-verdict"></div>
+    <div class="rec-sub" id="rec-sub"></div>
   </div>
 
-  <div class="est-box" id="replace-box">
-    <div class="est-eyebrow" id="replace-eyebrow">If replacement makes more sense</div>
-    <div class="est-sublabel" id="replace-sublabel"></div>
-    <div class="est-range" id="replace-range"></div>
-    <div class="est-note">Based on recent installations in Greater Snohomish County — 2026 pricing.</div>
+  <div class="rec-bullets">
+    <div class="rec-bullet" id="rec-b1"></div>
+    <div class="rec-bullet" id="rec-b2"></div>
+    <div class="rec-bullet" id="rec-b3"></div>
   </div>
 
-  <div class="rule-box">
-    <div class="rule-title">Rule of thumb</div>
-    <div class="rule-text" id="rule-text"></div>
-  </div>
-
-  <div class="recommendation" id="recommendation"></div>
-  <div class="caveat">This is based on typical Snohomish County costs — not a diagnosis. A licensed local pro can assess your system and give you a real number. Free estimate, no obligation.</div>
-
-  <!-- VALUE BULLETS -->
-  <div id="value-bullets" style="background:rgba(13,31,60,0.04);border:1px solid #E8EEF4;border-radius:10px;padding:12px 14px;margin-bottom:16px;display:none;">
-    <div style="font-size:12px;font-weight:600;color:#0D1F3C;padding:4px 0;line-height:1.5;" id="bullet-1"></div>
-    <div style="font-size:12px;font-weight:600;color:#0D1F3C;padding:4px 0;border-top:1px solid #E8EEF4;line-height:1.5;" id="bullet-2"></div>
-    <div style="font-size:12px;font-weight:600;color:#0D1F3C;padding:4px 0;border-top:1px solid #E8EEF4;line-height:1.5;" id="bullet-3"></div>
-  </div>
-
-  <!-- CTA -->
+  <!-- CTA — stacked buttons -->
   <div class="cta-box" id="cta-box">
     <div class="cta-q" id="cta-q"></div>
-    <div class="cta-btns">
-      <button class="btn-yes" onclick="showForm()">Yes, set it up →</button>
-      <button class="btn-no" onclick="showNoPath()">Not yet</button>
-    </div>
+    <button class="btn-unlock" onclick="showForm()">Get My Free Estimate &rarr;</button>
+    <button class="btn-notnow" onclick="showNotYet()">Not yet</button>
   </div>
 
-  <!-- FORM -->
+  <!-- FORM GATE — phone, email, zip -->
   <div class="form-section" id="form-section">
-    <div class="form-title">Let's get you connected</div>
-    <div class="form-sub">A licensed local pro reaches out same day — no obligation, no spam calls</div>
-    <div class="form-field"><input type="text" id="f-name" placeholder="Your name" required></div>
-    <div class="form-field"><input type="tel" id="f-phone" placeholder="Your phone number" required></div>
-    <div class="form-field"><input type="email" id="f-email" placeholder="Your email (optional)"></div>
-    <div class="form-row">
-      <div class="form-field">
-        <select id="f-contact">
-          <option value="">How to reach you</option>
-          <option>&#x1F4DE; Call me</option>
-          <option>&#x1F4AC; Text me</option>
-          <option>&#x1F4E7; Email me</option>
-        </select>
+    <div class="form-title">One step to unlock your estimate</div>
+    <div class="form-sub">A local specialist will be in touch &mdash; no obligation</div>
+    <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
+    <div class="form-field">
+      <input type="text" id="f-name" placeholder="First name" autocomplete="given-name" oninput="clearFErr('f-name')">
+      <div id="f-name-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
+    </div>
+    <div class="form-field">
+      <input type="tel" id="f-phone" placeholder="Phone number" autocomplete="tel" inputmode="numeric" oninput="clearFErr('f-phone')">
+      <div id="f-phone-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
+    </div>
+    <div class="form-field">
+      <input type="email" id="f-email" placeholder="Email address" autocomplete="email" oninput="clearFErr('f-email')">
+      <div id="f-email-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:10px;margin:10px 0 14px;">
+      <input type="checkbox" id="f-agree" onchange="toggleSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
+      <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">By submitting I agree I may be contacted by one local installer about my estimate.</label>
+    </div>
+    <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()" style="background:#27AE60;width:100%;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;">Get My Instant Estimate &rarr;</button>
+    <div class="form-guarantee">No obligation &nbsp;&middot;&nbsp; Free instant estimate &nbsp;&middot;&nbsp; Local &amp; Licensed</div>
+  </div>
+    <div class="est-box" id="repair-box" style="display:none;">
+      <div class="est-eyebrow">Typical repair estimate</div>
+      <div class="est-sublabel" id="repair-sublabel"></div>
+      <div class="est-range repair" id="repair-range"></div>
+      <div class="est-note" id="repair-note"></div>
+    </div>
+    <div class="est-box" id="replace-box" style="display:none;">
+      <div class="est-eyebrow" id="replace-eyebrow">Replacement estimate</div>
+      <div class="est-sublabel" id="replace-sublabel"></div>
+      <div class="est-range" id="replace-range"></div>
+      <div class="est-note">Based on recent installations in Greater Snohomish County &mdash; 2026 pricing.</div>
+    </div>
+    <div id="savings-table" style="display:none;background:#fff;border:1px solid #E8EEF4;border-radius:10px;padding:12px 14px;margin-bottom:10px;display:none;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #E8EEF4;">
+        <span style="color:#8AAFC8;">Federal tax credit (IRA)</span>
+        <span style="font-weight:700;color:#27AE60;">up to &minus;$2,000</span>
       </div>
-      <div class="form-field">
-        <select id="f-time">
-          <option value="">Best time</option>
-          <option>&#x1F6A8; Right now</option>
-          <option>&#x1F305; Morning</option>
-          <option>☀️ Afternoon</option>
-          <option>&#x1F319; Evening</option>
-        </select>
+      <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;">
+        <span style="color:#8AAFC8;">Utility rebates</span>
+        <span style="color:#9BB0C4;font-weight:500;">Ask your installer</span>
       </div>
     </div>
-    <button class="btn-submit" id="btn-submit" onclick="submitForm()">Connect Me with a Local Pro →</button>
-    <div class="form-guarantee">&#x1F512; Licensed, insured &amp; bonded · ✅ Free estimate · ✅ No obligation · ✅ No spam calls</div>
-  </div>
-
-  <!-- SUCCESS -->
-  <div class="success-msg" id="success-msg">
-    <div class="success-icon">✅</div>
-    <div class="success-title">You're all set.</div>
-    <div class="success-text">A licensed local pro will reach out by call or text at the time you selected.<br><br>One pro — not a call center, not a lead aggregator. Just someone who knows <span id="success-city"></span>.</div>
-  </div>
-
-  <!-- NO PATH -->
-  <div class="no-path" id="no-path">
-    <div class="no-path-msg">
-      <strong>No problem at all</strong> — these decisions take time and you want to get it right.<br><br>
-      Want me to email you this estimate so you have it when you're ready to take the next step?
+    <div id="net-box" style="display:none;background:rgba(27,111,200,0.05);border:1.5px solid rgba(27,111,200,0.2);border-radius:12px;padding:16px 18px;margin-bottom:10px;display:none;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1B6FC8;margin-bottom:6px;">Net estimate after savings</div>
+      <div id="net-range" style="font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;color:#1B6FC8;letter-spacing:-1px;line-height:1;margin-bottom:6px;"></div>
+      <div id="net-note" style="font-size:12px;color:#6B8299;line-height:1.6;"></div>
     </div>
-    <input type="email" class="email-input" id="email-only" placeholder="Your email address">
-    <div class="email-disclaimer">By submitting your email you'll receive your estimate and occasional heating tips from Mill Creek HVAC. Unsubscribe anytime — no spam, ever.</div>
-    <button class="btn-email" onclick="submitEmail()">Send me my estimate →</button>
-    <button class="btn-skip" onclick="showSkip()">I'm all set — no thanks</button>
+    <div style="display:none;" style="display:none;font-size:11px;color:#9BB0C4;line-height:1.6;font-style:italic;margin-bottom:10px;">Federal credit eligibility depends on system type and income. Your installer can confirm during the free estimate.</div>
+    
   </div>
 
-  <!-- SKIP -->
-  <div class="skip-final" id="skip-final">
-    <div class="skip-msg">
-      <strong>Got it — you have everything you need for now.</strong><br><br>
-      Bookmark this page and come back when you're ready to move forward. Your estimate will still be here.
+
+  <!-- PRICE REVEAL — shows after form submit -->
+  <div id="price-reveal-section" style="display:none;margin-bottom:10px;">
+    <div id="reveal-confirm" style="font-size:12px;color:#4A8A5A;line-height:1.5;"></div>
+    </div>
+    <div class="est-box" id="repair-box" style="display:none;">
+      <div class="est-eyebrow">Typical repair estimate</div>
+      <div class="est-range repair" id="repair-range"></div>
+      <div class="est-note" id="repair-note"></div>
+    </div>
+    <div class="est-box" id="replace-box" style="display:none;">
+      <div class="est-eyebrow" id="replace-eyebrow">Replacement estimate</div>
+      <div class="est-range" id="replace-range"></div>
+      <div class="est-note">Based on recent installations in Greater Snohomish County &mdash; 2026 pricing.</div>
+    </div>
+    <div id="savings-table" style="display:none;background:#fff;border:1px solid #E8EEF4;border-radius:10px;padding:12px 14px;margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #E8EEF4;">
+        <span style="color:#8AAFC8;">Federal tax credit (IRA)</span>
+        <span style="font-weight:700;color:#27AE60;">up to &minus;$2,000</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;">
+        <span style="color:#8AAFC8;">Utility rebates</span>
+        <span style="color:#9BB0C4;font-weight:500;">Ask your installer</span>
+      </div>
+    </div>
+    <div id="net-box" style="display:none;background:rgba(27,111,200,0.05);border:1.5px solid rgba(27,111,200,0.2);border-radius:12px;padding:16px 18px;margin-bottom:10px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1B6FC8;margin-bottom:6px;">Net estimate after savings</div>
+      <div id="net-range" style="font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;color:#1B6FC8;letter-spacing:-1px;line-height:1;margin-bottom:6px;"></div>
+      <div id="net-note" style="font-size:12px;color:#6B8299;line-height:1.6;"></div>
+    </div>
+    <div id="savings-caveat" style="display:none;font-size:11px;color:#9BB0C4;line-height:1.6;font-style:italic;margin-bottom:16px;">Federal credit eligibility depends on system type and income. Your installer can confirm during the free estimate.</div>
     </div>
   </div>
 
-  <button class="btn-back" style="width:100%;margin-top:12px;border-radius:10px;padding:10px;" onclick="restartCalc()">← Start over</button>
-</div>
+  <!-- NOT YET — email path -->
+  <div id="warm-box" style="display:none;background:#fff;border:1.5px solid #E8EEF4;border-radius:14px;padding:20px;margin-bottom:10px;">
+    <div style="font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:14px;">No worries &mdash; want us to email you your recommendation?</div>
+    <input type="email" id="email-only" placeholder="Your email address" oninput="clearWarmErr()" style="width:100%;padding:12px 14px;border:1.5px solid #E8EEF4;border-radius:10px;font-size:14px;font-family:'Barlow',sans-serif;color:#0D1F3C;outline:none;background:#F8FAFC;margin-bottom:6px;">
+    <div id="email-only-err" style="font-size:11px;color:#E74C3C;min-height:16px;margin-bottom:6px;"></div>
+    <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;">
+      <input type="checkbox" id="email-agree" onchange="toggleWarmSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
+      <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="email-agree">I agree to receive occasional tips and offers from Mill Creek HVAC. Unsubscribe anytime.</label>
+    </div>
+    <button id="btn-warm" disabled onclick="submitWarm()" style="width:100%;background:#27AE60;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px;">Send My Recommendation &rarr;</button>
+    <button onclick="showSkip()" style="width:100%;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:6px;">I&rsquo;m all set, thanks</button>
+  </div>
 
-<!-- TRUST STRIP -->
+  <!-- WARM THANK YOU -->
+  <div id="thankyou-warm" style="display:none;text-align:center;padding:24px 20px;background:#F0FDF4;border:1px solid #D1FAE5;border-radius:14px;margin-bottom:10px;">
+    <div style="font-size:32px;margin-bottom:10px;">&#10003;</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#0D1F3C;margin-bottom:8px;">Got it.</div>
+    <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">We&rsquo;ll email your recommendation shortly.<br>Ready to move forward? Come back anytime.</div>
+  </div>
+
+  <!-- SKIP THANK YOU -->
+  <div id="thankyou-skip" style="display:none;text-align:center;padding:24px 20px;">
+    <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">Your recommendation will still be here when you&rsquo;re ready.</div>
+  </div>
+
+    <button id="btn-restart" onclick="restartCalc()" style="display:none;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:8px;width:100%;text-align:center;">&larr; Start over</button>
+    <!-- TRUST STRIP -->
 <div class="trust-strip">
   <div class="trust-item"><span class="trust-check">✓</span> Licensed & Insured</div>
   <div class="trust-item"><span class="trust-check">✓</span> Same-Day Response</div>
@@ -932,412 +978,330 @@
 </div>
 
 <script>
-// ── STATE ────────────────────────────────────────────────────
+window.onerror = function(msg,src,line,col,err){ console.log('ERR:',msg,'line:',line,err); };
+
+const sessionID = Date.now().toString(36) + Math.random().toString(36).substr(2);
+
 const state = {
-  system: null, systemLabel: null,
-  problem: null, problemLabel: null,
-  size: null, sizeLabel: null,
-  age: null, ageLabel: null,
-  city: null,
-  repairRange: null, replaceRange: null,
-  recommendation: null
+  system:null,systemLabel:null,
+  problem:null,problemLabel:null,
+  size:null,sizeLabel:null,
+  age:null,ageLabel:null,
+  city:null,
+  repairRange:null,replaceRange:null,recommendation:null
 };
 
-const WEBHOOK = 'https://hook.us2.make.com/7r51s0r8hg75tlw8hptoerh7gh1u1u4i';
+const WEBHOOK = 'https://hook.us2.make.com/hmenfw6iwamhalxej725wzldgy201c1m';
 
-// ── REPAIR RANGES ────────────────────────────────────────────
 const repairData = {
-  'not-heating': {
-    range: '~$200 – $600',
-    label: 'Systems not heating properly',
-    note: 'Most heating issues in this range are fixable without full replacement.',
-    urgent: false
-  },
-  'noises': {
-    range: '~$350 – $900',
-    label: 'Unusual noise diagnosis',
-    note: 'Mechanical issues like blower motors are diagnosable before committing to repair.',
-    urgent: false
-  },
-  'bills': {
-    range: '~$100 – $500',
-    label: 'Efficiency loss',
-    note: 'Often a tune-up or minor fix resolves this before replacement is needed.',
-    urgent: false
-  },
-  'wont-start': {
-    range: '~$150 – $700',
-    label: 'System not starting',
-    note: '⚠️ No heat in your home needs same-day attention.',
-    urgent: true
-  },
-  'planning': null,
-  'not-sure': {
-    range: '~$150 – $700',
-    label: 'Typical repair range',
-    note: 'A diagnostic visit will narrow this down significantly.',
-    urgent: false
-  }
+  'not-heating':{range:'~$200 – $600',label:'Systems not heating properly',note:'Most heating issues in this range are fixable without full replacement.',urgent:false},
+  'noises':{range:'~$350 – $900',label:'Unusual noise diagnosis',note:'Mechanical issues like blower motors are diagnosable before committing to repair.',urgent:false},
+  'bills':{range:'~$100 – $500',label:'Efficiency loss',note:'Often a tune-up or minor fix resolves this before replacement is needed.',urgent:false},
+  'wont-start':{range:'~$150 – $700',label:'System not starting',note:'No heat in your home needs same-day attention.',urgent:true},
+  'planning':null,
+  'not-sure':{range:'~$150 – $700',label:'Typical repair range',note:'A diagnostic visit will narrow this down significantly.',urgent:false}
 };
 
-// ── REPLACEMENT RANGES ───────────────────────────────────────
 const replaceData = {
-  'u1500': {
-    gas:      '$3,800 – $5,500',
-    electric: '$2,500 – $4,000',
-    ducted:   '$7,000 – $10,500',
-    ductless: '$4,000 – $6,500',
-    unknown:  '$3,800 – $6,500'
-  },
-  '1500-2500': {
-    gas:      '$4,500 – $7,000',
-    electric: '$3,200 – $5,500',
-    ducted:   '$9,000 – $13,500',
-    ductless: '$7,500 – $11,000',
-    unknown:  '$4,500 – $7,500'
-  },
-  '2500-3500': {
-    gas:      '$6,000 – $9,000',
-    electric: '$4,500 – $7,000',
-    ducted:   '$12,000 – $17,500',
-    ductless: '$12,000 – $17,000',
-    unknown:  '$6,000 – $9,500'
-  },
-  'o3500': {
-    gas:      '$8,000 – $12,000',
-    electric: '$6,000 – $9,500',
-    ducted:   '$16,000 – $23,000',
-    ductless: '$17,000 – $24,000',
-    unknown:  '$8,000 – $13,000'
-  }
+  'u1500':     {gas:'$3,800 – $5,500',electric:'$2,500 – $4,000',ducted:'$7,000 – $10,500',ductless:'$4,000 – $6,500',unknown:'$3,800 – $6,500'},
+  '1500-2500': {gas:'$4,500 – $7,000',electric:'$3,200 – $5,500',ducted:'$9,000 – $13,500',ductless:'$7,500 – $11,000',unknown:'$4,500 – $7,500'},
+  '2500-3500': {gas:'$6,000 – $9,000',electric:'$4,500 – $7,000',ducted:'$12,000 – $17,500',ductless:'$12,000 – $17,000',unknown:'$6,000 – $9,500'},
+  'o3500':     {gas:'$8,000 – $12,000',electric:'$6,000 – $9,500',ducted:'$16,000 – $23,000',ductless:'$17,000 – $24,000',unknown:'$8,000 – $13,000'}
 };
 
-const systemKey = {
-  'gas': 'gas',
-  'electric': 'electric',
-  'heat-pump-ducted': 'ducted',
-  'heat-pump-ductless': 'ductless',
-  'not-sure': 'unknown'
-};
+const systemKey = {gas:'gas',electric:'electric','heat-pump-ducted':'ducted','heat-pump-ductless':'ductless','not-sure':'unknown'};
 
-// ── AGE RULES ────────────────────────────────────────────────
 const ageData = {
-  'u5': {
-    rule: 'At under 5 years old, repair is almost always the right call. Replacement costs far outweigh the benefit at this age.',
-    rec: 'Based on your system\'s age, repair is very likely the right first step.'
-  },
-  '5-10': {
-    rule: 'Mid-life system. Repair makes sense unless the cost exceeds 30% of replacement value — then replacement often wins.',
-    rec: 'At 5–10 years old, repair likely makes sense — unless the diagnosis reveals a major component failure.'
-  },
-  '10-15': {
-    rule: 'Your system is approaching the age where replacement starts making financial sense — especially with Snohomish PUD rebates of $1,800–$2,500 available on heat pumps.',
-    rec: 'At 10–15 years old with this issue, replacement is worth serious consideration alongside repair.'
-  },
-  'o15': {
-    rule: 'Most pros recommend replacement at this age. A repair buys time, but replacement locks in efficiency and qualifies for utility rebates.',
-    rec: 'Based on your system\'s age, replacement is likely the smarter long-term investment.'
-  },
-  'not-sure': {
-    rule: 'System age is the #1 factor in this decision. A local pro can check the manufacture date during the free estimate.',
-    rec: 'Without knowing the system age, a quick assessment from a local pro is the best next step.'
-  }
+  'u5':     {rec:'Based on your system\'s age, repair is very likely the right first step.'},
+  '5-10':   {rec:'At 5–10 years old, repair likely makes sense — unless the diagnosis reveals a major component failure.'},
+  '10-15':  {rec:'At 10–15 years old with this issue, replacement is worth serious consideration alongside repair.'},
+  'o15':    {rec:'Based on your system\'s age, replacement is likely the smarter long-term investment.'},
+  'not-sure':{rec:'Without knowing the system age, a quick assessment from a local pro is the best next step.'}
 };
 
-// ── CTA QUESTIONS ────────────────────────────────────────────
-function getCTAQuestion() {
-  if(state.problem === 'wont-start') {
-    return `Your system not turning on in ${state.city} needs attention today. Want me to connect you with a local pro who can take a look?`;
-  }
-  if(state.problem === 'planning') {
-    return `Planning ahead is smart. Want me to connect you with a local pro in ${state.city} who can walk you through your options?`;
-  }
-  return `The fastest way to know for sure is a quick look from someone who knows ${state.city} homes. Want me to set that up?`;
-}
-
-// ── NAVIGATION ───────────────────────────────────────────────
-function pick(el, step, val, label) {
-  el.closest('.options').querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+// ── NAVIGATION ──────────────────────────────────────────────
+function pick(el,step,val,label){
+  el.closest('.options').querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   el.classList.add('selected');
-  if(step===1){ state.system=val; state.systemLabel=label; document.getElementById('next-1').disabled=false; }
-  if(step===2){ state.problem=val; state.problemLabel=label; document.getElementById('next-2').disabled=false; }
-  if(step===3){ state.size=val; state.sizeLabel=label; document.getElementById('next-3').disabled=false; }
-  if(step===4){ state.age=val; state.ageLabel=label; document.getElementById('next-4').disabled=false; }
+  if(step===1){state.system=val;state.systemLabel=label;document.getElementById('next-1').disabled=false;}
+  if(step===2){state.problem=val;state.problemLabel=label;document.getElementById('next-2').disabled=false;}
+  if(step===3){state.size=val;state.sizeLabel=label;document.getElementById('next-3').disabled=false;}
+  if(step===4){state.age=val;state.ageLabel=label;document.getElementById('next-4').disabled=false;}
 }
 
-function pickCity(val) {
+function pickCity(val){
   if(!val) return;
-  state.city = val;
-  const msg = document.getElementById('city-msg');
-  msg.textContent = '✓ Great — we serve ' + val;
-  msg.style.color = '#3B8A3E';
-  document.getElementById('next-5').disabled = false;
+  state.city=val;
+  const msg=document.getElementById('city-msg');
+  if(msg){msg.textContent='✓ Great — we serve '+val;msg.style.color='#3B8A3E';}
+  document.getElementById('next-5').disabled=false;
 }
 
-function goTo(n) {
-  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+function goTo(n){
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
   for(let i=1;i<=5;i++){
-    const s = document.getElementById('seg-'+i);
-    s.className = 'prog-seg' + (i<n?' done':i===n?' active':'');
+    const s=document.getElementById('seg-'+i);
+    if(s) s.className='prog-seg'+(i<n?' done':i===n?' active':'');
   }
-  document.getElementById('prog-label').textContent = 'Question '+n+' of 5';
-  document.getElementById('step-'+n).classList.add('active');
-
-  // gtag step events
-  const events = {2:'calc_step1_complete',3:'calc_step2_complete',4:'calc_step3_complete',5:'calc_step4_complete'};
-  if(events[n]) gtag('event', events[n], {send_to:'AW-17039190320'});
+  const pl=document.getElementById('prog-label');
+  if(pl) pl.textContent='Question '+n+' of 5';
+  const sp=document.getElementById('step-'+n);
+  if(sp) sp.classList.add('active');
 }
 
-// ── LOADING ──────────────────────────────────────────────────
-function showLoading() {
-  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('city-name').textContent = state.city;
-  const loading = document.getElementById('loading');
-  loading.classList.add('active');
-  const bar = document.getElementById('bar-fill');
-  const pct = document.getElementById('bar-pct');
-  let progress = 0;
-  const timer = setInterval(() => {
-    progress = Math.min(progress + 2.2, 100);
-    bar.style.width = progress + '%';
-    pct.textContent = Math.round(progress) + '%';
-    if(progress >= 100){
+// ── LOADING ─────────────────────────────────────────────────
+function showLoading(){
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+  const cn=document.getElementById('city-name'); if(cn) cn.textContent=state.city;
+  const loading=document.getElementById('loading');
+  if(loading) loading.classList.add('active');
+  const bar=document.getElementById('bar-fill');
+  const pct=document.getElementById('bar-pct');
+  let progress=0;
+  const timer=setInterval(()=>{
+    progress=Math.min(progress+2.2,100);
+    if(bar) bar.style.width=progress+'%';
+    if(pct) pct.textContent=Math.round(progress)+'%';
+    if(progress>=100){
       clearInterval(timer);
-      setTimeout(() => { loading.classList.remove('active'); buildResult(); }, 200);
+      setTimeout(()=>{if(loading)loading.classList.remove('active');buildResult();},200);
     }
-  }, 40);
+  },40);
 }
 
 // ── BUILD RESULT ─────────────────────────────────────────────
-function buildResult() {
-  const repair = repairData[state.problem];
-  const sKey = systemKey[state.system] || 'unknown';
-  const sizeRow = replaceData[state.size] || replaceData['1500-2500'];
-  const replaceRange = sizeRow[sKey];
-  const age = ageData[state.age] || ageData['not-sure'];
-  const isUrgent = repair && repair.urgent;
-  const isPlanning = state.problem === 'planning';
+function buildResult(){
+  const repair=repairData[state.problem];
+  const sKey=systemKey[state.system]||'unknown';
+  const sizeRow=replaceData[state.size]||replaceData['1500-2500'];
+  const replaceRange=sizeRow[sKey];
+  const age=ageData[state.age]||ageData['not-sure'];
+  const isPlanning=state.problem==='planning';
+  const heatPump=state.system==='heat-pump-ducted'||state.system==='heat-pump-ductless';
 
-  state.repairRange = repair ? repair.range : 'N/A';
-  state.replaceRange = replaceRange;
-  state.recommendation = age.rec;
+  state.repairRange=repair?repair.range:'N/A';
+  state.replaceRange=replaceRange;
+  state.recommendation=age.rec;
 
-  // System and problem labels for intro
-  const sysLabels = {
-    gas:'gas furnace', electric:'electric furnace',
-    'heat-pump-ducted':'ducted heat pump',
-    'heat-pump-ductless':'ductless heat pump',
-    'not-sure':'heating system'
-  };
-  const probLabels = {
-    'not-heating':'not heating properly',
-    'noises':'making unusual noises',
-    'bills':'showing higher energy bills',
-    'wont-start':'not turning on',
-    'planning':'no active issue',
-    'not-sure':'showing some issues'
-  };
-  const ageLabels = {
-    'u5':'under 5 years old','5-10':'5–10 years old',
-    '10-15':'10–15 years old','o15':'over 15 years old',
-    'not-sure':'age unknown'
-  };
+  const sysLabels={gas:'Gas Furnace',electric:'Electric Furnace','heat-pump-ducted':'Ducted Heat Pump','heat-pump-ductless':'Ductless Heat Pump','not-sure':'Heating System'};
+  const ageLabels={'u5':'Under 5 years','5-10':'5–10 years','10-15':'10–15 years','o15':'Over 15 years','not-sure':'Age unknown'};
+  const sysShort={gas:'Your Furnace',electric:'Your Furnace','heat-pump-ducted':'Your Heat Pump','heat-pump-ductless':'Your Heat Pump','not-sure':'Your System'};
+  const sys=sysShort[state.system]||'Your System';
+  const verdicts={'u5':'Repair '+sys,'5-10':'Likely Repair First','10-15':'Consider Repair or Replace','o15':'Likely Time to Replace','not-sure':'Start With an Assessment'};
+  const verdict=isPlanning?'Your System Looks Good':(verdicts[state.age]||'Start With an Assessment');
 
-  // Intro
-  let intro = `Based on what you shared — a <strong>${ageLabels[state.age]}</strong> ${sysLabels[state.system] || 'heating system'} in <strong>${state.city}</strong>`;
-  if(!isPlanning) intro += ` that's <strong>${probLabels[state.problem] || 'having issues'}</strong>`;
-  intro += ` — here's what you're likely looking at:`;
-  document.getElementById('result-intro').innerHTML = intro;
+  const rv=document.getElementById('rec-verdict'); if(rv) rv.textContent=verdict;
+  const rs=document.getElementById('rec-sub'); if(rs) rs.textContent=(ageLabels[state.age]||'')+' — '+(sysLabels[state.system]||'system')+' in '+state.city;
 
-  // Repair box
-  const repairBox = document.getElementById('repair-box');
-  if(repair && !isPlanning){
-    repairBox.style.display = 'block';
-    if(isUrgent) repairBox.classList.add('urgent');
-    document.getElementById('repair-sublabel').textContent = repair.label;
-    const rangeEl = document.getElementById('repair-range');
-    rangeEl.textContent = repair.range;
-    if(isUrgent) rangeEl.classList.add('urgent');
-    document.getElementById('repair-note').textContent = repair.note;
-  } else {
-    repairBox.style.display = 'none';
+  const bullets=[];
+  if(state.age==='u5'){bullets.push('System is under 5 years old — repair almost always makes sense');bullets.push('Replacement at this age rarely pencils out financially');bullets.push('A diagnostic visit can identify the issue quickly');}
+  else if(state.age==='5-10'){bullets.push('Mid-life system — repair is usually the right first step');bullets.push('30% rule: if repair cost exceeds 30% of replacement, replace');bullets.push('Get a diagnostic estimate before committing');}
+  else if(state.age==='10-15'){bullets.push('System is approaching replacement territory');bullets.push(heatPump?'Heat pump rebates: $1,800–$2,500 via Snohomish PUD':'Heat pump upgrade may qualify for $1,800–$2,500 PUD rebate');bullets.push('Worth comparing repair vs replacement cost side by side');}
+  else if(state.age==='o15'){bullets.push('Over 15 years — replacement is usually the smarter investment');bullets.push(heatPump?'Federal tax credit up to $2,000 applies':'Heat pump upgrade qualifies for federal tax credit up to $2,000');bullets.push('Snohomish PUD rebates may also apply — ask your installer');}
+  else{bullets.push('System age is the biggest factor in this decision');bullets.push('A specialist can confirm age and condition at the free estimate');bullets.push('No obligation to proceed after the assessment');}
+  if(state.problem==='wont-start') bullets[0]='⚠️ No heat — needs same-day attention';
+
+  ['rec-b1','rec-b2','rec-b3'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el) el.innerHTML='<span style="color:#27AE60;margin-right:6px;">✓</span>'+(bullets[i]||'');
+  });
+
+  const cq=document.getElementById('cta-q');
+  if(cq){
+    if(state.age==='u5'||state.age==='5-10')
+      cq.textContent='Want to see what homeowners in '+state.city+' are paying to repair this? Instant, no obligation.';
+    else if(state.age==='o15')
+      cq.textContent='Want to see what homeowners in '+state.city+' are paying for a new system? Instant, no obligation.';
+    else if(isPlanning)
+      cq.textContent='Want to see what homeowners in '+state.city+' are paying for heating systems in 2026? Instant, no obligation.';
+    else
+      cq.textContent='Want to see what homeowners in '+state.city+' are paying to repair or replace? Instant, no obligation.';
   }
 
-  // Replace box
-  document.getElementById('replace-eyebrow').textContent = isPlanning ? 'Replacement estimate' : 'If replacement makes more sense';
-  document.getElementById('replace-sublabel').textContent = sysLabels[state.system] || 'heating system';
-  document.getElementById('replace-range').textContent = replaceRange;
+  // Cold lead
+  fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    lead_type:'cold',session_id:sessionID,source:'heating-calc',
+    timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,
+    size:state.sizeLabel,age:state.ageLabel,city:state.city
+  })}).catch(()=>{});
 
-  // Rule + recommendation
-  document.getElementById('rule-text').textContent = age.rule;
-  document.getElementById('recommendation').textContent = age.rec;
-
-  // Value bullets
-  const bulletsEl = document.getElementById('value-bullets');
-  const needsRebate = state.system === 'heat-pump-ducted' || state.system === 'heat-pump-ductless';
-  bulletsEl.style.display = 'block';
-  document.getElementById('bullet-1').textContent = needsRebate
-    ? '💡 Snohomish County PUD rebate: $1,800–$2,500 on qualifying heat pumps'
-    : '💡 Snohomish County permit fees: $150–$500 depending on your city';
-  document.getElementById('bullet-2').textContent = '📅 Most installs and repairs scheduled within 1–3 days';
-  document.getElementById('bullet-3').textContent = '⏱️ Most furnace replacements completed in one day';
-
-  // CTA question
-  document.getElementById('cta-q').textContent = getCTAQuestion();
-
-  // Progress done
-  for(let i=1;i<=5;i++) document.getElementById('seg-'+i).className = 'prog-seg done';
-  document.getElementById('prog-label').textContent = 'Your estimate';
-
-  document.getElementById('result-panel').classList.add('active');
-  document.querySelector('.calc-card').scrollIntoView({behavior:'smooth', block:'start'});
-
-  gtag('event','calc_result_shown',{send_to:'AW-17039190320',system:state.systemLabel,problem:state.problemLabel,age:state.ageLabel,city:state.city});
+  for(let i=1;i<=5;i++){const s=document.getElementById('seg-'+i);if(s)s.className='prog-seg done';}
+  const pl=document.getElementById('prog-label'); if(pl) pl.textContent='Your recommendation';
+  const rp=document.getElementById('result-panel'); if(rp) rp.classList.add('active');
+  const cc=document.querySelector('.calc-card'); if(cc) cc.scrollIntoView({behavior:'smooth',block:'start'});
+  const br=document.getElementById('btn-restart'); if(br) br.style.display='block';
 }
 
 // ── SHOW FORM ────────────────────────────────────────────────
-function showForm() {
-  document.getElementById('cta-box').style.display = 'none';
-  document.getElementById('form-section').classList.add('active');
-  gtag('event','calc_form_revealed',{send_to:'AW-17039190320'});
+function showForm(){
+  const cb=document.getElementById('cta-box'); if(cb) cb.style.display='none';
+  const fs=document.getElementById('form-section'); if(fs) fs.style.display='block';
 }
 
 // ── SUBMIT FORM ──────────────────────────────────────────────
-async function submitForm() {
-  const name = document.getElementById('f-name').value.trim();
-  const phone = document.getElementById('f-phone').value.trim();
-  if(!name || !phone){
-    alert('Please enter your name and phone number.');
+function submitForm(){
+  const nameEl=document.getElementById('f-name');
+  const phoneEl=document.getElementById('f-phone');
+  const emailEl=document.getElementById('f-email');
+  const agreeEl=document.getElementById('f-agree');
+
+  ['f-name','f-phone','f-email'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.style.borderColor='';
+    const err=document.getElementById(id+'-err'); if(err) err.textContent='';
+  });
+
+  const name=(nameEl?nameEl.value.trim():'').replace(/<[^>]*>/g,'');
+  const phone=(phoneEl?phoneEl.value.trim():'').replace(/<[^>]*>/g,'');
+  const email=(emailEl?emailEl.value.trim():'').replace(/<[^>]*>/g,'');
+
+  let valid=true;
+  if(!name||name.length<2){if(nameEl)nameEl.style.borderColor='#E74C3C';const e=document.getElementById('f-name-err');if(e)e.textContent='Please enter your name';valid=false;}
+  const digits=phone.replace(/[^0-9]/g,'');
+  if(digits.length<10){if(phoneEl)phoneEl.style.borderColor='#E74C3C';const e=document.getElementById('f-phone-err');if(e)e.textContent='Please enter a valid 10-digit phone number';valid=false;}
+  const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!email||!emailRe.test(email)){if(emailEl)emailEl.style.borderColor='#E74C3C';const e=document.getElementById('f-email-err');if(e)e.textContent='Please enter a valid email address';valid=false;}
+  if(!valid) return;
+
+  const pot=document.getElementById('h-pot'); if(pot&&pot.value!=='') return;
+
+  const btn=document.getElementById('btn-submit'); if(btn){btn.textContent='Getting your estimate...';btn.disabled=true;}
+
+  fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    lead_type:'hot',session_id:sessionID,source:'heating-calc',
+    timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,
+    size:state.sizeLabel,age:state.ageLabel,city:state.city,
+    name:name,phone:phone,email:email,
+    repair_range:state.repairRange,replacement_range:state.replaceRange,
+    recommendation:state.recommendation
+  })}).catch(()=>{});
+
+  const fs=document.getElementById('form-section'); if(fs) fs.style.display='none';
+
+  var isHP=state.system==='heat-pump-ducted'||state.system==='heat-pump-ductless';
+  var isPlanning=state.problem==='planning';
+
+  // Show price reveal section
+  var pr=document.getElementById('price-reveal-section');
+  if(pr){
+    pr.style.display='block';
+    // Confirm text
+    var rc=document.getElementById('reveal-confirm');
+    if(rc) rc.textContent=(state.recommendation||'')+' — '+(state.systemLabel||'your system')+' in '+state.city+'.';
+    // Repair box
+    var rb=document.getElementById('repair-box');
+    if(rb) rb.style.display=(!isPlanning&&state.repairRange&&state.repairRange!=='N/A')?'block':'none';
+    // Populate repair
+    var rr=document.getElementById('repair-range'); if(rr) rr.textContent=state.repairRange||'';
+    var rn=document.getElementById('repair-note'); if(rn) rn.textContent='Typical cost for this issue in '+state.city+'. A diagnostic visit will confirm.';
+    // Replace
+    var rep=document.getElementById('replace-range'); if(rep) rep.style.display='block'; if(rep) rep.textContent=state.replaceRange||'';
+    var re2=document.getElementById('replace-box'); if(re2) re2.style.display='block';
+    // Savings + net — heat pump only
+    var st=document.getElementById('savings-table'); if(st) st.style.display=isHP?'block':'none';
+    var nb=document.getElementById('net-box');
+    if(nb&&isHP){
+      nb.style.display='block';
+      var nums=(state.replaceRange||'').replace(/[$,~]/g,'').match(/\d+/g);
+      if(nums&&nums.length>=2){
+        var lo=Math.max(0,parseInt(nums[0])-2000),hi=Math.max(0,parseInt(nums[1])-2000);
+        var nr=document.getElementById('net-range'); if(nr) nr.textContent='$'+lo.toLocaleString()+' – $'+hi.toLocaleString();
+        var nn=document.getElementById('net-note'); if(nn) nn.textContent='After federal tax credit (up to $2,000) — ask your installer about additional utility rebates.';
+      }
+    } else if(nb) nb.style.display='none';
+    var sc=document.getElementById('savings-caveat'); if(sc) sc.style.display=isHP?'block':'none';
+    pr.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  // Show thank you
+}
+
+// ── NOT YET ──────────────────────────────────────────────────
+function showNotYet(){
+  const cb=document.getElementById('cta-box'); if(cb) cb.style.display='none';
+  const wb=document.getElementById('warm-box'); if(wb) wb.style.display='block';
+}
+
+// ── WARM SUBMIT ──────────────────────────────────────────────
+function submitWarm(){
+  const emailEl=document.getElementById('email-only');
+  const email=(emailEl?emailEl.value.trim():'').replace(/<[^>]*>/g,'');
+  const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!email||!emailRe.test(email)){
+    if(emailEl) emailEl.style.borderColor='#E74C3C';
+    const err=document.getElementById('email-only-err'); if(err) err.textContent='Please enter a valid email address';
     return;
   }
-
-  const btn = document.getElementById('btn-submit');
-  btn.innerHTML = '<span class="spinner"></span>Connecting...';
-  btn.disabled = true;
-
-  const payload = {
-    lead_type: 'hot',
-    timestamp: new Date().toISOString(),
-    system_type: state.systemLabel,
-    problem: state.problemLabel,
-    size: state.sizeLabel,
-    age: state.ageLabel,
-    city: state.city,
-    repair_range: state.repairRange,
-    replacement_range: state.replaceRange,
-    recommendation: state.recommendation,
-    name: name,
-    phone: phone,
-    email: document.getElementById('f-email').value.trim(),
-    contact_preference: document.getElementById('f-contact').value,
-    time_preference: document.getElementById('f-time').value
-  };
-
-  try {
-    await fetch(WEBHOOK, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload),
-      mode: 'no-cors'
-    });
-  } catch(e) { console.log('webhook error', e); }
-
-  document.getElementById('form-section').classList.remove('active');
-  document.getElementById('success-city').textContent = state.city;
-  document.getElementById('success-msg').classList.add('active');
-
-  gtag('event','conversion',{send_to:'AW-17039190320/5ig7CLTbjY0cELDS9bw_'});
-}
-
-// ── NO PATH ──────────────────────────────────────────────────
-function showNoPath() {
-  document.getElementById('cta-box').style.display = 'none';
-  document.getElementById('no-path').classList.add('active');
-}
-
-async function submitEmail() {
-  const email = document.getElementById('email-only').value.trim();
-  if(!email){ alert('Please enter your email address.'); return; }
-
-  const payload = {
-    lead_type: 'warm',
-    timestamp: new Date().toISOString(),
-    system_type: state.systemLabel,
-    problem: state.problemLabel,
-    size: state.sizeLabel,
-    age: state.ageLabel,
-    city: state.city,
-    repair_range: state.repairRange,
-    replacement_range: state.replaceRange,
-    recommendation: state.recommendation,
-    email: email
-  };
-
-  try {
-    await fetch(WEBHOOK, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload),
-      mode: 'no-cors'
-    });
-  } catch(e) { console.log('webhook error', e); }
-
-  document.getElementById('no-path').classList.remove('active');
-  document.getElementById('success-city').textContent = state.city;
-  document.getElementById('success-msg').classList.add('active');
+  const btn=document.getElementById('btn-warm'); if(btn){btn.textContent='Sending...';btn.disabled=true;}
+  fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    lead_type:'warm',session_id:sessionID,source:'heating-calc',
+    timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,
+    size:state.sizeLabel,age:state.ageLabel,city:state.city,
+    recommendation:state.recommendation,email:email
+  })}).catch(()=>{});
+  const wb=document.getElementById('warm-box'); if(wb) wb.style.display='none';
+  const tw=document.getElementById('thankyou-warm'); if(tw) tw.style.display='block';
 }
 
 // ── SKIP ─────────────────────────────────────────────────────
-async function showSkip() {
-  // Silent data capture — no notification
-  const payload = {
-    lead_type: 'cold',
-    timestamp: new Date().toISOString(),
-    system_type: state.systemLabel,
-    problem: state.problemLabel,
-    size: state.sizeLabel,
-    age: state.ageLabel,
-    city: state.city,
-    repair_range: state.repairRange,
-    replacement_range: state.replaceRange
-  };
-  try {
-    await fetch(WEBHOOK, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload),
-      mode: 'no-cors'
-    });
-  } catch(e) {}
-  document.getElementById('no-path').classList.remove('active');
-  document.getElementById('skip-final').classList.add('active');
+function showSkip(){
+  const wb=document.getElementById('warm-box'); if(wb) wb.style.display='none';
+  const ts=document.getElementById('thankyou-skip'); if(ts) ts.style.display='block';
+  fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    lead_type:'cold',session_id:sessionID,source:'heating-calc',
+    timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,
+    size:state.sizeLabel,age:state.ageLabel,city:state.city
+  })}).catch(()=>{});
 }
 
 // ── RESTART ──────────────────────────────────────────────────
-function restartCalc() {
-  Object.keys(state).forEach(k => state[k] = null);
-  document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
-  document.getElementById('city-select').value = '';
-  document.getElementById('city-msg').textContent = '';
-  for(let i=1;i<=5;i++) document.getElementById('next-'+i) && (document.getElementById('next-'+i).disabled = true);
-  document.getElementById('result-panel').classList.remove('active');
-  document.getElementById('form-section').classList.remove('active');
-  document.getElementById('no-path').classList.remove('active');
-  document.getElementById('skip-final').classList.remove('active');
-  document.getElementById('success-msg').classList.remove('active');
-  document.getElementById('cta-box').style.display = 'block';
-  document.getElementById('btn-submit').innerHTML = 'Connect Me with a Local Pro →';
-  document.getElementById('btn-submit').disabled = false;
+function restartCalc(){
+  Object.keys(state).forEach(k=>state[k]=null);
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  const cs=document.getElementById('city-select'); if(cs) cs.value='';
+  const cm=document.getElementById('city-msg'); if(cm) cm.textContent='';
+  for(let i=1;i<=5;i++){const n=document.getElementById('next-'+i);if(n)n.disabled=true;}
+  const rp=document.getElementById('result-panel'); if(rp) rp.classList.remove('active');
+  const prv=document.getElementById('price-reveal-section'); if(prv) prv.style.display='none';
+  const fs=document.getElementById('form-section'); if(fs) fs.style.display='none';
+  const wb=document.getElementById('warm-box'); if(wb) wb.style.display='none';
+  const tw=document.getElementById('thankyou-warm'); if(tw) tw.style.display='none';
+  const ts=document.getElementById('thankyou-skip'); if(ts) ts.style.display='none';
+  const cb=document.getElementById('cta-box'); if(cb) cb.style.display='block';
+  const bs=document.getElementById('btn-submit'); if(bs){bs.textContent='Get My Instant Estimate →';bs.disabled=true;}
+  const fa=document.getElementById('f-agree'); if(fa) fa.checked=false;
+  const ea=document.getElementById('email-agree'); if(ea) ea.checked=false;
+  const eo=document.getElementById('email-only'); if(eo) eo.value='';
   goTo(1);
-  document.getElementById('step-1').classList.add('active');
+  const s1=document.getElementById('step-1'); if(s1) s1.classList.add('active');
+  const brr=document.getElementById('btn-restart'); if(brr) brr.style.display='none';
 }
 
-// ── FAQ ───────────────────────────────────────────────────────
-function toggleFaq(btn) {
-  const a = btn.nextElementSibling;
-  const open = btn.classList.contains('open');
-  document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
-  if(!open){ btn.classList.add('open'); a.classList.add('open'); }
+// ── FAQ ──────────────────────────────────────────────────────
+function toggleFaq(btn){
+  const a=btn.nextElementSibling,open=btn.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(b=>{b.classList.remove('open');if(b.nextElementSibling)b.nextElementSibling.classList.remove('open');});
+  if(!open){btn.classList.add('open');if(a)a.classList.add('open');}
+}
+
+// ── TOGGLES ──────────────────────────────────────────────────
+function toggleSubmit(){
+  const agree=document.getElementById('f-agree'),btn=document.getElementById('btn-submit');
+  if(agree&&btn) btn.disabled=!agree.checked;
+}
+function toggleWarmSubmit(){
+  const agree=document.getElementById('email-agree'),btn=document.getElementById('btn-warm');
+  if(agree&&btn) btn.disabled=!agree.checked;
+}
+function clearFErr(id){
+  const el=document.getElementById(id); if(el) el.style.borderColor='';
+  const err=document.getElementById(id+'-err'); if(err) err.textContent='';
+}
+function clearWarmErr(){
+  const el=document.getElementById('email-only'); if(el) el.style.borderColor='';
+  const err=document.getElementById('email-only-err'); if(err) err.textContent='';
 }
 </script>
 

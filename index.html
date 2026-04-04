@@ -509,24 +509,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-17039190320');
-  gtag('config', 'G-B7M0KFSBKC');
-</script>
-
-<!-- Conversion tracking function -->
-
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-    'send_to': 'AW-17039190320/-qj3CP3-j48cELDS9bw_',
-    'event_callback': callback
-  });
-  return false;
-}
 </script>
 
 </head>
@@ -539,20 +521,15 @@ function gtag_report_conversion(url) {
   <button class="nav-btn" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reviews ↓</button>
   <button class="nav-btn" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">Questions ↓</button>
   <button class="nav-btn" onclick="document.getElementById('calc-top').scrollIntoView({behavior:'smooth'})">Get Estimate ↑</button>
-  <a href="tel:4255957972" class="nav-phone" onclick="gtag_report_conversion('tel:4255957972')">425.595.7972</a>
+  <a href="tel:4255957972" class="nav-phone">425.595.7972</a>
 </nav>
 
 <!-- HERO -->
 
 <div class="hero" id="calc-top">
   <div class="hero-eyebrow"><div class="pulse"></div>Free Instant Estimates — Snohomish County 2026</div>
-  <h1>Heating Repair or Replacement?<br><span>See Local Costs First.</span></h1>
+  <h1>Need Help With Your<br><span>Home Heating System?</span></h1>
   <p class="hero-sub">See what repair, replacement and installation costs before you decide — instant estimates for every city across Snohomish County.</p>
-  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;margin-bottom:24px;">
-    <span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.55);">📍 Local estimates</span>
-    <span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.55);">⚡ Same-day follow-up available</span>
-    <span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.55);">✅ No obligation</span>
-  </div>
 </div>
 
 <!-- CALCULATOR -->
@@ -577,7 +554,7 @@ function gtag_report_conversion(url) {
     <div class="step-hint">This helps us give you the most accurate estimate for your situation.</div>
     <div class="options">
       <button class="opt" onclick="pick(this,1,'gas','Gas Furnace')">
-        <div class="opt-icon">🔥</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Gas Furnace</div><div class="opt-sub">Has a flue or exhaust pipe — runs on natural gas</div></div>
       </button>
       <button class="opt" onclick="pick(this,1,'electric','Electric Furnace')">
@@ -589,11 +566,11 @@ function gtag_report_conversion(url) {
         <div><div class="opt-label">Ducted Heat Pump</div><div class="opt-sub">Outdoor unit + ducts inside — heats and cools</div></div>
       </button>
       <button class="opt" onclick="pick(this,1,'heat-pump-ductless','Ductless Heat Pump')">
-        <div class="opt-icon">🔄</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Ductless Heat Pump</div><div class="opt-sub">Wall-mounted units — no ductwork needed</div></div>
       </button>
       <button class="opt" onclick="pick(this,1,'not-sure','Not Sure')">
-        <div class="opt-icon">🤔</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Not Sure</div><div class="opt-sub">A pro can identify your system on-site</div></div>
       </button>
     </div>
@@ -610,15 +587,15 @@ function gtag_report_conversion(url) {
     <div class="step-hint">Tell us what you're experiencing — we'll tailor your estimate around it.</div>
     <div class="options">
       <button class="opt" onclick="pick(this,2,'not-heating','Not heating properly')">
-        <div class="opt-icon">🌡️</div>
+        <div class="opt-icon">??️</div>
         <div><div class="opt-label">Not heating properly</div><div class="opt-sub">Running but not producing enough heat</div></div>
       </button>
       <button class="opt" onclick="pick(this,2,'noises','Making unusual noises')">
-        <div class="opt-icon">🔊</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Making unusual noises</div><div class="opt-sub">Banging, rattling, or squealing sounds</div></div>
       </button>
       <button class="opt" onclick="pick(this,2,'bills','Energy bills have increased')">
-        <div class="opt-icon">💸</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Energy bills have increased</div><div class="opt-sub">Running more than usual — costing more</div></div>
       </button>
       <button class="opt" onclick="pick(this,2,'wont-start','System won\'t turn on')">
@@ -626,11 +603,11 @@ function gtag_report_conversion(url) {
         <div><div class="opt-label">System won't turn on</div><div class="opt-sub">No heat at all — needs urgent attention</div></div>
       </button>
       <button class="opt" onclick="pick(this,2,'planning','Just planning ahead')">
-        <div class="opt-icon">📋</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Just planning ahead</div><div class="opt-sub">No active issue — exploring options and costs</div></div>
       </button>
       <button class="opt" onclick="pick(this,2,'not-sure','Not sure')">
-        <div class="opt-icon">🤔</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Not sure</div><div class="opt-sub">Something feels off but hard to describe</div></div>
       </button>
     </div>
@@ -648,19 +625,19 @@ function gtag_report_conversion(url) {
     <div class="step-hint">Even a rough estimate helps us size the costs to your space.</div>
     <div class="options">
       <button class="opt" onclick="pick(this,3,'u1500','Under 1,500 sqft')">
-        <div class="opt-icon">🏠</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Under 1,500 sqft</div><div class="opt-sub">Smaller home or condo</div></div>
       </button>
       <button class="opt" onclick="pick(this,3,'1500-2500','1,500 – 2,500 sqft')">
-        <div class="opt-icon">🏡</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">1,500 – 2,500 sqft</div><div class="opt-sub">Average Snohomish County home</div></div>
       </button>
       <button class="opt" onclick="pick(this,3,'2500-3500','2,500 – 3,500 sqft')">
-        <div class="opt-icon">🏘️</div>
+        <div class="opt-icon">??️</div>
         <div><div class="opt-label">2,500 – 3,500 sqft</div><div class="opt-sub">Larger family home</div></div>
       </button>
       <button class="opt" onclick="pick(this,3,'o3500','Over 3,500 sqft')">
-        <div class="opt-icon">🏰</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Over 3,500 sqft</div><div class="opt-sub">Large or custom home</div></div>
       </button>
     </div>
@@ -678,11 +655,11 @@ function gtag_report_conversion(url) {
     <div class="step-hint">Even a rough guess helps — this is the biggest factor in the repair vs replace decision.</div>
     <div class="options">
       <button class="opt" onclick="pick(this,4,'u5','Under 5 years')">
-        <div class="opt-icon">🆕</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Under 5 years</div><div class="opt-sub">Relatively new system</div></div>
       </button>
       <button class="opt" onclick="pick(this,4,'5-10','5 – 10 years')">
-        <div class="opt-icon">📅</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">5 – 10 years</div><div class="opt-sub">Mid-life system</div></div>
       </button>
       <button class="opt" onclick="pick(this,4,'10-15','10 – 15 years')">
@@ -690,11 +667,11 @@ function gtag_report_conversion(url) {
         <div><div class="opt-label">10 – 15 years</div><div class="opt-sub">Aging — repair vs replace territory</div></div>
       </button>
       <button class="opt" onclick="pick(this,4,'o15','Over 15 years')">
-        <div class="opt-icon">📆</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Over 15 years</div><div class="opt-sub">Older system — replacement often makes sense</div></div>
       </button>
       <button class="opt" onclick="pick(this,4,'not-sure','Not sure')">
-        <div class="opt-icon">🤔</div>
+        <div class="opt-icon">??</div>
         <div><div class="opt-label">Not sure</div><div class="opt-sub">A pro can check this during the free estimate</div></div>
       </button>
     </div>
@@ -773,10 +750,21 @@ function gtag_report_conversion(url) {
   </div>
 
   <!-- CTA -->
-  <div class="cta-box" id="cta-box">
+  <!-- PRICE REVEAL — shown after form submit -->
+```
+
+  <div id="price-reveal-section" style="display:none;margin-bottom:10px;">
+    <div style="background:rgba(39,174,96,0.08);border:1px solid rgba(39,174,96,0.2);border-radius:12px;padding:14px 16px;margin-bottom:14px;">
+      <div style="font-size:14px;font-weight:700;color:#1A6B3A;margin-bottom:2px;">&#10003; Got it &mdash; here&rsquo;s your instant estimate.</div>
+      <div id="reveal-confirm" style="font-size:12px;color:#4A8A5A;line-height:1.5;"></div>
+    </div>
+  </div>
+
+```
+<div class="cta-box" id="cta-box">
     <div class="cta-q" id="cta-q"></div>
     <div class="cta-btns">
-      <button class="btn-yes" onclick="showForm()">Yes, set it up →</button>
+      <button class="btn-yes" onclick="showForm()" style="background:#27AE60;">&#x1F513; Unlock My Estimate &rarr;</button>
       <button class="btn-no" onclick="showNoPath()">Not yet</button>
     </div>
   </div>
@@ -785,53 +773,61 @@ function gtag_report_conversion(url) {
   <div class="form-section" id="form-section">
     <div class="form-title">Let's get you connected</div>
     <div class="form-sub">A licensed local pro reaches out same day — no obligation, no spam calls</div>
-    <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
-    <div class="form-field"><input type="text" id="f-name" placeholder="Your name" required autocomplete="name"></div>
+    <div class="form-field"><input type="text" id="f-name" placeholder="Your name" required></div>
     <div class="form-field"><input type="tel" id="f-phone" placeholder="Your phone number" required></div>
     <div class="form-field"><input type="email" id="f-email" placeholder="Your email (optional)"></div>
     <div class="form-row">
       <div class="form-field">
-        <select id="f-contact" required>
+        <select id="f-contact">
           <option value="">How to reach you</option>
-          <option>📞 Call me</option>
-          <option>💬 Text me</option>
-          <option>📧 Email me</option>
+          <option>?? Call me</option>
+          <option>?? Text me</option>
+          <option>?? Email me</option>
         </select>
       </div>
       <div class="form-field">
-        <select id="f-time" required>
+        <select id="f-time">
           <option value="">Best time</option>
-          <option>🚨 Right now</option>
-          <option>🌅 Morning</option>
+          <option>?? Right now</option>
+          <option>?? Morning</option>
           <option>☀️ Afternoon</option>
-          <option>🌙 Evening</option>
+          <option>?? Evening</option>
         </select>
       </div>
     </div>
-    <button class="btn-submit" id="btn-submit" onclick="submitForm()">Connect Me with a Local Pro →</button>
-    <div class="form-guarantee">🔒 Licensed, insured & bonded · ✅ Free estimate · ✅ No obligation · ✅ No spam calls</div>
+    <button class="btn-submit" id="btn-submit" onclick="submitForm()" style="background:#27AE60;">Get My Instant Estimate &rarr;</button>
+    <div class="form-guarantee">?? Licensed, insured & bonded · ✅ Free estimate · ✅ No obligation · ✅ No spam calls</div>
   </div>
 
   <!-- SUCCESS -->
   <div class="success-msg" id="success-msg">
-    <div class="success-icon">✅</div>
-    <div class="success-title">You're all set.</div>
-    <div class="success-text">A licensed local pro will reach out by call or text at the time you selected.<br><br>One pro — not a call center, not a lead aggregator. Just someone who knows <span id="success-city"></span>.</div>
+    <div class="success-icon">&#10003;</div>
+    <div class="success-title">Done.</div>
+    <div class="success-text">Your estimate is headed to your inbox.<br><br>Someone local may reach out to walk you through your options &mdash; no pressure, no obligation.<span id="success-city" style="display:none;"></span></div>
   </div>
 
   <!-- NO PATH -->
   <div class="no-path" id="no-path">
     <div class="no-path-msg">
-      <strong>No problem at all</strong> — these decisions take time and you want to get it right.<br><br>
-      Want me to email you this estimate so you have it when you're ready to take the next step?
-    </div>
-    <input type="email" class="email-input" id="email-only" placeholder="Your email address">
-    <div class="email-disclaimer">By submitting your email you'll receive your estimate and occasional heating tips from Mill Creek HVAC. Unsubscribe anytime — no spam, ever.</div>
-    <button class="btn-email" onclick="submitEmail()">Send me my estimate →</button>
-    <button class="btn-skip" onclick="showSkip()">I'm all set — no thanks</button>
+```
+
+No worries — want us to email you your recommendation?
+</div>
+<input type="email" class="email-input" id="email-only" placeholder="Your email address">
+<div class="email-disclaimer">By submitting your email you’ll receive your estimate and occasional heating tips from Mill Creek HVAC. Unsubscribe anytime — no spam, ever.</div>
+<button class="btn-email" onclick="submitEmail()">Send me my estimate →</button>
+<button class="btn-skip" onclick="showSkip()">I’m all set — no thanks</button>
+</div>
+
+```
+  <!-- WARM SUCCESS -->
+  <div id="warm-success" style="display:none;text-align:center;padding:20px;background:#F0FDF4;border:1px solid #D1FAE5;border-radius:12px;margin-bottom:10px;">
+    <div style="font-size:28px;margin-bottom:10px;">&#10003;</div>
+    <div style="font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:6px;">Got it &mdash; check your inbox.</div>
+    <div style="font-size:13px;color:#8AAFC8;line-height:1.7;">We&rsquo;ll email your recommendation shortly.<br>Ready to move forward? Come back anytime.</div>
   </div>
 
-  <!-- SKIP -->
+        <!-- SKIP -->
   <div class="skip-final" id="skip-final">
     <div class="skip-msg">
       <strong>Got it — you have everything you need for now.</strong><br><br>
@@ -948,7 +944,7 @@ function gtag_report_conversion(url) {
 
 <div class="footer">
   <p>
-    heat.millcreek-hvac.com &nbsp;|&nbsp; <a href="tel:4255957972" onclick="gtag_report_conversion('tel:4255957972')" style="color:var(--dim);text-decoration:none;">425.595.7972</a><br>
+    heat.millcreek-hvac.com &nbsp;|&nbsp; 425.595.7972<br>
     Licensed, insured & bonded local pros — Greater Snohomish County<br>
     <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf" target="_blank">Privacy Policy</a>
     &nbsp;|&nbsp; Mill Creek HVAC &copy; 2026
@@ -957,6 +953,8 @@ function gtag_report_conversion(url) {
 
 <script>
 // ── STATE ────────────────────────────────────────────────────
+const sessionID = Date.now().toString(36) + Math.random().toString(36).substr(2);
+
 const state = {
   system: null, systemLabel: null,
   problem: null, problemLabel: null,
@@ -967,7 +965,7 @@ const state = {
   recommendation: null
 };
 
-const WEBHOOK = 'https://hook.us2.make.com/hmenfw6iwamhalxej725wzldgy201c1m';
+const WEBHOOK = 'https://hook.us2.make.com/7r51s0r8hg75tlw8hptoerh7gh1u1u4i';
 
 // ── REPAIR RANGES ────────────────────────────────────────────
 const repairData = {
@@ -1114,6 +1112,12 @@ function goTo(n) {
 
 // ── LOADING ──────────────────────────────────────────────────
 function showLoading() {
+  fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    lead_type:'cold',session_id:sessionID,source:'heating-calc',
+    timestamp:new Date().toISOString(),
+    system_type:state.systemLabel,problem:state.problemLabel,
+    size:state.sizeLabel,age:state.ageLabel,city:state.city
+  })}).catch(function(){});
   document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('city-name').textContent = state.city;
   const loading = document.getElementById('loading');
@@ -1201,9 +1205,9 @@ function buildResult() {
   const needsRebate = state.system === 'heat-pump-ducted' || state.system === 'heat-pump-ductless';
   bulletsEl.style.display = 'block';
   document.getElementById('bullet-1').textContent = needsRebate
-    ? '💡 Snohomish County PUD rebate: $1,800–$2,500 on qualifying heat pumps'
-    : '💡 Snohomish County permit fees: $150–$500 depending on your city';
-  document.getElementById('bullet-2').textContent = '📅 Most installs and repairs scheduled within 1–3 days';
+    ? '?? Snohomish County PUD rebate: $1,800–$2,500 on qualifying heat pumps'
+    : '?? Snohomish County permit fees: $150–$500 depending on your city';
+  document.getElementById('bullet-2').textContent = '?? Most installs and repairs scheduled within 1–3 days';
   document.getElementById('bullet-3').textContent = '⏱️ Most furnace replacements completed in one day';
 
   // CTA question
@@ -1230,40 +1234,8 @@ function showForm() {
 async function submitForm() {
   const name = document.getElementById('f-name').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
-  const contact = document.getElementById('f-contact').value;
-  const time = document.getElementById('f-time').value;
-
-  // Name — min 2 chars, no digits
-  if(!name || name.length < 2 || /\d/.test(name)){
-    alert('Please enter your full name.');
-    document.getElementById('f-name').focus();
-    return;
-  }
-
-  // Phone — min 10 digits
-  const phoneDigits = phone.replace(/\D/g,'');
-  if(!phone || phoneDigits.length < 10){
-    alert('Please enter a valid 10-digit phone number.');
-    document.getElementById('f-phone').focus();
-    return;
-  }
-
-  // Contact preference required
-  if(!contact){
-    alert('Please select how you would like to be contacted.');
-    document.getElementById('f-contact').focus();
-    return;
-  }
-
-  // Time preference required
-  if(!time){
-    alert('Please select the best time to reach you.');
-    document.getElementById('f-time').focus();
-    return;
-  }
-
-  // Honeypot — bot trap
-  if(document.getElementById('h-pot') && document.getElementById('h-pot').value !== ''){
+  if(!name || !phone){
+    alert('Please enter your name and phone number.');
     return;
   }
 
@@ -1273,6 +1245,8 @@ async function submitForm() {
 
   const payload = {
     lead_type: 'hot',
+    session_id: sessionID,
+    source: 'heating-calc',
     timestamp: new Date().toISOString(),
     system_type: state.systemLabel,
     problem: state.problemLabel,
@@ -1293,18 +1267,40 @@ async function submitForm() {
     await fetch(WEBHOOK, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
     });
   } catch(e) { console.log('webhook error', e); }
 
   document.getElementById('form-section').classList.remove('active');
+  // Show price reveal
+  var pr = document.getElementById('price-reveal-section');
+  if(pr){
+    pr.style.display = 'block';
+    var rc = document.getElementById('reveal-confirm');
+    if(rc) rc.textContent = (state.recommendation||'Your recommendation') + ' for a ' + (state.sizeLabel||'') + ' home in ' + state.city + '.';
+  }
   document.getElementById('success-city').textContent = state.city;
   document.getElementById('success-msg').classList.add('active');
 
-  gtag_report_conversion();
+  gtag('event','conversion',{send_to:'AW-17039190320/5ig7CLTbjY0cELDS9bw_'});
 }
 
 // ── NO PATH ──────────────────────────────────────────────────
+
+function clearEmailErr(){
+  var el = document.getElementById('email-only');
+  if(el) el.style.borderColor = '';
+  var err = document.getElementById('email-only-err');
+  if(err) err.textContent = '';
+}
+
+function toggleEmailSubmit(){
+  var agree = document.getElementById('email-agree');
+  var btn = document.getElementById('btn-email-submit');
+  if(agree && btn) btn.disabled = !agree.checked;
+}
+
 function showNoPath() {
   document.getElementById('cta-box').style.display = 'none';
   document.getElementById('no-path').classList.add('active');
@@ -1312,10 +1308,19 @@ function showNoPath() {
 
 async function submitEmail() {
   const email = document.getElementById('email-only').value.trim();
-  if(!email){ alert('Please enter your email address.'); return; }
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!email || !emailRe.test(email)){
+    var el = document.getElementById('email-only');
+    if(el) el.style.borderColor = '#E74C3C';
+    var err = document.getElementById('email-only-err');
+    if(err) err.textContent = 'Please enter a valid email address';
+    return;
+  }
 
   const payload = {
     lead_type: 'warm',
+    session_id: sessionID,
+    source: 'heating-calc',
     timestamp: new Date().toISOString(),
     system_type: state.systemLabel,
     problem: state.problemLabel,
@@ -1332,15 +1337,14 @@ async function submitEmail() {
     await fetch(WEBHOOK, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
     });
   } catch(e) { console.log('webhook error', e); }
 
   document.getElementById('no-path').classList.remove('active');
   document.getElementById('success-city').textContent = state.city;
   document.getElementById('success-msg').classList.add('active');
-  // Warm lead — micro conversion
-  gtag('event', 'warm_lead_email', {send_to:'AW-17039190320'});
 }
 
 // ── SKIP ─────────────────────────────────────────────────────
@@ -1348,6 +1352,8 @@ async function showSkip() {
   // Silent data capture — no notification
   const payload = {
     lead_type: 'cold',
+    session_id: sessionID,
+    source: 'heating-calc',
     timestamp: new Date().toISOString(),
     system_type: state.systemLabel,
     problem: state.problemLabel,
@@ -1361,7 +1367,8 @@ async function showSkip() {
     await fetch(WEBHOOK, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
     });
   } catch(e) {}
   document.getElementById('no-path').classList.remove('active');

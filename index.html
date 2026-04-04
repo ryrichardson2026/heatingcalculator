@@ -1188,7 +1188,7 @@ function submitForm(){
     pr.style.display='block';
     // Confirm text
     var rc=document.getElementById('reveal-confirm');
-    if(rc) rc.textContent=(state.recommendation||'')+' — '+(state.systemLabel||'your system')+' in '+state.city+'.';
+    if(rc) rc.style.display='none';
     // Repair box
     var rb=document.getElementById('repair-box');
     if(rb) rb.style.display=(!isPlanning&&state.repairRange&&state.repairRange!=='N/A')?'block':'none';

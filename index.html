@@ -745,14 +745,13 @@
   <!-- CTA — stacked buttons -->
   <div class="cta-box" id="cta-box">
     <div class="cta-q" id="cta-q"></div>
-    <button class="btn-unlock" onclick="showForm()">Get My Free Estimate &rarr;</button>
+    <button class="btn-unlock" onclick="showForm()">Get My Instant Estimate &rarr;</button>
     <button class="btn-notnow" onclick="showNotYet()">Not yet</button>
   </div>
 
   <!-- FORM GATE — phone, email, zip -->
   <div class="form-section" id="form-section">
     <div class="form-title">One step to unlock your estimate</div>
-    <div class="form-sub">A local specialist will be in touch &mdash; no obligation</div>
     <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
     <div class="form-field">
       <input type="text" id="f-name" placeholder="First name" autocomplete="given-name" oninput="clearFErr('f-name')">
@@ -770,7 +769,7 @@
       <input type="checkbox" id="f-agree" onchange="toggleSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
       <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">By submitting I agree I may be contacted by one local installer about my estimate.</label>
     </div>
-    <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()" style="background:#27AE60;width:100%;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;">Get My Instant Estimate &rarr;</button>
+    <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()" style="background:#27AE60;width:100%;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;">Submit</button>
     <div class="form-guarantee">No obligation &nbsp;&middot;&nbsp; Free instant estimate &nbsp;&middot;&nbsp; Local &amp; Licensed</div>
   </div>
     <div class="est-box" id="repair-box" style="display:none;">
@@ -876,6 +875,31 @@
   </div>
 </div>
 
+<!-- REVIEWS -->
+
+<div class="section" id="reviews">
+  <div class="section-eyebrow">What Homeowners Say</div>
+  <div class="section-title">5-Star Rated</div>
+  <div class="section-sub">Verified reviews from Mill Creek & Snohomish County homeowners</div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"They were so quick to respond and schedule. Turns out our coils needed replacing — they were so kind and efficient and had our AC back up and running 2 days later. Without breaking the bank!!"</p>
+      <div class="review-author">— Mill Creek Homeowner</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Prompt for the appointment, very personable and patiently answered all my questions. So knowledgeable and their expertise gave me complete confidence."</p>
+      <div class="review-author">— Snohomish County Homeowner</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Extremely knowledgeable and explained everything clearly. The install went smoothly and I'm very happy with my heat pump. They even came back a month later to answer more questions."</p>
+      <div class="review-author">— Mill Creek Homeowner</div>
+    </div>
+  </div>
+</div>
+
 <!-- FAQ -->
 
 <div class="section" id="faq">
@@ -922,31 +946,6 @@
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Is a permit required for furnace replacement in Washington?<span class="faq-icon">+</span></button>
       <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees in Snohomish County run $150–$500 depending on your city.</div>
-    </div>
-  </div>
-</div>
-
-<!-- REVIEWS -->
-
-<div class="section" id="reviews">
-  <div class="section-eyebrow">What Homeowners Say</div>
-  <div class="section-title">5-Star Rated</div>
-  <div class="section-sub">Verified reviews from Mill Creek & Snohomish County homeowners</div>
-  <div class="reviews-grid">
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"They were so quick to respond and schedule. Turns out our coils needed replacing — they were so kind and efficient and had our AC back up and running 2 days later. Without breaking the bank!!"</p>
-      <div class="review-author">— Mill Creek Homeowner</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Prompt for the appointment, very personable and patiently answered all my questions. So knowledgeable and their expertise gave me complete confidence."</p>
-      <div class="review-author">— Snohomish County Homeowner</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Extremely knowledgeable and explained everything clearly. The install went smoothly and I'm very happy with my heat pump. They even came back a month later to answer more questions."</p>
-      <div class="review-author">— Mill Creek Homeowner</div>
     </div>
   </div>
 </div>
@@ -1109,13 +1108,13 @@ function buildResult(){
   const cq=document.getElementById('cta-q');
   if(cq){
     if(state.age==='u5'||state.age==='5-10')
-      cq.textContent='Want to see what homeowners in '+state.city+' are paying to repair this? Instant, no obligation.';
+      cq.textContent='Want to see what homeowners in '+state.city+' are paying for similar repairs?';
     else if(state.age==='o15')
-      cq.textContent='Want to see what homeowners in '+state.city+' are paying for a new system? Instant, no obligation.';
+      cq.textContent='Want to see what homeowners in '+state.city+' are paying for a new system?';
     else if(isPlanning)
-      cq.textContent='Want to see what homeowners in '+state.city+' are paying for heating systems in 2026? Instant, no obligation.';
+      cq.textContent='Want to see what homeowners in '+state.city+' are paying for heating systems in 2026?';
     else
-      cq.textContent='Want to see what homeowners in '+state.city+' are paying to repair or replace? Instant, no obligation.';
+      cq.textContent='Want to see what homeowners in '+state.city+' are paying to repair or replace?';
   }
 
   // Cold lead

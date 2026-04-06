@@ -104,7 +104,8 @@
   /* HERO */
   .hero {
     background: var(--navy);
-    padding: 36px 20px 0; text-align: center;
+    padding: 48px 20px 40px;
+    text-align: center;
     border-bottom: 3px solid var(--orange);
   }
   .hero-eyebrow {
@@ -114,7 +115,7 @@
     color: var(--orange);
     font-size: 11px; font-weight: 700;
     letter-spacing: 2px; text-transform: uppercase;
-    padding: 5px 14px; border-radius: 20px; margin-bottom: 16px;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 18px;
   }
   .pulse {
     width: 7px; height: 7px;
@@ -125,21 +126,77 @@
 
   .hero h1 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(28px, 6vw, 48px);
+    font-size: clamp(30px, 7vw, 52px);
     font-weight: 800; color: var(--white);
     text-transform: uppercase; letter-spacing: -0.5px;
-    line-height: 1.05; margin-bottom: 10px;
+    line-height: 1.05; margin-bottom: 14px;
   }
   .hero h1 span { color: var(--orange); }
   .hero-sub {
-    font-size: 15px; color: rgba(255,255,255,0.75);
-    max-width: 480px; margin: 0 auto 28px; line-height: 1.65;
+    font-size: 15px; color: rgba(255,255,255,0.65);
+    max-width: 460px; margin: 0 auto 32px; line-height: 1.7;
   }
 
-  /* CALC WRAP */
+  /* HERO TRUST ROW */
+  .hero-trust {
+    display: flex; flex-wrap: wrap; gap: 8px 20px;
+    justify-content: center; margin-bottom: 32px;
+  }
+  .hero-trust-item {
+    font-size: 12px; font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .hero-trust-item span { color: var(--orange); }
+
+  /* GET STARTED BUTTON */
+  .btn-get-started {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--orange);
+    border: none; border-radius: 12px;
+    padding: 18px 36px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 800;
+    color: var(--white);
+    text-transform: uppercase; letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 6px 24px rgba(255,107,53,0.35);
+  }
+  .btn-get-started:hover {
+    background: var(--orange2);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(255,107,53,0.45);
+  }
+  .btn-get-started:active { transform: translateY(0); }
+  .btn-get-started .arrow {
+    font-size: 20px;
+    transition: transform 0.2s;
+  }
+  .btn-get-started:hover .arrow { transform: translateX(4px); }
+
+  .hero-sub-cta {
+    font-size: 12px; color: rgba(255,255,255,0.3);
+    margin-top: 12px; letter-spacing: 0.3px;
+  }
+
+  /* CALC WRAP — hidden by default */
   .calc-wrap {
     max-width: 600px; margin: 0 auto;
-    padding: 32px 16px 48px;
+    padding: 0 16px 48px;
+    /* Collapsed state */
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1),
+                opacity 0.4s ease,
+                padding 0.4s ease;
+  }
+  .calc-wrap.revealed {
+    max-height: 2400px;
+    opacity: 1;
+    padding-top: 32px;
   }
 
   .calc-card {
@@ -517,6 +574,7 @@
     .form-row { grid-template-columns: 1fr; }
     .reviews-grid { grid-template-columns: 1fr; }
     .area-pills { gap: 5px; }
+    .btn-get-started { font-size: 18px; padding: 16px 28px; }
   }
 </style>
 
@@ -526,358 +584,335 @@
 <body>
 
 <!-- NAV -->
-
 <nav class="nav">
   <a href="https://millcreek-hvac.com" class="nav-brand">Mill Creek HVAC</a>
   <button class="nav-btn" onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reviews ↓</button>
   <button class="nav-btn" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">Questions ↓</button>
-  <button class="nav-btn" onclick="document.getElementById('calc-top').scrollIntoView({behavior:'smooth'})">Get Estimate ↑</button>
+  <button class="nav-btn" onclick="revealCalc(true)">Get Estimate ↑</button>
   <a href="tel:4255957972" class="nav-phone">425.595.7972</a>
 </nav>
 
 <!-- HERO -->
-
 <div class="hero" id="calc-top">
   <div class="hero-eyebrow"><div class="pulse"></div>Free Instant Estimates — Snohomish County 2026</div>
-  <h1>Need Help With Your<br><span>Home Heating System?</span></h1>
-  <p class="hero-sub">See what repair, replacement and installation costs before you decide — instant estimates for every city across Snohomish County.</p>
+  <h1>Should You<br><span>Repair or Replace</span><br>Your Heating System?</h1>
+  <p class="hero-sub">Answer 5 quick questions and get an instant cost estimate tailored to your home and city — no obligation, no sales pressure.</p>
+
+  <div class="hero-trust">
+    <div class="hero-trust-item"><span>✓</span> Takes 60 seconds</div>
+    <div class="hero-trust-item"><span>✓</span> Instant results</div>
+    <div class="hero-trust-item"><span>✓</span> No obligation</div>
+    <div class="hero-trust-item"><span>✓</span> Local & Licensed</div>
+  </div>
+
+  <button class="btn-get-started" onclick="revealCalc(true)" id="hero-cta">
+    Get My Free Estimate <span class="arrow">→</span>
+  </button>
+  <div class="hero-sub-cta">Takes about 60 seconds · No spam · No obligation</div>
 </div>
 
 <!-- CALCULATOR -->
-
-<div class="calc-wrap">
+<div class="calc-wrap" id="calc-wrap">
   <div class="calc-card">
 
-```
-<div class="progress-bar">
-  <div class="prog-seg active" id="seg-1"></div>
-  <div class="prog-seg" id="seg-2"></div>
-  <div class="prog-seg" id="seg-3"></div>
-  <div class="prog-seg" id="seg-4"></div>
-  <div class="prog-seg" id="seg-5"></div>
-  <div class="prog-label" id="prog-label">Question 1 of 5</div>
-</div>
+    <div class="progress-bar">
+      <div class="prog-seg active" id="seg-1"></div>
+      <div class="prog-seg" id="seg-2"></div>
+      <div class="prog-seg" id="seg-3"></div>
+      <div class="prog-seg" id="seg-4"></div>
+      <div class="prog-seg" id="seg-5"></div>
+      <div class="prog-label" id="prog-label">Question 1 of 5</div>
+    </div>
 
-<!-- STEP 1: System type -->
-<div class="step-panel active" id="step-1">
-  <div class="step-body">
-    <div class="step-q">What type of heating system do you have?</div>
-    <div class="step-hint">This helps us give you the most accurate estimate for your situation.</div>
-    <div class="options">
-      <button class="opt" onclick="pick(this,1,'gas','Gas Furnace')">
-        <div class="opt-icon">&#x1F525;</div>
-        <div><div class="opt-label">Gas Furnace</div><div class="opt-sub">Has a flue or exhaust pipe — runs on natural gas</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,1,'electric','Electric Furnace')">
-        <div class="opt-icon">⚡</div>
-        <div><div class="opt-label">Electric Furnace</div><div class="opt-sub">No gas line — runs on electricity only</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,1,'heat-pump-ducted','Ducted Heat Pump')">
-        <div class="opt-icon">♨️</div>
-        <div><div class="opt-label">Ducted Heat Pump</div><div class="opt-sub">Outdoor unit + ducts inside — heats and cools</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,1,'heat-pump-ductless','Ductless Heat Pump')">
-        <div class="opt-icon">&#x1F504;</div>
-        <div><div class="opt-label">Ductless Heat Pump</div><div class="opt-sub">Wall-mounted units — no ductwork needed</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,1,'not-sure','Not Sure')">
-        <div class="opt-icon">&#x1F914;</div>
-        <div><div class="opt-label">Not Sure</div><div class="opt-sub">A pro can identify your system on-site</div></div>
-      </button>
-    </div>
-    <div class="step-nav">
-      <button class="btn-continue" id="next-1" disabled onclick="goTo(2)">Continue →</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 2: Problem -->
-<div class="step-panel" id="step-2">
-  <div class="step-body">
-    <div class="step-q">What's going on with your system?</div>
-    <div class="step-hint">Tell us what you're experiencing — we'll tailor your estimate around it.</div>
-    <div class="options">
-      <button class="opt" onclick="pick(this,2,'not-heating','Not heating properly')">
-        <div class="opt-icon">&#x1F321;&#xFE0F;</div>
-        <div><div class="opt-label">Not heating properly</div><div class="opt-sub">Running but not producing enough heat</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,2,'noises','Making unusual noises')">
-        <div class="opt-icon">&#x1F50A;</div>
-        <div><div class="opt-label">Making unusual noises</div><div class="opt-sub">Banging, rattling, or squealing sounds</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,2,'bills','Energy bills have increased')">
-        <div class="opt-icon">&#x1F4B8;</div>
-        <div><div class="opt-label">Energy bills have increased</div><div class="opt-sub">Running more than usual — costing more</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,2,'wont-start','System won\'t turn on')">
-        <div class="opt-icon">❄️</div>
-        <div><div class="opt-label">System won't turn on</div><div class="opt-sub">No heat at all — needs urgent attention</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,2,'planning','Just planning ahead')">
-        <div class="opt-icon">&#x1F4CB;</div>
-        <div><div class="opt-label">Just planning ahead</div><div class="opt-sub">No active issue — exploring options and costs</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,2,'not-sure','Not sure')">
-        <div class="opt-icon">&#x1F914;</div>
-        <div><div class="opt-label">Not sure</div><div class="opt-sub">Something feels off but hard to describe</div></div>
-      </button>
-    </div>
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo(1)">← Back</button>
-      <button class="btn-continue" id="next-2" disabled onclick="goTo(3)">Continue →</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 3: Home size -->
-<div class="step-panel" id="step-3">
-  <div class="step-body">
-    <div class="step-q">How big is your home?</div>
-    <div class="step-hint">Even a rough estimate helps us size the costs to your space.</div>
-    <div class="options">
-      <button class="opt" onclick="pick(this,3,'u1500','Under 1,500 sqft')">
-        <div class="opt-icon">&#x1F3E0;</div>
-        <div><div class="opt-label">Under 1,500 sqft</div><div class="opt-sub">Smaller home or condo</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,3,'1500-2500','1,500 – 2,500 sqft')">
-        <div class="opt-icon">&#x1F3E1;</div>
-        <div><div class="opt-label">1,500 – 2,500 sqft</div><div class="opt-sub">Average Snohomish County home</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,3,'2500-3500','2,500 – 3,500 sqft')">
-        <div class="opt-icon">&#x1F3D8;&#xFE0F;</div>
-        <div><div class="opt-label">2,500 – 3,500 sqft</div><div class="opt-sub">Larger family home</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,3,'o3500','Over 3,500 sqft')">
-        <div class="opt-icon">&#x1F3F0;</div>
-        <div><div class="opt-label">Over 3,500 sqft</div><div class="opt-sub">Large or custom home</div></div>
-      </button>
-    </div>
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo(2)">← Back</button>
-      <button class="btn-continue" id="next-3" disabled onclick="goTo(4)">Continue →</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 4: System age -->
-<div class="step-panel" id="step-4">
-  <div class="step-body">
-    <div class="step-q">Any idea how old your system is?</div>
-    <div class="step-hint">Even a rough guess helps — this is the biggest factor in the repair vs replace decision.</div>
-    <div class="options">
-      <button class="opt" onclick="pick(this,4,'u5','Under 5 years')">
-        <div class="opt-icon">&#x1F195;</div>
-        <div><div class="opt-label">Under 5 years</div><div class="opt-sub">Relatively new system</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,4,'5-10','5 – 10 years')">
-        <div class="opt-icon">&#x1F4C5;</div>
-        <div><div class="opt-label">5 – 10 years</div><div class="opt-sub">Mid-life system</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,4,'10-15','10 – 15 years')">
-        <div class="opt-icon">⏰</div>
-        <div><div class="opt-label">10 – 15 years</div><div class="opt-sub">Aging — repair vs replace territory</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,4,'o15','Over 15 years')">
-        <div class="opt-icon">&#x1F4C6;</div>
-        <div><div class="opt-label">Over 15 years</div><div class="opt-sub">Older system — replacement often makes sense</div></div>
-      </button>
-      <button class="opt" onclick="pick(this,4,'not-sure','Not sure')">
-        <div class="opt-icon">&#x1F914;</div>
-        <div><div class="opt-label">Not sure</div><div class="opt-sub">A pro can check this during the free estimate</div></div>
-      </button>
-    </div>
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo(3)">← Back</button>
-      <button class="btn-continue" id="next-4" disabled onclick="goTo(5)">Continue →</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 5: City -->
-<div class="step-panel" id="step-5">
-  <div class="step-body">
-    <div class="step-q">Which city are you in?</div>
-    <div class="step-hint">We'll pull pricing specific to your area — costs vary by city across Snohomish County.</div>
-    <select class="city-select" id="city-select" onchange="pickCity(this.value)">
-      <option value="">Select your city...</option>
-      <option>Mill Creek</option><option>Bothell</option>
-      <option>Lynnwood</option><option>Mukilteo</option>
-      <option>Kenmore</option><option>Mountlake Terrace</option>
-      <option>Edmonds</option><option>Shoreline</option>
-      <option>Woodinville</option><option>Brier</option>
-      <option>Everett</option><option>Marysville</option>
-      <option>Monroe</option><option>Snohomish</option>
-      <option>Arlington</option><option>Lake Stevens</option>
-      <option>Martha Lake</option><option>Maltby</option>
-      <option>Other nearby area</option>
-    </select>
-    <div class="city-msg" id="city-msg"></div>
-    <div class="step-nav">
-      <button class="btn-back" onclick="goTo(4)">← Back</button>
-      <button class="btn-continue" id="next-5" disabled onclick="showLoading()">Get My Recommendation →</button>
-    </div>
-  </div>
-</div>
-
-<!-- LOADING -->
-<div class="loading-panel" id="loading">
-  <div class="loading-msg">Pulling local pricing for <span id="city-name">your area</span>...</div>
-  <div class="bar-track"><div class="bar-fill" id="bar-fill"></div></div>
-  <div class="bar-pct" id="bar-pct">0%</div>
-</div>
-
-<!-- RESULT -->
-<div class="result-panel" id="result-panel">
-
-  <!-- RECOMMENDATION — shows free, no pricing -->
-  <div class="rec-box">
-    <div class="rec-eyebrow">Our recommendation</div>
-    <div class="rec-verdict" id="rec-verdict"></div>
-    <div class="rec-sub" id="rec-sub"></div>
-  </div>
-
-  <div class="rec-bullets">
-    <div class="rec-bullet" id="rec-b1"></div>
-    <div class="rec-bullet" id="rec-b2"></div>
-    <div class="rec-bullet" id="rec-b3"></div>
-  </div>
-
-  <!-- CTA — stacked buttons -->
-  <div class="cta-box" id="cta-box">
-    <div class="cta-q" id="cta-q"></div>
-    <button class="btn-unlock" onclick="showForm()">Get My Instant Estimate &rarr;</button>
-    <button class="btn-notnow" onclick="showNotYet()">Not yet</button>
-  </div>
-
-  <!-- FORM GATE — phone, email, zip -->
-  <div class="form-section" id="form-section">
-    <div class="form-title">One step to unlock your estimate</div>
-    <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
-    <div class="form-field">
-      <input type="text" id="f-name" placeholder="First name" autocomplete="given-name" oninput="clearFErr('f-name')">
-      <div id="f-name-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
-    </div>
-    <div class="form-field">
-      <input type="tel" id="f-phone" placeholder="Phone number" autocomplete="tel" inputmode="numeric" oninput="clearFErr('f-phone')">
-      <div id="f-phone-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
-    </div>
-    <div class="form-field">
-      <input type="email" id="f-email" placeholder="Email address" autocomplete="email" oninput="clearFErr('f-email')">
-      <div id="f-email-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
-    </div>
-    <div style="display:flex;align-items:flex-start;gap:10px;margin:10px 0 14px;">
-      <input type="checkbox" id="f-agree" onchange="toggleSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
-      <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">By submitting I agree I may be contacted by one local installer about my estimate.</label>
-    </div>
-    <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()" style="background:#27AE60;width:100%;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;">Submit</button>
-    <div class="form-guarantee">No obligation &nbsp;&middot;&nbsp; Free instant estimate &nbsp;&middot;&nbsp; Local &amp; Licensed</div>
-  </div>
-    <div class="est-box" id="repair-box" style="display:none;">
-      <div class="est-eyebrow">Typical repair estimate</div>
-      <div class="est-sublabel" id="repair-sublabel"></div>
-      <div class="est-range repair" id="repair-range"></div>
-      <div class="est-note" id="repair-note"></div>
-    </div>
-    <div class="est-box" id="replace-box" style="display:none;">
-      <div class="est-eyebrow" id="replace-eyebrow">Replacement estimate</div>
-      <div class="est-sublabel" id="replace-sublabel"></div>
-      <div class="est-range" id="replace-range"></div>
-      <div class="est-note">Based on recent installations in Greater Snohomish County &mdash; 2026 pricing.</div>
-    </div>
-    <div id="savings-table" style="display:none;background:#fff;border:1px solid #E8EEF4;border-radius:10px;padding:12px 14px;margin-bottom:10px;display:none;">
-      <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #E8EEF4;">
-        <span style="color:#8AAFC8;">Federal tax credit (IRA)</span>
-        <span style="font-weight:700;color:#27AE60;">up to &minus;$2,000</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;">
-        <span style="color:#8AAFC8;">Utility rebates</span>
-        <span style="color:#9BB0C4;font-weight:500;">Ask your installer</span>
+    <!-- STEP 1: System type -->
+    <div class="step-panel active" id="step-1">
+      <div class="step-body">
+        <div class="step-q">What type of heating system do you have?</div>
+        <div class="step-hint">This helps us give you the most accurate estimate for your situation.</div>
+        <div class="options">
+          <button class="opt" onclick="pick(this,1,'gas','Gas Furnace')">
+            <div class="opt-icon">&#x1F525;</div>
+            <div><div class="opt-label">Gas Furnace</div><div class="opt-sub">Has a flue or exhaust pipe — runs on natural gas</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,1,'electric','Electric Furnace')">
+            <div class="opt-icon">⚡</div>
+            <div><div class="opt-label">Electric Furnace</div><div class="opt-sub">No gas line — runs on electricity only</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,1,'heat-pump-ducted','Ducted Heat Pump')">
+            <div class="opt-icon">♨️</div>
+            <div><div class="opt-label">Ducted Heat Pump</div><div class="opt-sub">Outdoor unit + ducts inside — heats and cools</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,1,'heat-pump-ductless','Ductless Heat Pump')">
+            <div class="opt-icon">&#x1F504;</div>
+            <div><div class="opt-label">Ductless Heat Pump</div><div class="opt-sub">Wall-mounted units — no ductwork needed</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,1,'not-sure','Not Sure')">
+            <div class="opt-icon">&#x1F914;</div>
+            <div><div class="opt-label">Not Sure</div><div class="opt-sub">A pro can identify your system on-site</div></div>
+          </button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-continue" id="next-1" disabled onclick="goTo(2)">Continue →</button>
+        </div>
       </div>
     </div>
-    <div id="net-box" style="display:none;background:rgba(27,111,200,0.05);border:1.5px solid rgba(27,111,200,0.2);border-radius:12px;padding:16px 18px;margin-bottom:10px;display:none;">
-      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1B6FC8;margin-bottom:6px;">Net estimate after savings</div>
-      <div id="net-range" style="font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;color:#1B6FC8;letter-spacing:-1px;line-height:1;margin-bottom:6px;"></div>
-      <div id="net-note" style="font-size:12px;color:#6B8299;line-height:1.6;"></div>
-    </div>
-    <div style="display:none;" style="display:none;font-size:11px;color:#9BB0C4;line-height:1.6;font-style:italic;margin-bottom:10px;">Federal credit eligibility depends on system type and income. Your installer can confirm during the free estimate.</div>
-    
-  </div>
 
-
-  <!-- PRICE REVEAL — shows after form submit -->
-  <div id="price-reveal-section" style="display:none;margin-bottom:10px;">
-    <div id="reveal-confirm" style="font-size:12px;color:#4A8A5A;line-height:1.5;"></div>
-    </div>
-    <div class="est-box" id="repair-box" style="display:none;">
-      <div class="est-eyebrow">Typical repair estimate</div>
-      <div class="est-range repair" id="repair-range"></div>
-      <div class="est-note" id="repair-note"></div>
-    </div>
-    <div class="est-box" id="replace-box" style="display:none;">
-      <div class="est-eyebrow" id="replace-eyebrow">Replacement estimate</div>
-      <div class="est-range" id="replace-range"></div>
-      <div class="est-note">Based on recent installations in Greater Snohomish County &mdash; 2026 pricing.</div>
-    </div>
-    <div id="savings-table" style="display:none;background:#fff;border:1px solid #E8EEF4;border-radius:10px;padding:12px 14px;margin-bottom:10px;">
-      <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #E8EEF4;">
-        <span style="color:#8AAFC8;">Federal tax credit (IRA)</span>
-        <span style="font-weight:700;color:#27AE60;">up to &minus;$2,000</span>
+    <!-- STEP 2: Problem -->
+    <div class="step-panel" id="step-2">
+      <div class="step-body">
+        <div class="step-q">What's going on with your system?</div>
+        <div class="step-hint">Tell us what you're experiencing — we'll tailor your estimate around it.</div>
+        <div class="options">
+          <button class="opt" onclick="pick(this,2,'not-heating','Not heating properly')">
+            <div class="opt-icon">&#x1F321;&#xFE0F;</div>
+            <div><div class="opt-label">Not heating properly</div><div class="opt-sub">Running but not producing enough heat</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,2,'noises','Making unusual noises')">
+            <div class="opt-icon">&#x1F50A;</div>
+            <div><div class="opt-label">Making unusual noises</div><div class="opt-sub">Banging, rattling, or squealing sounds</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,2,'bills','Energy bills have increased')">
+            <div class="opt-icon">&#x1F4B8;</div>
+            <div><div class="opt-label">Energy bills have increased</div><div class="opt-sub">Running more than usual — costing more</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,2,'wont-start','System won\'t turn on')">
+            <div class="opt-icon">❄️</div>
+            <div><div class="opt-label">System won't turn on</div><div class="opt-sub">No heat at all — needs urgent attention</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,2,'planning','Just planning ahead')">
+            <div class="opt-icon">&#x1F4CB;</div>
+            <div><div class="opt-label">Just planning ahead</div><div class="opt-sub">No active issue — exploring options and costs</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,2,'not-sure','Not sure')">
+            <div class="opt-icon">&#x1F914;</div>
+            <div><div class="opt-label">Not sure</div><div class="opt-sub">Something feels off but hard to describe</div></div>
+          </button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goTo(1)">← Back</button>
+          <button class="btn-continue" id="next-2" disabled onclick="goTo(3)">Continue →</button>
+        </div>
       </div>
-      <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;">
-        <span style="color:#8AAFC8;">Utility rebates</span>
-        <span style="color:#9BB0C4;font-weight:500;">Ask your installer</span>
+    </div>
+
+    <!-- STEP 3: Home size -->
+    <div class="step-panel" id="step-3">
+      <div class="step-body">
+        <div class="step-q">How big is your home?</div>
+        <div class="step-hint">Even a rough estimate helps us size the costs to your space.</div>
+        <div class="options">
+          <button class="opt" onclick="pick(this,3,'u1500','Under 1,500 sqft')">
+            <div class="opt-icon">&#x1F3E0;</div>
+            <div><div class="opt-label">Under 1,500 sqft</div><div class="opt-sub">Smaller home or condo</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,3,'1500-2500','1,500 – 2,500 sqft')">
+            <div class="opt-icon">&#x1F3E1;</div>
+            <div><div class="opt-label">1,500 – 2,500 sqft</div><div class="opt-sub">Average Snohomish County home</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,3,'2500-3500','2,500 – 3,500 sqft')">
+            <div class="opt-icon">&#x1F3D8;&#xFE0F;</div>
+            <div><div class="opt-label">2,500 – 3,500 sqft</div><div class="opt-sub">Larger family home</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,3,'o3500','Over 3,500 sqft')">
+            <div class="opt-icon">&#x1F3F0;</div>
+            <div><div class="opt-label">Over 3,500 sqft</div><div class="opt-sub">Large or custom home</div></div>
+          </button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goTo(2)">← Back</button>
+          <button class="btn-continue" id="next-3" disabled onclick="goTo(4)">Continue →</button>
+        </div>
       </div>
     </div>
-    <div id="net-box" style="display:none;background:rgba(27,111,200,0.05);border:1.5px solid rgba(27,111,200,0.2);border-radius:12px;padding:16px 18px;margin-bottom:10px;">
-      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1B6FC8;margin-bottom:6px;">Net estimate after savings</div>
-      <div id="net-range" style="font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;color:#1B6FC8;letter-spacing:-1px;line-height:1;margin-bottom:6px;"></div>
-      <div id="net-note" style="font-size:12px;color:#6B8299;line-height:1.6;"></div>
+
+    <!-- STEP 4: System age -->
+    <div class="step-panel" id="step-4">
+      <div class="step-body">
+        <div class="step-q">Any idea how old your system is?</div>
+        <div class="step-hint">Even a rough guess helps — this is the biggest factor in the repair vs replace decision.</div>
+        <div class="options">
+          <button class="opt" onclick="pick(this,4,'u5','Under 5 years')">
+            <div class="opt-icon">&#x1F195;</div>
+            <div><div class="opt-label">Under 5 years</div><div class="opt-sub">Relatively new system</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,4,'5-10','5 – 10 years')">
+            <div class="opt-icon">&#x1F4C5;</div>
+            <div><div class="opt-label">5 – 10 years</div><div class="opt-sub">Mid-life system</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,4,'10-15','10 – 15 years')">
+            <div class="opt-icon">⏰</div>
+            <div><div class="opt-label">10 – 15 years</div><div class="opt-sub">Aging — repair vs replace territory</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,4,'o15','Over 15 years')">
+            <div class="opt-icon">&#x1F4C6;</div>
+            <div><div class="opt-label">Over 15 years</div><div class="opt-sub">Older system — replacement often makes sense</div></div>
+          </button>
+          <button class="opt" onclick="pick(this,4,'not-sure','Not sure')">
+            <div class="opt-icon">&#x1F914;</div>
+            <div><div class="opt-label">Not sure</div><div class="opt-sub">A pro can check this during the free estimate</div></div>
+          </button>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goTo(3)">← Back</button>
+          <button class="btn-continue" id="next-4" disabled onclick="goTo(5)">Continue →</button>
+        </div>
+      </div>
     </div>
-    <div id="savings-caveat" style="display:none;font-size:11px;color:#9BB0C4;line-height:1.6;font-style:italic;margin-bottom:16px;">Federal credit eligibility depends on system type and income. Your installer can confirm during the free estimate.</div>
+
+    <!-- STEP 5: City -->
+    <div class="step-panel" id="step-5">
+      <div class="step-body">
+        <div class="step-q">Which city are you in?</div>
+        <div class="step-hint">We'll pull pricing specific to your area — costs vary by city across Snohomish County.</div>
+        <select class="city-select" id="city-select" onchange="pickCity(this.value)">
+          <option value="">Select your city...</option>
+          <option>Mill Creek</option><option>Bothell</option>
+          <option>Lynnwood</option><option>Mukilteo</option>
+          <option>Kenmore</option><option>Mountlake Terrace</option>
+          <option>Edmonds</option><option>Shoreline</option>
+          <option>Woodinville</option><option>Brier</option>
+          <option>Everett</option><option>Marysville</option>
+          <option>Monroe</option><option>Snohomish</option>
+          <option>Arlington</option><option>Lake Stevens</option>
+          <option>Martha Lake</option><option>Maltby</option>
+          <option>Other nearby area</option>
+        </select>
+        <div class="city-msg" id="city-msg"></div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goTo(4)">← Back</button>
+          <button class="btn-continue" id="next-5" disabled onclick="showLoading()">Get My Recommendation →</button>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- NOT YET — email path -->
-  <div id="warm-box" style="display:none;background:#fff;border:1.5px solid #E8EEF4;border-radius:14px;padding:20px;margin-bottom:10px;">
-    <div style="font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:14px;">No worries &mdash; want us to email you your recommendation?</div>
-    <input type="email" id="email-only" placeholder="Your email address" oninput="clearWarmErr()" style="width:100%;padding:12px 14px;border:1.5px solid #E8EEF4;border-radius:10px;font-size:14px;font-family:'Barlow',sans-serif;color:#0D1F3C;outline:none;background:#F8FAFC;margin-bottom:6px;">
-    <div id="email-only-err" style="font-size:11px;color:#E74C3C;min-height:16px;margin-bottom:6px;"></div>
-    <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;">
-      <input type="checkbox" id="email-agree" onchange="toggleWarmSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
-      <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="email-agree">I agree to receive occasional tips and offers from Mill Creek HVAC. Unsubscribe anytime.</label>
+    <!-- LOADING -->
+    <div class="loading-panel" id="loading">
+      <div class="loading-msg">Pulling local pricing for <span id="city-name">your area</span>...</div>
+      <div class="bar-track"><div class="bar-fill" id="bar-fill"></div></div>
+      <div class="bar-pct" id="bar-pct">0%</div>
     </div>
-    <button id="btn-warm" disabled onclick="submitWarm()" style="width:100%;background:#27AE60;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px;">Send My Recommendation &rarr;</button>
-    <button onclick="showSkip()" style="width:100%;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:6px;">I&rsquo;m all set, thanks</button>
-  </div>
 
-  <!-- WARM THANK YOU -->
-  <div id="thankyou-warm" style="display:none;text-align:center;padding:24px 20px;background:#F0FDF4;border:1px solid #D1FAE5;border-radius:14px;margin-bottom:10px;">
-    <div style="font-size:32px;margin-bottom:10px;">&#10003;</div>
-    <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#0D1F3C;margin-bottom:8px;">Got it.</div>
-    <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">We&rsquo;ll email your recommendation shortly.<br>Ready to move forward? Come back anytime.</div>
-  </div>
+    <!-- RESULT -->
+    <div class="result-panel" id="result-panel">
 
-  <!-- SKIP THANK YOU -->
-  <div id="thankyou-skip" style="display:none;text-align:center;padding:24px 20px;">
-    <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">Your recommendation will still be here when you&rsquo;re ready.</div>
-  </div>
+      <div class="rec-box">
+        <div class="rec-eyebrow">Our recommendation</div>
+        <div class="rec-verdict" id="rec-verdict"></div>
+        <div class="rec-sub" id="rec-sub"></div>
+      </div>
 
-    <button id="btn-restart" onclick="restartCalc()" style="display:none;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:8px;width:100%;text-align:center;">&larr; Start over</button>
+      <div class="rec-bullets">
+        <div class="rec-bullet" id="rec-b1"></div>
+        <div class="rec-bullet" id="rec-b2"></div>
+        <div class="rec-bullet" id="rec-b3"></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-box" id="cta-box">
+        <div class="cta-q" id="cta-q"></div>
+        <button class="btn-unlock" onclick="showForm()">Get My Instant Estimate &rarr;</button>
+        <button class="btn-notnow" onclick="showNotYet()">Not yet</button>
+      </div>
+
+      <!-- FORM GATE -->
+      <div class="form-section" id="form-section">
+        <div class="form-title">One step to unlock your estimate</div>
+        <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
+        <div class="form-field">
+          <input type="text" id="f-name" placeholder="First name" autocomplete="given-name" oninput="clearFErr('f-name')">
+          <div id="f-name-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
+        </div>
+        <div class="form-field">
+          <input type="tel" id="f-phone" placeholder="Phone number" autocomplete="tel" inputmode="numeric" oninput="clearFErr('f-phone')">
+          <div id="f-phone-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
+        </div>
+        <div class="form-field">
+          <input type="email" id="f-email" placeholder="Email address" autocomplete="email" oninput="clearFErr('f-email')">
+          <div id="f-email-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin:10px 0 14px;">
+          <input type="checkbox" id="f-agree" onchange="toggleSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
+          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">By submitting I agree I may be contacted by one local installer about my estimate.</label>
+        </div>
+        <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()" style="background:#27AE60;width:100%;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;">Submit</button>
+        <div class="form-guarantee">No obligation &nbsp;&middot;&nbsp; Free instant estimate &nbsp;&middot;&nbsp; Local &amp; Licensed</div>
+      </div>
+
+      <!-- PRICE REVEAL SECTION -->
+      <div id="price-reveal-section" style="display:none;margin-bottom:10px;">
+        <div id="reveal-confirm" style="font-size:12px;color:#4A8A5A;line-height:1.5;"></div>
+        <div class="est-box" id="repair-box" style="display:none;">
+          <div class="est-eyebrow">Typical repair estimate</div>
+          <div class="est-sublabel" id="repair-sublabel"></div>
+          <div class="est-range repair" id="repair-range"></div>
+          <div class="est-note" id="repair-note"></div>
+        </div>
+        <div class="est-box" id="replace-box" style="display:none;">
+          <div class="est-eyebrow" id="replace-eyebrow">Replacement estimate</div>
+          <div class="est-sublabel" id="replace-sublabel"></div>
+          <div class="est-range" id="replace-range"></div>
+          <div class="est-note">Based on recent installations in Greater Snohomish County &mdash; 2026 pricing.</div>
+        </div>
+        <div id="savings-table" style="display:none;background:#fff;border:1px solid #E8EEF4;border-radius:10px;padding:12px 14px;margin-bottom:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #E8EEF4;">
+            <span style="color:#8AAFC8;">Federal tax credit (IRA)</span>
+            <span style="font-weight:700;color:#27AE60;">up to &minus;$2,000</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;">
+            <span style="color:#8AAFC8;">Utility rebates</span>
+            <span style="color:#9BB0C4;font-weight:500;">Ask your installer</span>
+          </div>
+        </div>
+        <div id="net-box" style="display:none;background:rgba(27,111,200,0.05);border:1.5px solid rgba(27,111,200,0.2);border-radius:12px;padding:16px 18px;margin-bottom:10px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#1B6FC8;margin-bottom:6px;">Net estimate after savings</div>
+          <div id="net-range" style="font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:800;color:#1B6FC8;letter-spacing:-1px;line-height:1;margin-bottom:6px;"></div>
+          <div id="net-note" style="font-size:12px;color:#6B8299;line-height:1.6;"></div>
+        </div>
+        <div id="savings-caveat" style="display:none;font-size:11px;color:#9BB0C4;line-height:1.6;font-style:italic;margin-bottom:16px;">Federal credit eligibility depends on system type and income. Your installer can confirm during the free estimate.</div>
+      </div>
+
+      <!-- NOT YET / WARM EMAIL -->
+      <div id="warm-box" style="display:none;background:#fff;border:1.5px solid #E8EEF4;border-radius:14px;padding:20px;margin-bottom:10px;">
+        <div style="font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:14px;">No worries &mdash; want us to email you your recommendation?</div>
+        <input type="email" id="email-only" placeholder="Your email address" oninput="clearWarmErr()" style="width:100%;padding:12px 14px;border:1.5px solid #E8EEF4;border-radius:10px;font-size:14px;font-family:'Barlow',sans-serif;color:#0D1F3C;outline:none;background:#F8FAFC;margin-bottom:6px;">
+        <div id="email-only-err" style="font-size:11px;color:#E74C3C;min-height:16px;margin-bottom:6px;"></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;">
+          <input type="checkbox" id="email-agree" onchange="toggleWarmSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
+          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="email-agree">I agree to receive occasional tips and offers from Mill Creek HVAC. Unsubscribe anytime.</label>
+        </div>
+        <button id="btn-warm" disabled onclick="submitWarm()" style="width:100%;background:#27AE60;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px;">Send My Recommendation &rarr;</button>
+        <button onclick="showSkip()" style="width:100%;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:6px;">I&rsquo;m all set, thanks</button>
+      </div>
+
+      <!-- WARM THANK YOU -->
+      <div id="thankyou-warm" style="display:none;text-align:center;padding:24px 20px;background:#F0FDF4;border:1px solid #D1FAE5;border-radius:14px;margin-bottom:10px;">
+        <div style="font-size:32px;margin-bottom:10px;">&#10003;</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:#0D1F3C;margin-bottom:8px;">Got it.</div>
+        <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">We&rsquo;ll email your recommendation shortly.<br>Ready to move forward? Come back anytime.</div>
+      </div>
+
+      <!-- SKIP THANK YOU -->
+      <div id="thankyou-skip" style="display:none;text-align:center;padding:24px 20px;">
+        <div style="font-size:13px;color:#8AAFC8;line-height:1.75;">Your recommendation will still be here when you&rsquo;re ready.</div>
+      </div>
+
+      <button id="btn-restart" onclick="restartCalc()" style="display:none;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:8px;width:100%;text-align:center;">&larr; Start over</button>
+
+    </div><!-- /result-panel -->
+
     <!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-item"><span class="trust-check">✓</span> Licensed & Insured</div>
-  <div class="trust-item"><span class="trust-check">✓</span> Same-Day Response</div>
-  <div class="trust-item"><span class="trust-check">✓</span> Free Estimates</div>
-  <div class="trust-item"><span class="trust-check">✓</span> No Obligation</div>
-</div>
-```
+    <div class="trust-strip">
+      <div class="trust-item"><span class="trust-check">✓</span> Licensed & Insured</div>
+      <div class="trust-item"><span class="trust-check">✓</span> Same-Day Response</div>
+      <div class="trust-item"><span class="trust-check">✓</span> Free Estimates</div>
+      <div class="trust-item"><span class="trust-check">✓</span> No Obligation</div>
+    </div>
 
-  </div>
-</div>
+  </div><!-- /calc-card -->
+</div><!-- /calc-wrap -->
 
 <!-- REVIEWS -->
-
-<div class="section" id="reviews">
+<div class="section" id="reviews" style="padding-top:40px;">
   <div class="section-eyebrow">What Homeowners Say</div>
   <div class="section-title">5-Star Rated</div>
   <div class="section-sub">Verified reviews from Mill Creek & Snohomish County homeowners</div>
@@ -901,7 +936,6 @@
 </div>
 
 <!-- FAQ -->
-
 <div class="section" id="faq">
   <div class="section-eyebrow">Common Questions</div>
   <div class="section-title">Repair or Replace — FAQ</div>
@@ -951,7 +985,6 @@
 </div>
 
 <!-- AREA -->
-
 <div class="area-section">
   <div class="area-eyebrow">Service Area</div>
   <div class="area-pills">
@@ -966,7 +999,6 @@
 </div>
 
 <!-- FOOTER -->
-
 <div class="footer">
   <p>
     heat.millcreek-hvac.com &nbsp;|&nbsp; 425.595.7972<br>
@@ -1017,6 +1049,29 @@ const ageData = {
   'o15':    {rec:'Based on your system\'s age, replacement is likely the smarter long-term investment.'},
   'not-sure':{rec:'Without knowing the system age, a quick assessment from a local pro is the best next step.'}
 };
+
+// ── REVEAL CALC ──────────────────────────────────────────────
+function revealCalc(scroll) {
+  const wrap = document.getElementById('calc-wrap');
+  if (!wrap) return;
+  wrap.classList.add('revealed');
+  // Hide hero button after reveal
+  const heroCta = document.getElementById('hero-cta');
+  if (heroCta) {
+    heroCta.style.opacity = '0.4';
+    heroCta.style.pointerEvents = 'none';
+    heroCta.textContent = '✓ Estimate form open below';
+    heroCta.style.cursor = 'default';
+    heroCta.style.fontSize = '14px';
+    heroCta.style.padding = '10px 24px';
+    heroCta.style.boxShadow = 'none';
+  }
+  if (scroll) {
+    setTimeout(() => {
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
 
 // ── NAVIGATION ──────────────────────────────────────────────
 function pick(el,step,val,label){
@@ -1117,7 +1172,6 @@ function buildResult(){
       cq.textContent='Want to see what homeowners in '+state.city+' are paying to repair or replace?';
   }
 
-  // Cold lead
   fetch(WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
     lead_type:'cold',session_id:sessionID,source:'heating-calc',
     timestamp:new Date().toISOString(),
@@ -1143,7 +1197,6 @@ function submitForm(){
   const nameEl=document.getElementById('f-name');
   const phoneEl=document.getElementById('f-phone');
   const emailEl=document.getElementById('f-email');
-  const agreeEl=document.getElementById('f-agree');
 
   ['f-name','f-phone','f-email'].forEach(id=>{
     const el=document.getElementById(id); if(el) el.style.borderColor='';
@@ -1181,23 +1234,17 @@ function submitForm(){
   var isHP=state.system==='heat-pump-ducted'||state.system==='heat-pump-ductless';
   var isPlanning=state.problem==='planning';
 
-  // Show price reveal section
   var pr=document.getElementById('price-reveal-section');
   if(pr){
     pr.style.display='block';
-    // Confirm text
     var rc=document.getElementById('reveal-confirm');
     if(rc) rc.style.display='none';
-    // Repair box
     var rb=document.getElementById('repair-box');
     if(rb) rb.style.display=(!isPlanning&&state.repairRange&&state.repairRange!=='N/A')?'block':'none';
-    // Populate repair
     var rr=document.getElementById('repair-range'); if(rr) rr.textContent=state.repairRange||'';
     var rn=document.getElementById('repair-note'); if(rn) rn.textContent='Typical cost for this issue in '+state.city+'. A diagnostic visit will confirm.';
-    // Replace
-    var rep=document.getElementById('replace-range'); if(rep) rep.style.display='block'; if(rep) rep.textContent=state.replaceRange||'';
+    var rep=document.getElementById('replace-range'); if(rep) rep.textContent=state.replaceRange||'';
     var re2=document.getElementById('replace-box'); if(re2) re2.style.display='block';
-    // Savings + net — heat pump only
     var st=document.getElementById('savings-table'); if(st) st.style.display=isHP?'block':'none';
     var nb=document.getElementById('net-box');
     if(nb&&isHP){
@@ -1212,7 +1259,6 @@ function submitForm(){
     var sc=document.getElementById('savings-caveat'); if(sc) sc.style.display=isHP?'block':'none';
     pr.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  // Show thank you
 }
 
 // ── NOT YET ──────────────────────────────────────────────────

@@ -140,7 +140,7 @@
   /* HERO TRUST ROW */
   .hero-trust {
     display: flex; flex-wrap: wrap; gap: 8px 20px;
-    justify-content: center; margin-bottom: 32px;
+    justify-content: center; margin-top: 20px; margin-bottom: 32px;
   }
   .hero-trust-item {
     font-size: 12px; font-weight: 600;
@@ -157,7 +157,7 @@
     border-radius: 14px;
     padding: 16px 18px;
     max-width: 420px;
-    margin: 0 auto 24px;
+    margin: 20px auto 0;
     text-align: left;
   }
   .hero-testi-text {
@@ -229,7 +229,7 @@
   .calc-wrap.revealed {
     max-height: 2400px;
     opacity: 1;
-    padding-top: 32px;
+    padding-top: 16px;
   }
 
   .calc-card {
@@ -659,6 +659,10 @@
   <h1>Is It Time to<br><span>Repair or Replace</span><br>Your Heating System?</h1>
   <p class="hero-sub">Answer 5 questions. Get an instant recommendation and free cost estimate.</p>
 
+  <button class="btn-get-started" onclick="revealCalc(true)" id="hero-cta">
+    Get Started <span class="arrow">→</span>
+  </button>
+
   <!-- HERO TESTIMONIAL -->
   <div class="hero-testimonial">
     <div class="hero-testi-text">"Our furnace stopped working in January. I had no idea what anything should cost. This took 2 minutes and I finally knew what I was walking into."</div>
@@ -671,16 +675,10 @@
     </div>
   </div>
 
-  <button class="btn-get-started" onclick="revealCalc(true)" id="hero-cta">
-    Get Started <span class="arrow">→</span>
-  </button>
-  <div class="hero-sub-cta">Takes 60 seconds &nbsp;·&nbsp; No account &nbsp;·&nbsp; No obligation</div>
-
   <div class="hero-trust">
-    <div class="hero-trust-item"><span>✓</span> Licensed & insured pros only</div>
+    <div class="hero-trust-item"><span>✓</span> Licensed & insured installers only</div>
     <div class="hero-trust-item"><span>✓</span> Free estimates</div>
     <div class="hero-trust-item"><span>✓</span> No obligation to book</div>
-    <div class="hero-trust-item"><span>✓</span> One contractor, not a call center</div>
   </div>
 </div>
 
@@ -986,48 +984,18 @@
 
 <!-- STATS -->
 <div class="section" style="padding-top:32px;">
-  <div class="stats-row">
+  <div class="stats-row" style="grid-template-columns:1fr 1fr;">
     <div class="stat-box">
-      <div class="stat-num">$840</div>
-      <div class="stat-label">avg overpaid without a quote</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">73%</div>
-      <div class="stat-label">chose repair after seeing real costs</div>
+      <div class="stat-num">15 yrs</div>
+      <div class="stat-label">average furnace lifespan — after that, replacement usually wins</div>
     </div>
     <div class="stat-box">
       <div class="stat-num">1 day</div>
-      <div class="stat-label">typical install in Snohomish County</div>
+      <div class="stat-label">typical installation in Snohomish County</div>
     </div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<div class="section">
-  <div class="section-eyebrow">How It Works</div>
-  <div class="how-grid">
-    <div class="how-step">
-      <div class="how-num">1</div>
-      <div class="how-title">Answer 5 questions</div>
-      <div class="how-sub">System type, issue, home size, age, city</div>
-    </div>
-    <div class="how-step">
-      <div class="how-num">2</div>
-      <div class="how-title">Get your estimate</div>
-      <div class="how-sub">Repair vs replace costs for your area</div>
-    </div>
-    <div class="how-step">
-      <div class="how-num">3</div>
-      <div class="how-title">Decide — no pressure</div>
-      <div class="how-sub">Optionally request a free quote</div>
-    </div>
-    <div class="how-step">
-      <div class="how-num">4</div>
-      <div class="how-title">One pro contacts you</div>
-      <div class="how-sub">Licensed, local, Snohomish County based</div>
-    </div>
-  </div>
-</div>
 
 <!-- REVIEWS -->
 <div class="section" id="reviews">
@@ -1075,7 +1043,6 @@
 <div class="section">
   <div class="second-cta-box">
     <div class="second-cta-title">Don't Pay More Than You Have To</div>
-    <div class="second-cta-sub">Free · Takes 60 seconds · No obligation</div>
     <button class="second-cta-btn" onclick="revealCalc(true)">Get Started →</button>
   </div>
 </div>

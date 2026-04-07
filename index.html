@@ -186,7 +186,7 @@
   /* GET STARTED BUTTON */
   .btn-get-started {
     display: inline-flex; align-items: center; gap: 10px;
-    background: var(--orange);
+    background: #27AE60;
     border: none; border-radius: 12px;
     padding: 18px 36px;
     font-family: 'Barlow Condensed', sans-serif;
@@ -195,12 +195,12 @@
     text-transform: uppercase; letter-spacing: 1px;
     cursor: pointer;
     transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 6px 24px rgba(255,107,53,0.35);
+    box-shadow: 0 6px 24px rgba(39,174,96,0.35);
   }
   .btn-get-started:hover {
-    background: var(--orange2);
+    background: #219A52;
     transform: translateY(-2px);
-    box-shadow: 0 10px 32px rgba(255,107,53,0.45);
+    box-shadow: 0 10px 32px rgba(39,174,96,0.45);
   }
   .btn-get-started:active { transform: translateY(0); }
   .btn-get-started .arrow {
@@ -324,13 +324,13 @@
   }
   .btn-back:hover { border-color: #B8D0E8; color: var(--dark); }
   .btn-continue {
-    flex: 1; background: var(--dark); border: none;
+    flex: 1; background: #27AE60; border: none;
     border-radius: 10px; padding: 13px 20px;
     font-size: 15px; font-weight: 700; color: var(--white);
     cursor: pointer; font-family: 'Barlow', sans-serif;
     transition: all 0.15s; letter-spacing: 0.3px;
   }
-  .btn-continue:hover { background: #1B3A6B; }
+  .btn-continue:hover { background: #219A52; }
   .btn-continue:disabled { opacity: 0.3; cursor: not-allowed; }
 
   /* LOADING */
@@ -420,13 +420,13 @@
   }
   .cta-btns { display: flex; gap: 10px; }
   .btn-yes {
-    flex: 1; background: var(--orange); border: none;
+    flex: 1; background: #27AE60; border: none;
     border-radius: 10px; padding: 14px;
     font-size: 15px; font-weight: 700; color: var(--white);
     cursor: pointer; font-family: 'Barlow', sans-serif;
     transition: all 0.15s;
   }
-  .btn-yes:hover { background: var(--orange2); }
+  .btn-yes:hover { background: #219A52; }
   .btn-no {
     flex: 1; background: none;
     border: 1.5px solid var(--border);
@@ -563,8 +563,8 @@
   .second-cta-box { background: rgba(255,107,53,0.07); border: 1px solid rgba(255,107,53,0.2); border-radius: 16px; padding: 28px 20px; text-align: center; }
   .second-cta-title { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; color: var(--white); text-transform: uppercase; margin-bottom: 6px; }
   .second-cta-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
-  .second-cta-btn { background: var(--orange); border: none; border-radius: 10px; padding: 14px 28px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); cursor: pointer; transition: background 0.15s; }
-  .second-cta-btn:hover { background: var(--orange2); }
+  .second-cta-btn { background: #27AE60; border: none; border-radius: 10px; padding: 14px 28px; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 700; color: var(--white); cursor: pointer; transition: background 0.15s; }
+  .second-cta-btn:hover { background: #219A52; }
 
   /* REVIEWS */
   .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 12px; }
@@ -983,76 +983,10 @@
   </div><!-- /calc-card -->
 </div><!-- /calc-wrap -->
 
-<!-- STATS -->
-<div class="section" style="padding-top:32px;">
-  <div class="stats-row" style="grid-template-columns:1fr 1fr;">
-    <div class="stat-box">
-      <div class="stat-num">15 yrs</div>
-      <div class="stat-label">average furnace lifespan — after that, replacement usually wins</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num">1 day</div>
-      <div class="stat-label">typical installation in Snohomish County</div>
-    </div>
-  </div>
-</div>
-
-
-<!-- REVIEWS -->
-<div class="section" id="reviews">
-  <div class="section-eyebrow">What Homeowners Say</div>
-  <div class="section-title">Real Results, Local Homeowners</div>
-  <div class="section-sub">From Mill Creek, Bothell, Lynnwood & across Snohomish County</div>
-  <div class="reviews-grid">
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Coils needed replacing — they were quick, kind, and had our AC back up 2 days later. Without breaking the bank."</p>
-      <div class="review-attr">
-        <div class="review-avatar">MC</div>
-        <div>
-          <div class="review-name">Mill Creek Homeowner</div>
-          <div class="review-detail">AC repair · paid $480</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Prompt, personable, and patiently answered all my questions. Their expertise gave me complete confidence in the decision."</p>
-      <div class="review-attr">
-        <div class="review-avatar">BW</div>
-        <div>
-          <div class="review-name">Bothell Homeowner</div>
-          <div class="review-detail">Furnace replacement · paid $5,100</div>
-        </div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Explained everything clearly. Install went smoothly and they even came back a month later to answer more questions."</p>
-      <div class="review-attr">
-        <div class="review-avatar">LY</div>
-        <div>
-          <div class="review-name">Lynnwood Homeowner</div>
-          <div class="review-detail">Heat pump install · paid $9,800</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- SECOND CTA -->
-<div class="section">
-  <div class="second-cta-box">
-    <div class="second-cta-title">Don't Pay More Than You Have To</div>
-    <button class="second-cta-btn" onclick="revealCalc(true)">Get Started →</button>
-  </div>
-</div>
 
 <!-- FAQ -->
-<div class="section" id="faq">
-  <div class="section-eyebrow">Common Questions</div>
-  <div class="section-title">Repair or Replace — FAQ</div>
-  <div class="section-sub">Answers specific to Mill Creek & Snohomish County</div>
+<div class="section" id="faq" style="padding-top:40px;">
+  <div class="section-title" style="text-align:center;">Repair or Replace — FAQ</div>
   <div class="faq-list">
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How much does furnace repair cost in Snohomish County?<span class="faq-icon">+</span></button>
@@ -1094,6 +1028,14 @@
       <button class="faq-q" onclick="toggleFaq(this)">Is a permit required for furnace replacement in Washington?<span class="faq-icon">+</span></button>
       <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees in Snohomish County run $150–$500 depending on your city.</div>
     </div>
+  </div>
+</div>
+
+<!-- SECOND CTA -->
+<div class="section">
+  <div class="second-cta-box">
+    <div class="second-cta-title">Get Your Free Recommendation</div>
+    <button class="second-cta-btn" onclick="revealCalc(true)">Get Started →</button>
   </div>
 </div>
 

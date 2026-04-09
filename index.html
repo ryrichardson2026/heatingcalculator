@@ -8,10 +8,10 @@
 <meta name="description" content="Not sure whether to repair or replace your heating system? Free instant cost estimates for furnace repair and replacement — every city across Snohomish County.">
 <meta name="keywords" content="should I repair or replace my furnace, furnace repair cost Snohomish County, furnace replacement cost Mill Creek, repair or replace heating system, furnace repair vs replacement cost, how much does furnace repair cost, furnace cost calculator Mill Creek WA, heating system repair cost Bothell">
 <meta name="author" content="Mill Creek HVAC">
-<link rel="canonical" href="https://heat.millcreek-hvac.com">
+<link rel="canonical" href="https://heating.millcreek-hvac.com">
 <meta property="og:title" content="Should You Repair or Replace Your Heating System? — Snohomish County">
 <meta property="og:description" content="See what repair and replacement costs in your neighborhood — instant estimates for every city across Snohomish County.">
-<meta property="og:url" content="https://heat.millcreek-hvac.com">
+<meta property="og:url" content="https://heating.millcreek-hvac.com">
 <meta property="og:type" content="website">
 
 <script type="application/ld+json">
@@ -20,7 +20,7 @@
   "@type": "WebApplication",
   "name": "Heating Repair vs Replace Calculator — Mill Creek",
   "description": "Interactive heating system calculator providing 2026 cost estimates for furnace repair and replacement in Mill Creek and Snohomish County, WA.",
-  "url": "https://heat.millcreek-hvac.com",
+  "url": "https://heating.millcreek-hvac.com",
   "applicationCategory": "UtilityApplication",
   "provider": {
     "@type": "LocalBusiness",
@@ -32,10 +32,10 @@
   "mainEntityOfPage": {
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type":"Question","name":"How much does furnace repair cost in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Most furnace repairs in Snohomish County run $150–$900 depending on the issue. Minor repairs like ignitors and sensors run $150–$400. Major repairs like blower motors run $400–$900. A diagnostic call typically costs $100–$175."}},
+      {"@type":"Question","name":"How much does furnace repair cost in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Furnace repair costs in Snohomish County vary widely depending on the issue, system type, and age. Use our free calculator above to get an instant estimate tailored to your situation."}},
       {"@type":"Question","name":"When should I replace my furnace instead of repairing it?","acceptedAnswer":{"@type":"Answer","text":"If your furnace is over 15 years old or repair costs exceed 30% of replacement value, replacement usually makes more financial sense. A 12-year-old furnace needing a $600 repair is a strong candidate for replacement."}},
-      {"@type":"Question","name":"How much does furnace replacement cost in Mill Creek WA?","acceptedAnswer":{"@type":"Answer","text":"Gas furnace replacement in Mill Creek typically runs $4,500–$7,000 for a 1,500–2,500 sqft home. Electric furnaces run $3,200–$5,500. Ducted heat pumps run $9,000–$13,500 and qualify for Snohomish County PUD rebates of $1,800–$2,500."}},
-      {"@type":"Question","name":"Are there rebates for heat pump installation in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Yes. Snohomish County PUD offers $1,800 for ducted heat pump conversions and up to $2,500 for qualifying inverter-driven systems. Installation must be by a PUD registered contractor."}},
+      {"@type":"Question","name":"How much does furnace replacement cost in Mill Creek WA?","acceptedAnswer":{"@type":"Answer","text":"Replacement costs depend on your system type and home size. Answer 5 quick questions in our calculator above to get an instant estimate specific to your home and city."}},
+      {"@type":"Question","name":"Are there rebates for heat pump installation in Snohomish County?","acceptedAnswer":{"@type":"Answer","text":"Yes. Snohomish County PUD offers rebates for qualifying heat pump installations. Federal tax credits may also apply. Your installer can confirm exact amounts during the free estimate."}},
       {"@type":"Question","name":"How long does furnace replacement take?","acceptedAnswer":{"@type":"Answer","text":"Most furnace replacements in Mill Creek are completed in one day — typically 4–8 hours. Your technician will give you a realistic timeframe after the free estimate."}}
     ]
   }
@@ -218,7 +218,6 @@
   .calc-wrap {
     max-width: 600px; margin: 0 auto;
     padding: 0 16px 48px;
-    /* Collapsed state */
     overflow: hidden;
     max-height: 0;
     opacity: 0;
@@ -278,19 +277,13 @@
     border: 1.5px solid var(--border);
     border-radius: 12px; padding: 12px 14px;
     cursor: pointer; transition: all 0.15s;
-    background: var(--light); text-align: left;
-    display: flex; align-items: center; gap: 11px;
+    background: var(--light); text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 11px;
     width: 100%;
   }
   .opt:hover { border-color: #B8D0E8; background: #EEF5FB; }
   .opt.selected { border-color: var(--orange); background: rgba(255,107,53,0.04); }
-  .opt-icon {
-    font-size: 18px; width: 34px; height: 34px;
-    background: var(--white); border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; border: 1px solid var(--border);
-  }
-  .opt.selected .opt-icon { border-color: rgba(255,107,53,0.2); background: rgba(255,107,53,0.05); }
+
   .opt-label { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
   .opt-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
 
@@ -324,13 +317,13 @@
   }
   .btn-back:hover { border-color: #B8D0E8; color: var(--dark); }
   .btn-continue {
-    flex: 1; background: #27AE60; border: none;
+    flex: 1; background: var(--orange); border: none;
     border-radius: 10px; padding: 13px 20px;
     font-size: 15px; font-weight: 700; color: var(--white);
     cursor: pointer; font-family: 'Barlow', sans-serif;
     transition: all 0.15s; letter-spacing: 0.3px;
   }
-  .btn-continue:hover { background: #219A52; }
+  .btn-continue:hover { background: var(--orange2); }
   .btn-continue:disabled { opacity: 0.3; cursor: not-allowed; }
 
   /* LOADING */
@@ -453,7 +446,7 @@
   .form-field input, .form-field select {
     width: 100%; padding: 12px 14px;
     border: 1.5px solid var(--border); border-radius: 10px;
-    font-size: 14px; font-family: 'Barlow', sans-serif;
+    font-size: 16px; font-family: 'Barlow', sans-serif;
     color: var(--dark); outline: none;
     background: var(--light); transition: border 0.15s;
   }
@@ -499,7 +492,7 @@
   .email-input {
     width: 100%; padding: 12px 14px;
     border: 1.5px solid var(--border); border-radius: 10px;
-    font-size: 14px; font-family: 'Barlow', sans-serif;
+    font-size: 16px; font-family: 'Barlow', sans-serif;
     color: var(--dark); outline: none; margin-bottom: 8px;
     background: var(--light);
   }
@@ -642,8 +635,7 @@
   }
 </style>
 
-<!-- Google Ads Tag -->
-
+<!-- Clarity Tag -->
 <script type="text/javascript">     (function(c,l,a,r,i,t,y){         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);     })(window, document, "clarity", "script", "w78lzzxywj"); </script>
 </head>
 <body>
@@ -671,7 +663,7 @@
       <div class="hero-testi-avatar">KM</div>
       <div>
         <div class="hero-testi-name">Mill Creek Homeowner</div>
-        <div class="hero-testi-detail">Repaired gas furnace · paid $340</div>
+        
       </div>
     </div>
   </div>
@@ -687,6 +679,11 @@
 <div class="calc-wrap" id="calc-wrap">
   <div class="calc-card">
 
+    <!-- PERSISTENT HEADER REMINDER -->
+    <div style="background:var(--orange);padding:10px 20px;text-align:center;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#fff;">Repair or Replace? <span style="opacity:0.85;">Find Out Now</span></div>
+    </div>
+
     <div class="progress-bar">
       <div class="prog-seg active" id="seg-1"></div>
       <div class="prog-seg" id="seg-2"></div>
@@ -700,27 +697,26 @@
     <div class="step-panel active" id="step-1">
       <div class="step-body">
         <div class="step-q">What type of heating system do you have?</div>
-        <div class="step-hint">This helps us give you the most accurate estimate for your situation.</div>
         <div class="options">
           <button class="opt" onclick="pick(this,1,'gas','Gas Furnace')">
-            <div class="opt-icon">&#x1F525;</div>
-            <div><div class="opt-label">Gas Furnace</div><div class="opt-sub">Has a flue or exhaust pipe — runs on natural gas</div></div>
+            
+            <div><div class="opt-label">Gas Furnace</div></div>
           </button>
           <button class="opt" onclick="pick(this,1,'electric','Electric Furnace')">
-            <div class="opt-icon">⚡</div>
-            <div><div class="opt-label">Electric Furnace</div><div class="opt-sub">No gas line — runs on electricity only</div></div>
+            
+            <div><div class="opt-label">Electric Furnace</div></div>
           </button>
           <button class="opt" onclick="pick(this,1,'heat-pump-ducted','Ducted Heat Pump')">
-            <div class="opt-icon">♨️</div>
-            <div><div class="opt-label">Ducted Heat Pump</div><div class="opt-sub">Outdoor unit + ducts inside — heats and cools</div></div>
+            
+            <div><div class="opt-label">Ducted Heat Pump</div></div>
           </button>
           <button class="opt" onclick="pick(this,1,'heat-pump-ductless','Ductless Heat Pump')">
-            <div class="opt-icon">&#x1F504;</div>
-            <div><div class="opt-label">Ductless Heat Pump</div><div class="opt-sub">Wall-mounted units — no ductwork needed</div></div>
+            
+            <div><div class="opt-label">Ductless Heat Pump</div></div>
           </button>
           <button class="opt" onclick="pick(this,1,'not-sure','Not Sure')">
-            <div class="opt-icon">&#x1F914;</div>
-            <div><div class="opt-label">Not Sure</div><div class="opt-sub">A pro can identify your system on-site</div></div>
+            
+            <div><div class="opt-label">Not Sure</div></div>
           </button>
         </div>
         <div class="step-nav">
@@ -733,32 +729,16 @@
     <div class="step-panel" id="step-2">
       <div class="step-body">
         <div class="step-q">What's going on with your system?</div>
-        <div class="step-hint">Tell us what you're experiencing — we'll tailor your estimate around it.</div>
-        <div class="options">
-          <button class="opt" onclick="pick(this,2,'not-heating','Not heating properly')">
-            <div class="opt-icon">&#x1F321;&#xFE0F;</div>
-            <div><div class="opt-label">Not heating properly</div><div class="opt-sub">Running but not producing enough heat</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,2,'noises','Making unusual noises')">
-            <div class="opt-icon">&#x1F50A;</div>
-            <div><div class="opt-label">Making unusual noises</div><div class="opt-sub">Banging, rattling, or squealing sounds</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,2,'bills','Energy bills have increased')">
-            <div class="opt-icon">&#x1F4B8;</div>
-            <div><div class="opt-label">Energy bills have increased</div><div class="opt-sub">Running more than usual — costing more</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,2,'wont-start','System won\'t turn on')">
-            <div class="opt-icon">❄️</div>
-            <div><div class="opt-label">System won't turn on</div><div class="opt-sub">No heat at all — needs urgent attention</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,2,'planning','Just planning ahead')">
-            <div class="opt-icon">&#x1F4CB;</div>
-            <div><div class="opt-label">Just planning ahead</div><div class="opt-sub">No active issue — exploring options and costs</div></div>
-          </button>
-          <button class="opt" onclick="pick(this,2,'not-sure','Not sure')">
-            <div class="opt-icon">&#x1F914;</div>
-            <div><div class="opt-label">Not sure</div><div class="opt-sub">Something feels off but hard to describe</div></div>
-          </button>
+        <div class="select-wrap" style="margin-bottom:10px;">
+          <select class="city-select" id="problem-select" onchange="pickProblem(this.value)" style="font-size:16px;">
+            <option value="">Select your situation...</option>
+            <option value="wont-start">System won't turn on</option>
+            <option value="not-heating">Not heating properly</option>
+            <option value="noises">Making unusual noises</option>
+            <option value="bills">Energy bills have increased</option>
+            <option value="planning">Just planning ahead</option>
+            <option value="not-sure">Not sure</option>
+          </select>
         </div>
         <div class="step-nav">
           <button class="btn-back" onclick="goTo(1)">← Back</button>
@@ -771,23 +751,22 @@
     <div class="step-panel" id="step-3">
       <div class="step-body">
         <div class="step-q">How big is your home?</div>
-        <div class="step-hint">Even a rough estimate helps us size the costs to your space.</div>
         <div class="options">
           <button class="opt" onclick="pick(this,3,'u1500','Under 1,500 sqft')">
-            <div class="opt-icon">&#x1F3E0;</div>
-            <div><div class="opt-label">Under 1,500 sqft</div><div class="opt-sub">Smaller home or condo</div></div>
+            
+            <div><div class="opt-label">Under 1,500 sqft</div></div>
           </button>
           <button class="opt" onclick="pick(this,3,'1500-2500','1,500 – 2,500 sqft')">
-            <div class="opt-icon">&#x1F3E1;</div>
-            <div><div class="opt-label">1,500 – 2,500 sqft</div><div class="opt-sub">Average Snohomish County home</div></div>
+            
+            <div><div class="opt-label">1,500 – 2,500 sqft</div></div>
           </button>
           <button class="opt" onclick="pick(this,3,'2500-3500','2,500 – 3,500 sqft')">
-            <div class="opt-icon">&#x1F3D8;&#xFE0F;</div>
-            <div><div class="opt-label">2,500 – 3,500 sqft</div><div class="opt-sub">Larger family home</div></div>
+            
+            <div><div class="opt-label">2,500 – 3,500 sqft</div></div>
           </button>
           <button class="opt" onclick="pick(this,3,'o3500','Over 3,500 sqft')">
-            <div class="opt-icon">&#x1F3F0;</div>
-            <div><div class="opt-label">Over 3,500 sqft</div><div class="opt-sub">Large or custom home</div></div>
+            
+            <div><div class="opt-label">Over 3,500 sqft</div></div>
           </button>
         </div>
         <div class="step-nav">
@@ -801,27 +780,26 @@
     <div class="step-panel" id="step-4">
       <div class="step-body">
         <div class="step-q">Any idea how old your system is?</div>
-        <div class="step-hint">Even a rough guess helps — this is the biggest factor in the repair vs replace decision.</div>
         <div class="options">
           <button class="opt" onclick="pick(this,4,'u5','Under 5 years')">
-            <div class="opt-icon">&#x1F195;</div>
-            <div><div class="opt-label">Under 5 years</div><div class="opt-sub">Relatively new system</div></div>
+            
+            <div><div class="opt-label">Under 5 years</div></div>
           </button>
           <button class="opt" onclick="pick(this,4,'5-10','5 – 10 years')">
-            <div class="opt-icon">&#x1F4C5;</div>
-            <div><div class="opt-label">5 – 10 years</div><div class="opt-sub">Mid-life system</div></div>
+            
+            <div><div class="opt-label">5 – 10 years</div></div>
           </button>
           <button class="opt" onclick="pick(this,4,'10-15','10 – 15 years')">
-            <div class="opt-icon">⏰</div>
-            <div><div class="opt-label">10 – 15 years</div><div class="opt-sub">Aging — repair vs replace territory</div></div>
+            
+            <div><div class="opt-label">10 – 15 years</div></div>
           </button>
           <button class="opt" onclick="pick(this,4,'o15','Over 15 years')">
-            <div class="opt-icon">&#x1F4C6;</div>
-            <div><div class="opt-label">Over 15 years</div><div class="opt-sub">Older system — replacement often makes sense</div></div>
+            
+            <div><div class="opt-label">Over 15 years</div></div>
           </button>
           <button class="opt" onclick="pick(this,4,'not-sure','Not sure')">
-            <div class="opt-icon">&#x1F914;</div>
-            <div><div class="opt-label">Not sure</div><div class="opt-sub">A pro can check this during the free estimate</div></div>
+            
+            <div><div class="opt-label">Not sure</div></div>
           </button>
         </div>
         <div class="step-nav">
@@ -835,7 +813,6 @@
     <div class="step-panel" id="step-5">
       <div class="step-body">
         <div class="step-q">Which city are you in?</div>
-        <div class="step-hint">We'll pull pricing specific to your area — costs vary by city across Snohomish County.</div>
         <select class="city-select" id="city-select" onchange="pickCity(this.value)">
           <option value="">Select your city...</option>
           <option>Mill Creek</option><option>Bothell</option>
@@ -888,7 +865,8 @@
 
       <!-- FORM GATE -->
       <div class="form-section" id="form-section">
-        <div class="form-title">One step to unlock your estimate</div>
+        <div id="form-header" style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--dark);text-transform:uppercase;letter-spacing:-0.3px;line-height:1.2;margin-bottom:8px;"></div>
+        <div class="form-title" style="font-size:13px;font-weight:500;color:var(--orange);margin-bottom:12px;">See my instant estimate</div>
         <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
         <div class="form-field">
           <input type="text" id="f-name" placeholder="First name" autocomplete="given-name" oninput="clearFErr('f-name')">
@@ -904,7 +882,8 @@
         </div>
         <div style="display:flex;align-items:flex-start;gap:10px;margin:10px 0 14px;">
           <input type="checkbox" id="f-agree" onchange="toggleSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
-          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">By submitting I agree I may be contacted by one local installer about my estimate.</label>
+          <!-- FIX 1: Softened consent language — removed "contacted by one local installer", replaced with friendlier copy -->
+          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">I agree to be contacted by one local licensed installer about my estimate. No obligation.</label>
         </div>
         <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()" style="background:#27AE60;width:100%;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;">Submit</button>
         <div class="form-guarantee">No obligation &nbsp;&middot;&nbsp; Free instant estimate &nbsp;&middot;&nbsp; Local &amp; Licensed</div>
@@ -946,11 +925,12 @@
       <!-- NOT YET / WARM EMAIL -->
       <div id="warm-box" style="display:none;background:#fff;border:1.5px solid #E8EEF4;border-radius:14px;padding:20px;margin-bottom:10px;">
         <div style="font-size:15px;font-weight:700;color:#0D1F3C;margin-bottom:14px;">No worries &mdash; want us to email you your recommendation?</div>
-        <input type="email" id="email-only" placeholder="Your email address" oninput="clearWarmErr()" style="width:100%;padding:12px 14px;border:1.5px solid #E8EEF4;border-radius:10px;font-size:14px;font-family:'Barlow',sans-serif;color:#0D1F3C;outline:none;background:#F8FAFC;margin-bottom:6px;">
+        <input type="email" id="email-only" placeholder="Your email address" oninput="clearWarmErr()" style="width:100%;padding:12px 14px;border:1.5px solid #E8EEF4;border-radius:10px;font-size:16px;font-family:'Barlow',sans-serif;color:#0D1F3C;outline:none;background:#F8FAFC;margin-bottom:6px;">
         <div id="email-only-err" style="font-size:11px;color:#E74C3C;min-height:16px;margin-bottom:6px;"></div>
         <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;">
           <input type="checkbox" id="email-agree" onchange="toggleWarmSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
-          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="email-agree">I agree to receive occasional tips and offers from Mill Creek HVAC. Unsubscribe anytime.</label>
+          <!-- FIX 2: Softened warm email consent language -->
+          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="email-agree">I agree to receive my recommendation and occasional helpful tips from Mill Creek HVAC. Unsubscribe anytime.</label>
         </div>
         <button id="btn-warm" disabled onclick="submitWarm()" style="width:100%;background:#27AE60;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;font-family:'Barlow',sans-serif;margin-bottom:8px;">Send My Recommendation &rarr;</button>
         <button onclick="showSkip()" style="width:100%;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Barlow',sans-serif;padding:6px;">I&rsquo;m all set, thanks</button>
@@ -985,51 +965,39 @@
 
 
 <!-- FAQ -->
+<!-- FIX 3: FAQ price ranges softened — removed specific dollar ranges that let users get the answer without completing the calculator -->
 <div class="section" id="faq" style="padding-top:40px;">
   <div class="section-title" style="text-align:center;">Repair or Replace — FAQ</div>
   <div class="faq-list">
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How much does furnace repair cost in Snohomish County?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Most furnace repairs in Snohomish County run $150–$900 depending on the issue. Minor repairs like ignitors and sensors run $150–$400. Major repairs like blower motors run $400–$900. A diagnostic call typically costs $100–$175.</div>
+      <button class="faq-q" onclick="toggleFaq(this)">How much does heating system replacement cost in Snohomish County?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Replacement costs vary significantly based on your system type (gas furnace, electric furnace, heat pump) and your home size. The range across those variables is wide enough that a ballpark number without your specifics won't be useful. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use our free calculator</a> — answer 5 quick questions and get an instant estimate specific to your home and city.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">When should I replace my furnace instead of repairing it?<span class="faq-icon">+</span></button>
-      <div class="faq-a">If your furnace is over 15 years old or repair costs exceed 30% of replacement value, replacement usually makes more financial sense. A 12-year-old furnace needing a $600 repair is a strong candidate for replacement — especially with PUD rebates available on heat pumps.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How much does furnace replacement cost in Snohomish County?<span class="faq-icon">+</span></button>
-      <div class="faq-a">
-        <p style="margin-bottom:10px;color:#8AAFC8;font-size:13px;">Based on recent installations — 2026 Snohomish County pricing:</p>
-        <table style="width:100%;font-size:12px;border-collapse:collapse;">
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.08)"><td style="padding:6px 0;color:#fff;font-weight:700">Gas Furnace Replacement</td><td style="text-align:right;color:#8AAFC8">$3,800–$7,000</td></tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.08)"><td style="padding:6px 0;color:#fff;font-weight:700">Electric Furnace Replacement</td><td style="text-align:right;color:#8AAFC8">$2,500–$5,500</td></tr>
-          <tr style="border-bottom:1px solid rgba(255,255,255,0.08)"><td style="padding:6px 0;color:#fff;font-weight:700">Ducted Heat Pump</td><td style="text-align:right;color:#8AAFC8">$7,000–$13,500</td></tr>
-          <tr><td style="padding:6px 0;color:#fff;font-weight:700">Ductless Heat Pump</td><td style="text-align:right;color:#8AAFC8">$4,000–$17,000</td></tr>
-        </table>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Are there rebates for heat pump installation in Snohomish County?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Yes. Snohomish County PUD offers $1,800 for ducted heat pump conversions and up to $2,500 for qualifying inverter-driven systems. Federal tax credits may also apply. Installation must be by a PUD registered contractor.</div>
+      <button class="faq-q" onclick="toggleFaq(this)">What's the difference between a furnace and a heat pump?<span class="faq-icon">+</span></button>
+      <div class="faq-a">A furnace burns fuel (gas or electric resistance) to generate heat. A heat pump moves heat from outside air into your home — it's more efficient in mild climates like the Pacific Northwest and also cools your home in summer, making it a two-in-one system. Gas furnaces heat faster in very cold snaps; heat pumps cost less to run day-to-day and qualify for Snohomish PUD rebates. Which is right for your home depends on your current system, age, and situation. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Run the calculator</a> and we'll tell you which direction makes sense.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Can I DIY furnace repairs?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Simple tasks like replacing the filter are fine. Anything involving gas lines, electrical connections, or the heat exchanger requires a licensed technician — both for safety and to avoid voiding your warranty. Washington State requires permits for furnace replacement.</div>
+      <div class="faq-a">Simple maintenance like filter replacement is fine to do yourself. Anything involving gas lines, electrical connections, or the heat exchanger requires a licensed technician — both for safety and to avoid voiding your warranty. Washington State also requires permits for furnace replacement. Not sure whether your issue is a quick fix or something bigger? <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a repair vs replace recommendation first.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">When should I replace my furnace instead of repairing it?<span class="faq-icon">+</span></button>
+      <div class="faq-a">System age is the biggest factor. If your furnace is over 15 years old, replacement usually makes more long-term financial sense — especially when you factor in PUD rebates on heat pumps. A useful rule of thumb: if repair cost exceeds 30% of replacement value, replace. The right answer depends on your specific system, problem, and home size. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Run our 5-question calculator</a> for a personalized recommendation.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Are there rebates for heat pump installation in Snohomish County?<span class="faq-icon">+</span></button>
+      <div class="faq-a">Yes. Snohomish County PUD offers rebates for qualifying heat pump installations, and federal tax credits may also apply depending on system type and income. Exact amounts depend on the system — your installer can confirm eligibility during the free estimate. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to see if a heat pump is the right recommendation for your home.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How long does furnace replacement take?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Most furnace replacements in Mill Creek are completed in one day — typically 4–8 hours. Jobs requiring new ductwork may take 2–3 days. Your technician will give you a realistic timeframe after the free estimate.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Gas furnace vs heat pump — which is better for Snohomish County?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Gas furnaces heat faster and cost less to operate in very cold weather. Heat pumps are more efficient in Pacific Northwest winters, heat AND cool your home, and qualify for PUD rebates of $1,800–$2,500. For most Snohomish County homeowners replacing an aging system, a heat pump is worth serious consideration.</div>
+      <div class="faq-a">Most replacements in Mill Creek are completed in one day — typically 4–8 hours. Jobs requiring new ductwork may take 2–3 days. Your technician will give you a realistic timeframe after the free estimate. Not sure if replacement is even the right call? <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Start with the calculator</a> to find out.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Is a permit required for furnace replacement in Washington?<span class="faq-icon">+</span></button>
-      <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees in Snohomish County run $150–$500 depending on your city.</div>
+      <div class="faq-a">Yes. Most furnace replacements in Washington State require a permit, which your licensed contractor pulls on your behalf. Permit fees vary by city and will be included in your installer's estimate. <a href="#calc-top" onclick="revealCalc(true)" style="color:var(--orange);font-weight:700;">Use the calculator</a> to get a free estimate and connect with a local licensed installer.</div>
     </div>
   </div>
-</div>
 
 <!-- SECOND CTA -->
 <div class="section">
@@ -1053,11 +1021,11 @@
   </div>
 </div>
 
-<!-- FOOTER -->
+<!-- FIX 4: Footer URL corrected from heat. to heating. -->
 <div class="footer">
   <p>
-    heat.millcreek-hvac.com &nbsp;|&nbsp; 425.595.7972<br>
-    Licensed, insured & bonded local pros — Greater Snohomish County<br>
+    heating.millcreek-hvac.com &nbsp;|&nbsp; 425.595.7972<br>
+    Licensed, insured & bonded local installers — Greater Snohomish County<br>
     <a href="https://www.termsfeed.com/live/30b803b4-2d68-4cab-a2d5-0ef398f021cf" target="_blank">Privacy Policy</a>
     &nbsp;|&nbsp; Mill Creek HVAC &copy; 2026
   </p>
@@ -1102,7 +1070,7 @@ const ageData = {
   '5-10':   {rec:'At 5–10 years old, repair likely makes sense — unless the diagnosis reveals a major component failure.'},
   '10-15':  {rec:'At 10–15 years old with this issue, replacement is worth serious consideration alongside repair.'},
   'o15':    {rec:'Based on your system\'s age, replacement is likely the smarter long-term investment.'},
-  'not-sure':{rec:'Without knowing the system age, a quick assessment from a local pro is the best next step.'}
+  'not-sure':{rec:'Without knowing the system age, a quick assessment from our team is the best next step.'}
 };
 
 // ── REVEAL CALC ──────────────────────────────────────────────
@@ -1110,7 +1078,6 @@ function revealCalc(scroll) {
   const wrap = document.getElementById('calc-wrap');
   if (!wrap) return;
   wrap.classList.add('revealed');
-  // Hide hero button after reveal
   const heroCta = document.getElementById('hero-cta');
   if (heroCta) {
     heroCta.style.opacity = '0.4';
@@ -1136,6 +1103,21 @@ function pick(el,step,val,label){
   if(step===2){state.problem=val;state.problemLabel=label;document.getElementById('next-2').disabled=false;}
   if(step===3){state.size=val;state.sizeLabel=label;document.getElementById('next-3').disabled=false;}
   if(step===4){state.age=val;state.ageLabel=label;document.getElementById('next-4').disabled=false;}
+}
+
+function pickProblem(val){
+  if(!val) return;
+  const labels = {
+    'wont-start':"System won't turn on",
+    'not-heating':'Not heating properly',
+    'noises':'Making unusual noises',
+    'bills':'Energy bills have increased',
+    'planning':'Just planning ahead',
+    'not-sure':'Not sure'
+  };
+  state.problem=val;
+  state.problemLabel=labels[val]||val;
+  document.getElementById('next-2').disabled=false;
 }
 
 function pickCity(val){
@@ -1238,6 +1220,7 @@ function buildResult(){
   const pl=document.getElementById('prog-label'); if(pl) pl.textContent='Your recommendation';
   const rp=document.getElementById('result-panel'); if(rp) rp.classList.add('active');
   const cc=document.querySelector('.calc-card'); if(cc) cc.scrollIntoView({behavior:'smooth',block:'start'});
+
   const br=document.getElementById('btn-restart'); if(br) br.style.display='block';
 }
 
@@ -1245,6 +1228,16 @@ function buildResult(){
 function showForm(){
   const cb=document.getElementById('cta-box'); if(cb) cb.style.display='none';
   const fs=document.getElementById('form-section'); if(fs) fs.style.display='block';
+  // Set dynamic form header based on recommendation outcome
+  const fh=document.getElementById('form-header');
+  if(fh && state.city){
+    const isReplace = state.age==='o15' || (state.age==='10-15' && state.problem!=='planning');
+    const isPlanning = state.problem==='planning';
+    let action = isReplace ? 'replacements' : 'repairs';
+    if(isPlanning) action = 'new systems';
+    fh.innerHTML = 'See what people paid for similar <span style="color:var(--orange);">' + action + '</span> in ' + state.city;
+  }
+  fs.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 // ── SUBMIT FORM ──────────────────────────────────────────────
@@ -1361,6 +1354,7 @@ function restartCalc(){
   Object.keys(state).forEach(k=>state[k]=null);
   document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   const cs=document.getElementById('city-select'); if(cs) cs.value='';
+  const ps=document.getElementById('problem-select'); if(ps) ps.value='';
   const cm=document.getElementById('city-msg'); if(cm) cm.textContent='';
   for(let i=1;i<=5;i++){const n=document.getElementById('next-'+i);if(n)n.disabled=true;}
   const rp=document.getElementById('result-panel'); if(rp) rp.classList.remove('active');

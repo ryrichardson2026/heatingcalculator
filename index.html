@@ -491,28 +491,46 @@
   @keyframes spin { to { transform: rotate(360deg); } }
 
   @media (max-width: 480px) {
-    .nav-btn { display: none; }
     .step-body { padding: 20px 16px 18px; }
-    .result-panel { padding: 20px 16px; }
     .area-pills { gap: 5px; }
-    .btn-get-started { font-size: 18px; padding: 16px 28px; }
+    .intake-row {
+      flex-direction: column;
+      max-width: 100%;
+      margin: 0 20px;
+      border: none;
+      gap: 8px;
+    }
+    .intake-select-wrap {
+      width: 100%;
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+    .intake-select-wrap select { height: 48px; font-size: 15px; }
+    .btn-get-started {
+      width: 100%; height: 48px;
+      font-size: 13px; border-left: none;
+      border: none;
+    }
   }
 </style>
 
 <!-- Clarity Tag -->
+
 <script type="text/javascript">     (function(c,l,a,r,i,t,y){         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);     })(window, document, "clarity", "script", "w78lzzxywj"); </script>
+
 </head>
 <body>
 
 <!-- NAV -->
+
 <nav class="nav">
   <a href="https://millcreek-hvac.com" class="nav-brand">Mill Creek HVAC</a>
   <a href="tel:4255957972" class="nav-phone">425.595.7972</a>
 </nav>
 
 <!-- HERO -->
+
 <div class="hero" id="calc-top">
-  <div class="hero-eyebrow">Snohomish County</div>
+  <div class="hero-eyebrow">Snohomish County 2026</div>
   <h1>Repair or Replace<br>Your Heating System?</h1>
   <p class="hero-sub">Answer a few questions and get a recommendation and estimate.</p>
 
@@ -541,174 +559,177 @@
 </div>
 
 <!-- CALCULATOR -->
+
 <div class="calc-wrap" id="calc-wrap">
   <div class="calc-card">
 
-    <div class="progress-bar">
-      <div class="prog-seg active" id="seg-1"></div>
-      <div class="prog-seg" id="seg-2"></div>
-      <div class="prog-seg" id="seg-3"></div>
-      <div class="prog-seg" id="seg-4"></div>
-      <div class="prog-label" id="prog-label">Question 1 of 4</div>
-    </div>
+```
+<div class="progress-bar">
+  <div class="prog-seg active" id="seg-1"></div>
+  <div class="prog-seg" id="seg-2"></div>
+  <div class="prog-seg" id="seg-3"></div>
+  <div class="prog-seg" id="seg-4"></div>
+  <div class="prog-label" id="prog-label">Question 1 of 4</div>
+</div>
 
-    <!-- STEP 1: System type -->
-    <div class="step-panel active" id="step-1">
-      <div class="step-body">
-        <div class="step-q">What type of heating system do you have?</div>
-        <div class="options">
-          <button class="opt" onclick="pickAndAdvance(this,1,'gas','Gas Furnace',2)"><div class="opt-label">Gas Furnace</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,1,'electric','Electric Furnace',2)"><div class="opt-label">Electric Furnace</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,1,'heat-pump-ducted','Ducted Heat Pump',2)"><div class="opt-label">Ducted Heat Pump</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,1,'heat-pump-ductless','Ductless Heat Pump',2)"><div class="opt-label">Ductless Heat Pump</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,1,'not-sure','Not Sure',2)"><div class="opt-label">Not Sure</div><span class="opt-chevron">›</span></button>
+<!-- STEP 1: System type -->
+<div class="step-panel active" id="step-1">
+  <div class="step-body">
+    <div class="step-q">What type of heating system do you have?</div>
+    <div class="options">
+      <button class="opt" onclick="pickAndAdvance(this,1,'gas','Gas Furnace',2)"><div class="opt-label">Gas Furnace</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,1,'electric','Electric Furnace',2)"><div class="opt-label">Electric Furnace</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,1,'heat-pump-ducted','Ducted Heat Pump',2)"><div class="opt-label">Ducted Heat Pump</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,1,'heat-pump-ductless','Ductless Heat Pump',2)"><div class="opt-label">Ductless Heat Pump</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,1,'not-sure','Not Sure',2)"><div class="opt-label">Not Sure</div><span class="opt-chevron">›</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: Home size -->
+<div class="step-panel" id="step-2">
+  <div class="step-body">
+    <div class="step-q">How big is your home?</div>
+    <div class="options">
+      <button class="opt" onclick="pickAndAdvance(this,2,'u1500','Under 1,500 sqft',3)"><div class="opt-label">Under 1,500 sqft</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,2,'1500-2500','1,500 – 2,500 sqft',3)"><div class="opt-label">1,500 – 2,500 sqft</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,2,'2500-3500','2,500 – 3,500 sqft',3)"><div class="opt-label">2,500 – 3,500 sqft</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,2,'o3500','Over 3,500 sqft',3)"><div class="opt-label">Over 3,500 sqft</div><span class="opt-chevron">›</span></button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo(1)">&#8592; Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: System age -->
+<div class="step-panel" id="step-3">
+  <div class="step-body">
+    <div class="step-q">Any idea how old your system is?</div>
+    <div class="options">
+      <button class="opt" onclick="pickAndAdvance(this,3,'u5','Under 5 years',4)"><div class="opt-label">Under 5 years</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,3,'5-10','5 – 10 years',4)"><div class="opt-label">5 – 10 years</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,3,'10-15','10 – 15 years',4)"><div class="opt-label">10 – 15 years</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,3,'o15','Over 15 years',4)"><div class="opt-label">Over 15 years</div><span class="opt-chevron">›</span></button>
+      <button class="opt" onclick="pickAndAdvance(this,3,'not-sure','Not sure',4)"><div class="opt-label">Not sure</div><span class="opt-chevron">›</span></button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo(2)">&#8592; Back</button>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: City -->
+<div class="step-panel" id="step-4">
+  <div class="step-body">
+    <div class="step-q">Which city are you in?</div>
+    <select class="city-select" id="city-select" onchange="pickCity(this.value)">
+      <option value="">Select your city...</option>
+      <option>Mill Creek</option><option>Bothell</option>
+      <option>Lynnwood</option><option>Mukilteo</option>
+      <option>Kenmore</option><option>Mountlake Terrace</option>
+      <option>Edmonds</option><option>Shoreline</option>
+      <option>Woodinville</option><option>Brier</option>
+      <option>Everett</option><option>Marysville</option>
+      <option>Monroe</option><option>Snohomish</option>
+      <option>Arlington</option><option>Lake Stevens</option>
+      <option>Martha Lake</option><option>Maltby</option>
+      <option>Other nearby area</option>
+    </select>
+    <div class="city-msg" id="city-msg"></div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goTo(3)">&#8592; Back</button>
+      <button class="btn-continue" id="next-4" disabled onclick="showLoading()">Get My Recommendation &#8594;</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div class="loading-panel" id="loading">
+  <div class="loading-msg">Pulling local pricing for <span id="city-name">your area</span>...</div>
+  <div class="bar-track"><div class="bar-fill" id="bar-fill"></div></div>
+  <div class="bar-pct" id="bar-pct">0%</div>
+</div>
+
+<!-- RESULT -->
+<div class="result-panel" id="result-panel">
+
+  <!-- 1. RECOMMENDATION -->
+  <div class="rec-box">
+    <div class="rec-verdict" id="rec-verdict"></div>
+    <div class="rec-sub" id="rec-sub"></div>
+  </div>
+
+  <!-- 2 + 3. PRICING + SPECIALIST — shared container -->
+  <div class="results-group">
+
+    <div class="pricing-box" id="pricing-box">
+      <div class="pricing-heading" id="pricing-heading">Typical Cost in Your Area</div>
+      <div class="pricing-cols">
+        <div class="pricing-col" id="pricing-repair" style="display:none;">
+          <div class="pricing-col-label" style="color:var(--navy);">Repair</div>
+          <div class="pricing-col-val" style="color:var(--navy);" id="pricing-repair-val"></div>
+        </div>
+        <div class="pricing-col-divider" id="pricing-divider" style="display:none;"></div>
+        <div class="pricing-col" id="pricing-replace">
+          <div class="pricing-col-label" style="color:var(--orange);" id="pricing-replace-label">Replace</div>
+          <div class="pricing-col-val" style="color:var(--orange);" id="pricing-replace-val"></div>
         </div>
       </div>
     </div>
 
-    <!-- STEP 2: Home size -->
-    <div class="step-panel" id="step-2">
-      <div class="step-body">
-        <div class="step-q">How big is your home?</div>
-        <div class="options">
-          <button class="opt" onclick="pickAndAdvance(this,2,'u1500','Under 1,500 sqft',3)"><div class="opt-label">Under 1,500 sqft</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,2,'1500-2500','1,500 – 2,500 sqft',3)"><div class="opt-label">1,500 – 2,500 sqft</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,2,'2500-3500','2,500 – 3,500 sqft',3)"><div class="opt-label">2,500 – 3,500 sqft</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,2,'o3500','Over 3,500 sqft',3)"><div class="opt-label">Over 3,500 sqft</div><span class="opt-chevron">›</span></button>
+    <div class="specialist-box" id="specialist-box">
+      <div class="specialist-availability"><div class="pulse-green"></div>Technician Available</div>
+      <div class="specialist-response-time">Response within 30 minutes</div>
+      <div class="specialist-credentials">Licensed &amp; insured &nbsp;&middot;&nbsp; Snohomish County</div>
+      <div class="specialist-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rated">36 reviews</span></div>
+      <div class="specialist-validator">Speak with a technician to get an exact diagnosis and confirmed estimate.</div>
+      <div id="cta-box" style="text-align:center;">
+        <button class="btn-unlock" onclick="showForm()">Connect Me &#8594;</button>
+        <div class="antispam">You'll only hear from one recommended local technician &#8212; no spam, no multiple calls.</div>
+      </div>
+      <!-- FORM — inline inside specialist box -->
+      <div id="form-section" style="display:none;margin-top:20px;border-top:1px solid var(--border);padding-top:20px;">
+        <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
+        <div class="form-field">
+          <input type="text" id="f-name" placeholder="Your name" autocomplete="given-name" oninput="clearFErr('f-name')">
+          <div id="f-name-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
         </div>
-        <div class="step-nav">
-          <button class="btn-back" onclick="goTo(1)">&#8592; Back</button>
+        <div class="form-field">
+          <input type="tel" id="f-phone" placeholder="Best number to reach you" autocomplete="tel" inputmode="numeric" oninput="clearFErr('f-phone')">
+          <div id="f-phone-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
         </div>
+        <div class="form-field">
+          <input type="email" id="f-email" placeholder="Email (optional)" autocomplete="email" oninput="clearFErr('f-email')">
+          <div id="f-email-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px;margin:10px 0 18px;">
+          <input type="checkbox" id="f-agree" onchange="toggleSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
+          <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">I agree to be contacted by a local technician. Pricing shown is an estimate.</label>
+        </div>
+        <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()">Request a Callback</button>
       </div>
     </div>
 
-    <!-- STEP 3: System age -->
-    <div class="step-panel" id="step-3">
-      <div class="step-body">
-        <div class="step-q">Any idea how old your system is?</div>
-        <div class="options">
-          <button class="opt" onclick="pickAndAdvance(this,3,'u5','Under 5 years',4)"><div class="opt-label">Under 5 years</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,3,'5-10','5 – 10 years',4)"><div class="opt-label">5 – 10 years</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,3,'10-15','10 – 15 years',4)"><div class="opt-label">10 – 15 years</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,3,'o15','Over 15 years',4)"><div class="opt-label">Over 15 years</div><span class="opt-chevron">›</span></button>
-          <button class="opt" onclick="pickAndAdvance(this,3,'not-sure','Not sure',4)"><div class="opt-label">Not sure</div><span class="opt-chevron">›</span></button>
-        </div>
-        <div class="step-nav">
-          <button class="btn-back" onclick="goTo(2)">&#8592; Back</button>
-        </div>
-      </div>
-    </div>
+  </div><!-- /results-group -->
 
-    <!-- STEP 4: City -->
-    <div class="step-panel" id="step-4">
-      <div class="step-body">
-        <div class="step-q">Which city are you in?</div>
-        <select class="city-select" id="city-select" onchange="pickCity(this.value)">
-          <option value="">Select your city...</option>
-          <option>Mill Creek</option><option>Bothell</option>
-          <option>Lynnwood</option><option>Mukilteo</option>
-          <option>Kenmore</option><option>Mountlake Terrace</option>
-          <option>Edmonds</option><option>Shoreline</option>
-          <option>Woodinville</option><option>Brier</option>
-          <option>Everett</option><option>Marysville</option>
-          <option>Monroe</option><option>Snohomish</option>
-          <option>Arlington</option><option>Lake Stevens</option>
-          <option>Martha Lake</option><option>Maltby</option>
-          <option>Other nearby area</option>
-        </select>
-        <div class="city-msg" id="city-msg"></div>
-        <div class="step-nav">
-          <button class="btn-back" onclick="goTo(3)">&#8592; Back</button>
-          <button class="btn-continue" id="next-4" disabled onclick="showLoading()">Get My Recommendation &#8594;</button>
-        </div>
-      </div>
-    </div>
+  <button id="btn-restart" onclick="restartCalc()" style="display:none;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Roboto',sans-serif;padding:16px;width:100%;text-align:center;">&#8592; Start over</button>
 
-    <!-- LOADING -->
-    <div class="loading-panel" id="loading">
-      <div class="loading-msg">Pulling local pricing for <span id="city-name">your area</span>...</div>
-      <div class="bar-track"><div class="bar-fill" id="bar-fill"></div></div>
-      <div class="bar-pct" id="bar-pct">0%</div>
-    </div>
+</div><!-- /result-panel -->
 
-    <!-- RESULT -->
-    <div class="result-panel" id="result-panel">
-
-      <!-- 1. RECOMMENDATION -->
-      <div class="rec-box">
-        <div class="rec-verdict" id="rec-verdict"></div>
-        <div class="rec-sub" id="rec-sub"></div>
-      </div>
-
-      <!-- 2 + 3. PRICING + SPECIALIST — shared container -->
-      <div class="results-group">
-
-        <div class="pricing-box" id="pricing-box">
-          <div class="pricing-heading" id="pricing-heading">Typical Cost in Your Area</div>
-          <div class="pricing-cols">
-            <div class="pricing-col" id="pricing-repair" style="display:none;">
-              <div class="pricing-col-label" style="color:var(--navy);">Repair</div>
-              <div class="pricing-col-val" style="color:var(--navy);" id="pricing-repair-val"></div>
-            </div>
-            <div class="pricing-col-divider" id="pricing-divider" style="display:none;"></div>
-            <div class="pricing-col" id="pricing-replace">
-              <div class="pricing-col-label" style="color:var(--orange);" id="pricing-replace-label">Replace</div>
-              <div class="pricing-col-val" style="color:var(--orange);" id="pricing-replace-val"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="specialist-box" id="specialist-box">
-          <div class="specialist-availability"><div class="pulse-green"></div>Technician Available</div>
-          <div class="specialist-response-time">Response within 30 minutes</div>
-          <div class="specialist-credentials">Licensed &amp; insured &nbsp;&middot;&nbsp; Snohomish County</div>
-          <div class="specialist-stars"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rated">36 reviews</span></div>
-          <div class="specialist-validator">Speak with a technician to get an exact diagnosis and confirmed estimate.</div>
-          <div id="cta-box" style="text-align:center;">
-            <button class="btn-unlock" onclick="showForm()">Connect Me &#8594;</button>
-            <div class="antispam">You'll only hear from one recommended local technician &#8212; no spam, no multiple calls.</div>
-          </div>
-          <!-- FORM — inline inside specialist box -->
-          <div id="form-section" style="display:none;margin-top:20px;border-top:1px solid var(--border);padding-top:20px;">
-            <input type="text" id="h-pot" name="h-pot" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
-            <div class="form-field">
-              <input type="text" id="f-name" placeholder="Your name" autocomplete="given-name" oninput="clearFErr('f-name')">
-              <div id="f-name-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
-            </div>
-            <div class="form-field">
-              <input type="tel" id="f-phone" placeholder="Best number to reach you" autocomplete="tel" inputmode="numeric" oninput="clearFErr('f-phone')">
-              <div id="f-phone-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
-            </div>
-            <div class="form-field">
-              <input type="email" id="f-email" placeholder="Email (optional)" autocomplete="email" oninput="clearFErr('f-email')">
-              <div id="f-email-err" style="font-size:11px;color:#E74C3C;min-height:16px;"></div>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:10px;margin:10px 0 18px;">
-              <input type="checkbox" id="f-agree" onchange="toggleSubmit()" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:#27AE60;cursor:pointer;">
-              <label style="font-size:12px;color:#8AAFC8;line-height:1.6;cursor:pointer;" for="f-agree">I agree to be contacted by a local technician. Pricing shown is an estimate.</label>
-            </div>
-            <button class="btn-submit" id="btn-submit" disabled onclick="submitForm()">Request a Callback</button>
-          </div>
-        </div>
-
-      </div><!-- /results-group -->
-
-      <button id="btn-restart" onclick="restartCalc()" style="display:none;background:none;border:none;font-size:12px;color:#B8C9D9;cursor:pointer;font-family:'Roboto',sans-serif;padding:16px;width:100%;text-align:center;">&#8592; Start over</button>
-
-    </div><!-- /result-panel -->
-
-    <div class="trust-strip">
-      <div class="trust-item"><span class="trust-check">&#10003;</span> Licensed & Insured</div>
-      <div class="trust-item"><span class="trust-check">&#10003;</span> Same-Day Response</div>
-      <div class="trust-item"><span class="trust-check">&#10003;</span> Free Estimates</div>
-      <div class="trust-item"><span class="trust-check">&#10003;</span> No Obligation</div>
-    </div>
+<div class="trust-strip">
+  <div class="trust-item"><span class="trust-check">&#10003;</span> Licensed & Insured</div>
+  <div class="trust-item"><span class="trust-check">&#10003;</span> Same-Day Response</div>
+  <div class="trust-item"><span class="trust-check">&#10003;</span> Free Estimates</div>
+  <div class="trust-item"><span class="trust-check">&#10003;</span> No Obligation</div>
+</div>
+```
 
   </div><!-- /calc-card -->
 </div><!-- /calc-wrap -->
 
-
 <!-- AREA -->
+
 <div class="area-section">
   <div class="area-eyebrow">Service Area</div>
   <div class="area-pills">

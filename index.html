@@ -127,12 +127,12 @@ body{font-family:'Roboto',sans-serif;background:var(--navy);color:var(--white);l
 @keyframes rcCardIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 .rc-card{font-family:'Outfit',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;background:#FFFFFF;border:1.5px solid #E2E1DE;border-radius:16px;padding:28px 22px 24px;color:#2B2C2A;animation:rcCardIn 0.4s cubic-bezier(0.22,1,0.36,1) forwards;}
 .rc-verdict-area{display:flex;flex-direction:column;align-items:center;gap:5px;padding-bottom:20px;text-align:center;}
-.rc-verdict-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#9A9B98;margin-bottom:2px;}
+.rc-verdict-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:#2B2C2A;margin-bottom:2px;}
 .rc-verdict-label{font-size:26px;font-weight:700;letter-spacing:-0.02em;line-height:1.1;}
 .rc-verdict-label.green{color:#15803D;}
 .rc-verdict-label.yellow{color:#92400E;}
 .rc-verdict-label.red{color:#B91C1C;}
-.rc-verdict-label.blue{color:#1D4ED8;}
+.rc-verdict-label.blue{color:#FF6B35;}
 .rc-context{font-size:12px;color:#9A9B98;margin-top:2px;}
 .rc-dashed{border:none;border-top:1.5px dashed #D1D0CC;margin:0;}
 .rc-section{padding:16px 0;}
@@ -145,8 +145,8 @@ body{font-family:'Roboto',sans-serif;background:var(--navy);color:var(--white);l
 .rc-val-hero{font-family:'Outfit',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.03em;color:#2B2C2A;}
 .rc-summary{padding:16px 0 4px;font-size:13px;line-height:1.7;color:#7A7B78;text-align:center;}
 .rc-cta{padding-top:18px;}
-.rc-cta-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:14px 20px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#2B2C2A;background:#FFFFFF;border:1.5px solid #D1D0CC;border-radius:10px;cursor:pointer;transition:border-color 0.15s,background 0.15s;}
-.rc-cta-btn:hover{border-color:#2B2C2A;background:#FAFAF8;}
+.rc-cta-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:14px 20px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#fff;background:#22C55E;border:none;border-radius:10px;cursor:pointer;transition:background 0.15s;}
+.rc-cta-btn:hover{background:#16A34A;}
 .rc-cta-btn svg{width:13px;height:13px;flex-shrink:0;}
 .rc-antispam{font-size:11px;color:#9A9B98;text-align:center;margin-top:10px;line-height:1.5;}
 .rc-disclaimer{font-size:11px;color:#9A9B98;text-align:center;margin-top:16px;line-height:1.5;}
@@ -179,7 +179,7 @@ body{font-family:'Roboto',sans-serif;background:var(--navy);color:var(--white);l
 
 <div class="hero" id="calc-top">
   <div class="hero-eyebrow">Snohomish County</div>
-  <h1>Is it Time to <br>Replace or Repair Your <span>Heating System?</span></h1>
+  <h1>Is it Time to <br>Replace or Repair<br> Your <span>Heating System?</span></h1>
   <p class="hero-sub">Get instant local cost estimates — no personal info required.</p>
 
   <div class="intent-row">
@@ -541,9 +541,19 @@ function getVerdictKey(problem,age){
 function splitCost(rangeStr){
   const nums=rangeStr.replace(/\$|,/g,'').split('–').map(s=>parseInt(s.trim(),10));
   if(nums.length<2||isNaN(nums[0])) return {equip:'—',labor:'—'};
+
+  function format(n){
+    return '$'+n.toLocaleString();
+  }
+
+  const equipMin=Math.round(nums[0]*0.57/500)*500;
+  const equipMax=Math.round(nums[1]*0.57/500)*500;
+  const laborMin=Math.round(nums[0]*0.43/500)*500;
+  const laborMax=Math.round(nums[1]*0.43/500)*500;
+
   return {
-    equip:'$'+Math.round(nums[0]*0.57/500)*500+' – $'+Math.round(nums[1]*0.57/500)*500,
-    labor:'$'+Math.round(nums[0]*0.43/500)*500+' – $'+Math.round(nums[1]*0.43/500)*500
+    equip:format(equipMin)+' – '+format(equipMax),
+    labor:format(laborMin)+' – '+format(laborMax)
   };
 }
 
